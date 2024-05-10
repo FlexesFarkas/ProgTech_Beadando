@@ -5,19 +5,20 @@ import java.io.File;
 public class Database {
     private static final String DATABASE_FILE = "./kiosk_db.sqlite";
     private static final String CONNECTION_URL = "jdbc:sqlite:" + DATABASE_FILE;
-    private static Connection dbConenction;
-    public static void connect(){
+    public static Connection connect(){
         try {
-            Connection dbConenction = DriverManager.getConnection(CONNECTION_URL);
+            Connection dbConnection = DriverManager.getConnection(CONNECTION_URL);
             System.out.println("Connected to database");
+            return dbConnection;
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+            return null;
         }
     }
 
-    public static void disconnect(){
+    public static void disconnect(Connection dbConnection){
         try {
-            dbConenction.close();
+            dbConnection.close();
             System.out.println("Disconnected from database");
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -37,7 +38,7 @@ public class Database {
     private static void createDatabase() {
         try{
             System.out.println("Database not found! Creating a new database...");
-            Connection dbConenction = DriverManager.getConnection(CONNECTION_URL);
+            Connection dbConenction = connect();
             Statement statement = dbConenction.createStatement();
             String sql = "BEGIN TRANSACTION;\n" +
                     "CREATE TABLE IF NOT EXISTS \"BurgerIngredients\" (\n" +
@@ -74,7 +75,7 @@ public class Database {
                     ");\n" +
                     "COMMIT;\n";
             statement.executeLargeUpdate(sql);
-            dbConenction.close();
+            disconnect(dbConenction);
             System.out.println("New database successfully created!");
         } catch(Exception e){
             System.err.println("Failed to create database: " + e.getMessage());
