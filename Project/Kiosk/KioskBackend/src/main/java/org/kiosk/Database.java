@@ -5,6 +5,7 @@ import java.io.File;
 public class Database {
     private static final String DATABASE_FILE = "./kiosk_db.sqlite";
     private static final String CONNECTION_URL = "jdbc:sqlite:" + DATABASE_FILE;
+
     public static Connection connect(){
         try {
             Connection dbConnection = DriverManager.getConnection(CONNECTION_URL);
@@ -79,6 +80,31 @@ public class Database {
             System.out.println("New database successfully created!");
         } catch(Exception e){
             System.err.println("Failed to create database: " + e.getMessage());
+        }
+    }
+
+    public static Boolean checkIngredient(int ingredientID, IngredientType type) {
+        try{
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+            String sql = "SELECT " + type.toString().toLowerCase() +"_ingredient_amount FROM \"" + type.toString() +"Ingredients\" WHERE \"" + type.toString().toLowerCase() + "_ingredient_id\" = " + ingredientID;
+            ResultSet resultSet = statement.executeQuery(sql);
+            resultSet.next();
+            int amount = resultSet.getInt(1);
+            if(amount == 0){
+                disconnect(connection);
+                System.out.println("Ingredient not found");
+                return false;
+            }
+            else{
+                disconnect(connection);
+                System.out.println("Ingredient found. Amount: " + amount);
+                return true;
+            }
+        }
+        catch(Exception e){
+            System.err.println(e.getMessage());
+            return false;
         }
     }
 }
