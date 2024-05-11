@@ -1,18 +1,19 @@
 package org.kiosk;
 import java.sql.*;
 import java.io.File;
+import java.util.logging.Logger;
 
 public class Database {
     private static final String DATABASE_FILE = "./kiosk_db.sqlite";
     private static final String CONNECTION_URL = "jdbc:sqlite:" + DATABASE_FILE;
-
+    private static  final Logger logger = Logger.getLogger(Database.class.getName());
     public static Connection connect(){
         try {
             Connection dbConnection = DriverManager.getConnection(CONNECTION_URL);
-            System.out.println("Connected to database");
+            logger.info("Connected to database");
             return dbConnection;
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            logger.severe(e.getMessage());
             return null;
         }
     }
@@ -20,25 +21,26 @@ public class Database {
     public static void disconnect(Connection dbConnection){
         try {
             dbConnection.close();
-            System.out.println("Disconnected from database");
+            logger.info("Disconnected from database");
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            logger.severe(e.getMessage());
         }
     }
 
     public static void checkIfDatabaseExists() {
         File file = new File(DATABASE_FILE);
         if(file.exists()){
-            System.out.println("Database found!");
+            logger.info("Database found!");
         }
         else {
-            System.out.println("Database not found! Creating a new database...");
+            logger.warning("Database not found!");
             createDatabase();
         }
     }
 
     private static void createDatabase() {
         try{
+            logger.info("Attempting to create a new database...");
             FoodType[] foodTypes = FoodType.values();
             Connection dbConenction = connect();
             Statement statement = dbConenction.createStatement();
@@ -49,9 +51,9 @@ public class Database {
             sql.append("CREATE TABLE IF NOT EXISTS \"Orders\" (\n" + "\t\"order_id\"\tTEXT NOT NULL,\n" + "\t\"food_id\"\tTEXT NOT NULL,\n" + "\tPRIMARY KEY(\"order_id\",\"food_id\"\n" + "));\n" + "COMMIT;\n");
             statement.executeLargeUpdate(sql.toString());
             disconnect(dbConenction);
-            System.out.println("New database successfully created!");
+            logger.info("Database successfully created!");
         } catch(Exception e){
-            System.err.println("Failed to create database: " + e.getMessage());
+            logger.severe(e.getMessage());
         }
     }
 
@@ -65,17 +67,17 @@ public class Database {
             int amount = resultSet.getInt(1);
             if(amountToServe - amount < 0){
                 disconnect(connection);
-                System.out.println("Not enough ingredients to serve!");
+                logger.warning("Not enough ingredients to serve!");
                 return false;
             }
             else{
                 disconnect(connection);
-                System.out.println("Ingredient can be served, remaining amount: " + (amountToServe - amount));
+                logger.info("Ingredient can be served, remaining amount: " + (amountToServe - amount));
                 return true;
             }
         }
         catch(Exception e){
-            System.err.println(e.getMessage());
+            logger.severe(e.getMessage());
             return false;
         }
     }
@@ -85,6 +87,7 @@ public class Database {
             String foodString = food.toString();
             for (int i = 0; i < foodString.length(); i++) {
                 if(!checkIngredient(i, Character.getNumericValue(foodString.charAt(i)) ,type)) {
+                    logger.info("Order could not be saved, not enough ingredients!");
                     return false;
                 }
             }
@@ -92,16 +95,18 @@ public class Database {
             Statement statement = connection.createStatement();
             String sql = "INSERT INTO Orders VALUES (\"" + orderID + "\", \""+ foodString +"\")";
             if (statement.execute(sql)) {
+                logger.info("Order successfully saved");
                 disconnect(connection);
                 return true;
             }
             else {
+                logger.info("Order could not be saved");
                 disconnect(connection);
                 return false;
             }
         }
         catch(Exception e){
-            System.err.println(e.getMessage());
+            logger.severe(e.getMessage());
             return false;
         }
     }
