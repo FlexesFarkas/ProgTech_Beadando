@@ -83,7 +83,7 @@ public class Database {
         }
     }
 
-    public static Boolean checkIngredient(int ingredientID, IngredientType type) {
+    public static Boolean checkIngredient(int ingredientID, int amountToServe,FoodType type) {
         try{
             Connection connection = connect();
             Statement statement = connection.createStatement();
@@ -91,14 +91,14 @@ public class Database {
             ResultSet resultSet = statement.executeQuery(sql);
             resultSet.next();
             int amount = resultSet.getInt(1);
-            if(amount == 0){
+            if(amountToServe - amount < 0){
                 disconnect(connection);
-                System.out.println("Ingredient not found");
+                System.out.println("Not enough ingredients to serve!");
                 return false;
             }
             else{
                 disconnect(connection);
-                System.out.println("Ingredient found. Amount: " + amount);
+                System.out.println("Ingredient can be served, remaining amount: " + (amountToServe - amount));
                 return true;
             }
         }
