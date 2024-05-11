@@ -1,4 +1,6 @@
 package org.kiosk;
+import org.kiosk.food.Food;
+
 import java.sql.*;
 import java.io.File;
 import java.util.logging.Logger;
