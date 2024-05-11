@@ -55,7 +55,7 @@ public class Database {
         }
     }
 
-    public static Boolean checkIngredient(int ingredientID, IngredientType type) {
+    public static Boolean checkIngredient(int ingredientID, int amountToServe,FoodType type) {
         try{
             Connection connection = connect();
             Statement statement = connection.createStatement();
@@ -63,15 +63,41 @@ public class Database {
             ResultSet resultSet = statement.executeQuery(sql);
             resultSet.next();
             int amount = resultSet.getInt(1);
-            if(amount == 0){
+            if(amountToServe - amount < 0){
                 disconnect(connection);
-                System.out.println("Ingredient not found");
+                System.out.println("Not enough ingredients to serve!");
                 return false;
             }
             else{
                 disconnect(connection);
-                System.out.println("Ingredient found. Amount: " + amount);
+                System.out.println("Ingredient can be served, remaining amount: " + (amountToServe - amount));
                 return true;
+            }
+        }
+        catch(Exception e){
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public static Boolean saveOrder(Food food, FoodType type, String orderID) {
+        try{
+            String foodString = food.toString();
+            for (int i = 0; i < foodString.length(); i++) {
+                if(!checkIngredient(i, Character.getNumericValue(foodString.charAt(i)) ,type)) {
+                    return false;
+                }
+            }
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+            String sql = "INSERT INTO Orders VALUES (\"" + orderID + "\", \""+ foodString +"\")";
+            if (statement.execute(sql)) {
+                disconnect(connection);
+                return true;
+            }
+            else {
+                disconnect(connection);
+                return false;
             }
         }
         catch(Exception e){
