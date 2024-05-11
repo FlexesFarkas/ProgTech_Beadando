@@ -32,50 +32,22 @@ public class Database {
             System.out.println("Database found!");
         }
         else {
+            System.out.println("Database not found! Creating a new database...");
             createDatabase();
         }
     }
 
     private static void createDatabase() {
         try{
-            System.out.println("Database not found! Creating a new database...");
+            FoodType[] foodTypes = FoodType.values();
             Connection dbConenction = connect();
             Statement statement = dbConenction.createStatement();
-            String sql = "BEGIN TRANSACTION;\n" +
-                    "CREATE TABLE IF NOT EXISTS \"BurgerIngredients\" (\n" +
-                    "\t\"burger_ingredient_id\"\tINTEGER NOT NULL UNIQUE,\n" +
-                    "\t\"burger_ingredient_name\"\tTEXT NOT NULL UNIQUE,\n" +
-                    "\t\"burger_ingredient_amount\"\tINTEGER NOT NULL,\n" +
-                    "\t\"burger_ingredient_price\"\tINTEGER NOT NULL,\n" +
-                    "\tPRIMARY KEY(\"burger_ingredient_id\" AUTOINCREMENT)\n" +
-                    ");\n" +
-                    "CREATE TABLE IF NOT EXISTS \"ShakeIngredients\" (\n" +
-                    "\t\"shake_ingredient_id\"\tINTEGER NOT NULL UNIQUE,\n" +
-                    "\t\"shake_ingredient_name\"\tTEXT NOT NULL UNIQUE,\n" +
-                    "\t\"shake_ingredient_amount\"\tINTEGER NOT NULL,\n" +
-                    "\t\"shake_ingredient_price\"\tINTEGER NOT NULL,\n" +
-                    "\tPRIMARY KEY(\"shake_ingredient_id\" AUTOINCREMENT)\n" +
-                    ");\n" +
-                    "CREATE TABLE IF NOT EXISTS \"Burgers\" (\n" +
-                    "\t\"burger_id\"\tTEXT NOT NULL,\n" +
-                    "\t\"burger_ingredients\"\tINTEGER NOT NULL,\n" +
-                    "\tPRIMARY KEY(\"burger_id\")\n" +
-                    ");\n" +
-                    "CREATE TABLE IF NOT EXISTS \"Shakes\" (\n" +
-                    "\t\"shake_id\"\tTEXT NOT NULL,\n" +
-                    "\t\"shake_ingredients\"\tINTEGER NOT NULL,\n" +
-                    "\tPRIMARY KEY(\"shake_id\")\n" +
-                    ");\n" +
-                    "CREATE TABLE IF NOT EXISTS \"Orders\" (\n" +
-                    "\t\"order_id\"\tTEXT NOT NULL,\n" +
-                    "\t\"burger_id\"\tTEXT NOT NULL,\n" +
-                    "\t\"shake_id\"\tTEXT NOT NULL,\n" +
-                    "\tFOREIGN KEY(\"burger_id\") REFERENCES \"Burgers\"(\"burger_id\"),\n" +
-                    "\tFOREIGN KEY(\"shake_id\") REFERENCES \"Shakes\"(\"shake_id\"),\n" +
-                    "\tPRIMARY KEY(\"order_id\",\"burger_id\",\"shake_id\")\n" +
-                    ");\n" +
-                    "COMMIT;\n";
-            statement.executeLargeUpdate(sql);
+            StringBuilder sql = new StringBuilder("BEGIN TRANSACTION;\n");
+            for (FoodType foodType : foodTypes) {
+                sql.append("CREATE TABLE IF NOT EXISTS \"").append(foodType).append("Ingredients\" (\n").append("\t\"").append(foodType.toString().toLowerCase()).append("_ingredient_id\" INTEGER NOT NULL UNIQUE,\n").append("\t\"").append(foodType.toString().toLowerCase()).append("_ingredient_name\" TEXT NOT NULL UNIQUE,\n").append("\t\"").append(foodType.toString().toLowerCase()).append("_ingredient_amount\" INTEGER NOT NULL,\n").append("\t\"").append(foodType.toString().toLowerCase()).append("_ingredient_price\" INTEGER NOT NULL,\n").append("\tPRIMARY KEY(\"").append(foodType.toString().toLowerCase()).append("_ingredient_id\" AUTOINCREMENT)\n").append(");\n");
+            }
+            sql.append("CREATE TABLE IF NOT EXISTS \"Orders\" (\n" + "\t\"order_id\"\tTEXT NOT NULL,\n" + "\t\"food_id\"\tTEXT NOT NULL,\n" + "\tPRIMARY KEY(\"order_id\",\"food_id\"\n" + "));\n" + "COMMIT;\n");
+            statement.executeLargeUpdate(sql.toString());
             disconnect(dbConenction);
             System.out.println("New database successfully created!");
         } catch(Exception e){
