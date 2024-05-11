@@ -107,4 +107,30 @@ public class Database {
             return false;
         }
     }
+
+    public static Boolean saveOrder(Food food, FoodType type, String orderID) {
+        try{
+            String foodString = food.toString();
+            for (int i = 0; i < foodString.length(); i++) {
+                if(!checkIngredient(i, Character.getNumericValue(foodString.charAt(i)) ,type)) {
+                    return false;
+                }
+            }
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+            String sql = "INSERT INTO Orders VALUES (\"" + orderID + "\", \""+ foodString +"\")";
+            if (statement.execute(sql)) {
+                disconnect(connection);
+                return true;
+            }
+            else {
+                disconnect(connection);
+                return false;
+            }
+        }
+        catch(Exception e){
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
 }
