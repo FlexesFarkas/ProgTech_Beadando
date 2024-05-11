@@ -1,6 +1,6 @@
 package org.kiosk;
 
-public enum IngredientType{
+public enum FoodType {
     Burger,
     Shake
 }
