@@ -46,12 +46,41 @@ public class Database {
             FoodType[] foodTypes = FoodType.values();
             Connection dbConenction = connect();
             Statement statement = dbConenction.createStatement();
-            StringBuilder sql = new StringBuilder("BEGIN TRANSACTION;\n");
-            for (FoodType foodType : foodTypes) {
-                sql.append("CREATE TABLE IF NOT EXISTS \"").append(foodType).append("Ingredients\" (\n").append("\t\"").append(foodType.toString().toLowerCase()).append("_ingredient_id\" INTEGER NOT NULL UNIQUE,\n").append("\t\"").append(foodType.toString().toLowerCase()).append("_ingredient_name\" TEXT NOT NULL UNIQUE,\n").append("\t\"").append(foodType.toString().toLowerCase()).append("_ingredient_amount\" INTEGER NOT NULL,\n").append("\t\"").append(foodType.toString().toLowerCase()).append("_ingredient_price\" INTEGER NOT NULL,\n").append("\tPRIMARY KEY(\"").append(foodType.toString().toLowerCase()).append("_ingredient_id\" AUTOINCREMENT)\n").append(");\n");
-            }
-            sql.append("CREATE TABLE IF NOT EXISTS \"Orders\" (\n" + "\t\"order_id\"\tTEXT NOT NULL,\n" + "\t\"food_id\"\tTEXT NOT NULL,\n" + "\tPRIMARY KEY(\"order_id\",\"food_id\"\n" + "));\n" + "COMMIT;\n");
-            statement.executeLargeUpdate(sql.toString());
+            String sql = "BEGIN TRANSACTION;\n" +
+                    "CREATE TABLE IF NOT EXISTS \"Ingredients\" (\n" +
+                    "\t\"ingredient_id\"\tINTEGER NOT NULL UNIQUE,\n" +
+                    "\t\"ingredient_name\"\tTEXT NOT NULL UNIQUE,\n" +
+                    "\t\"ingredient_price\"\tINTEGER NOT NULL,\n" +
+                    "\t\"ingredient_amount\"\tINTEGER NOT NULL,\n" +
+                    "\tPRIMARY KEY(\"ingredient_id\" AUTOINCREMENT)\n" +
+                    ");\n" +
+                    "CREATE TABLE IF NOT EXISTS \"Orders\" (\n" +
+                    "\t\"order_id\"\tTEXT NOT NULL,\n" +
+                    "\t\"food_id\"\tINTEGER NOT NULL UNIQUE,\n" +
+                    "\tPRIMARY KEY(\"order_id\",\"food_id\"),\n" +
+                    "\tFOREIGN KEY(\"food_id\") REFERENCES \"Foods\"(\"food_id\")\n" +
+                    ");\n" +
+                    "CREATE TABLE IF NOT EXISTS \"Types\" (\n" +
+                    "\t\"type\"\tTEXT NOT NULL UNIQUE,\n" +
+                    "\tPRIMARY KEY(\"type\")\n" +
+                    ");\n" +
+                    "CREATE TABLE IF NOT EXISTS \"IngredientTypes\" (\n" +
+                    "\t\"ingredient_id\"\tINTEGER NOT NULL,\n" +
+                    "\t\"ingredient_type\"\tTEXT NOT NULL,\n" +
+                    "\tFOREIGN KEY(\"ingredient_id\") REFERENCES \"Ingredients\"(\"ingredient_id\"),\n" +
+                    "\tFOREIGN KEY(\"ingredient_type\") REFERENCES \"Types\"(\"type\"),\n" +
+                    "\tPRIMARY KEY(\"ingredient_id\",\"ingredient_type\")\n" +
+                    ");\n" +
+                    "CREATE TABLE IF NOT EXISTS \"Foods\" (\n" +
+                    "\t\"food_id\"\tINTEGER NOT NULL UNIQUE,\n" +
+                    "\t\"ingredients\"\tTEXT NOT NULL,\n" +
+                    "\t\"food_type\"\tTEXT NOT NULL,\n" +
+                    "\t\"price\"\tINTEGER NOT NULL,\n" +
+                    "\tFOREIGN KEY(\"food_type\") REFERENCES \"Types\"(\"type\"),\n" +
+                    "\tPRIMARY KEY(\"food_id\" AUTOINCREMENT)\n" +
+                    ");\n" +
+                    "COMMIT;\n";
+            statement.executeLargeUpdate(sql);
             disconnect(dbConenction);
             logger.info("Database successfully created!");
         } catch(Exception e){
