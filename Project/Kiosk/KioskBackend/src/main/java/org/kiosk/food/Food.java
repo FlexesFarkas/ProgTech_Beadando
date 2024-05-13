@@ -24,6 +24,11 @@ public class Food implements IFood{
         return foodType;
     }
 
+    @Override
+    public String getName() {
+        return "Food";
+    }
+
     public String toString(){
         return getDescription();
     }
