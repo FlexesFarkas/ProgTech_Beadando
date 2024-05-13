@@ -141,4 +141,23 @@ public class Database {
             return false;
         }
     }
+    public static boolean processPayment(String paymentDetails) {
+        try {
+            Connection dbConnection = connect();
+            if (paymentDetails == null || paymentDetails.length() != 16) {
+                logger.warning("Invalid payment details.");
+                disconnect(dbConnection);
+                return false;
+            }
+            //ide kell majd az, hogy megnézi mennyi pénz van a kártyán
+            logger.info("Payment processed successfully.");
+            disconnect(dbConnection);
+            return true;
+
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+            return false;
+        }
+    }
+
 }

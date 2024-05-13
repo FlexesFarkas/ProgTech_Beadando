@@ -82,7 +82,7 @@ public class OrderProcess {
 
     public void makePayment(String paymentDetails) {
         if (state == OrderState.CART) {
-            boolean paymentAccepted = true;//Database.processPayment(paymentDetails);        -----majd meg kell írni.
+            boolean paymentAccepted = Database.processPayment(paymentDetails);
             if (paymentAccepted) {
                 nextState();
                 logger.info("Payment successful.");
