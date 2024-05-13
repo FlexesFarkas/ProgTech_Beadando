@@ -10,16 +10,28 @@ public enum OrderState {
     FOOD_SELECTION {
         @Override
         public OrderState next() {
-            return INGREDIENT_SELECTION;
+            return CART;
         }
     },
     INGREDIENT_SELECTION {
         @Override
         public OrderState next() {
-            return ORDER_PLACED;
+            return CART;
         }
     },
-    ORDER_PLACED {
+    CART {
+        @Override
+        public OrderState next() {
+            return PAYMENT;
+        }
+    },
+    PAYMENT {
+        @Override
+        public OrderState next() {
+            return PAYMENT_DONE;
+        }
+    },
+    PAYMENT_DONE {
         @Override
         public OrderState next() {
             return null;

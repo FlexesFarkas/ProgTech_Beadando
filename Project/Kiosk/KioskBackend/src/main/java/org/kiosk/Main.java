@@ -5,21 +5,23 @@ import org.kiosk.order.OrderProcess;
 public class Main {
     public static void main(String[] args) {
         Database.checkIfDatabaseExists();
-        /* -itt majd ki tudod próbálni ezt a nagyon kezdetleges verzióját a rendelésnek.
+        // -itt majd ki tudod próbálni ezt a nagyon kezdetleges verzióját a rendelésnek.
 
-        OrderProcess order = new OrderProcess();
+        OrderProcess orderProcess = new OrderProcess();
+        orderProcess.selectFood(FoodType.Burger);
 
-        // Kiválasztjuk a burgert
-        order.selectFood(FoodType.Burger);
+        // Add cheese and tomato
+        orderProcess.addCheese();
+        orderProcess.addTomato();
 
-        // Hozzáadunk sajtot
-        order.addCheese();
+        // Add to cart
+        orderProcess.addToCart();
 
-        // Hozzáadunk paradicsomot
-        order.addTomato();
+        // Make a payment
+        orderProcess.makePayment("Payment details here");
 
-        // Leadjuk a rendelést
-        order.placeOrder("1234");*/
+        // Place the order
+        orderProcess.placeOrder("Order ID here");
     }
 
 
