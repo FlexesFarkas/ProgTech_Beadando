@@ -6,4 +6,5 @@ public interface IFood {
     String getDescription();
     double getCost();
     FoodType getFoodType();
+    String getName();
 }

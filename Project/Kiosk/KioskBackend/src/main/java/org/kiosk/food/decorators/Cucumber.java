@@ -6,15 +6,15 @@ import org.kiosk.food.IngridientDecorator;
 
 import java.util.ArrayList;
 
-public class Tomato extends IngridientDecorator {
-    public Tomato(IFood food) throws ClassNotFoundException {
+public class Cucumber extends IngridientDecorator {
+    public Cucumber(IFood food) throws ClassNotFoundException {
         super(food);
         intialize();
     }
 
     private static void intialize() throws ClassNotFoundException {
-        ingredientName = (Class.forName("org.kiosk.food.decorators.Tomato")).getName().split("\\.")[4];
-        ingredientPrice = 100;
+        ingredientName = (Class.forName("org.kiosk.food.decorators.Cucumber")).getName().split("\\.")[4];
+        ingredientPrice = 150;
         foodTypes = new ArrayList<FoodType>();
         foodTypes.add(FoodType.Burger);
     }
