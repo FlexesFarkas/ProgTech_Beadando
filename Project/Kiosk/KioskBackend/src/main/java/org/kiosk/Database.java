@@ -1,4 +1,5 @@
 package org.kiosk;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.kiosk.food.Food;
 
 import java.sql.*;
@@ -112,6 +113,25 @@ public class Database {
             return false;
         }
     }
+
+    public static Boolean GenerateType() {
+        try {
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+            FoodType[] Ftypes = FoodType.values();
+            for (FoodType type : Ftypes) {
+                String sql = "INSERT OR IGNORE INTO Types (type) VALUES ('" + type.toString() + "')";
+                statement.execute(sql);
+            }
+            disconnect(connection);
+            logger.info("Types successfully generated in the database!");
+            return true;
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+            return false;
+        }
+    }
+
 
     public static Boolean saveOrder(Food food, FoodType type, String orderID) {
         try{
