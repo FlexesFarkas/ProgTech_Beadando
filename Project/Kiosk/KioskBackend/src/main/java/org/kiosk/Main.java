@@ -3,8 +3,9 @@ package org.kiosk;
 import org.kiosk.order.OrderProcess;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         Database.checkIfDatabaseExists();
+        Database.GenerateType();
         // -itt majd ki tudod próbálni ezt a nagyon kezdetleges verzióját a rendelésnek.
 
         OrderProcess orderProcess = new OrderProcess();
