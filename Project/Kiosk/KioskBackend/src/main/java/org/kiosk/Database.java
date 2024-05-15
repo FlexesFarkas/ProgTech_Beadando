@@ -1,8 +1,24 @@
 package org.kiosk;
 import org.kiosk.food.Food;
+import org.kiosk.food.IngridientDecorator;
+import org.kiosk.food.decorators.Cheese;
+import org.kiosk.food.decorators.Cucumber;
+import org.kiosk.food.decorators.Tomato;
+import java.lang.reflect.Method;
+import java.lang.reflect.Field;
+import java.lang.reflect.Constructor;
+
+import java.lang.reflect.*;
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
+
 
 import java.sql.*;
 import java.io.File;
+import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 public class Database {
@@ -159,5 +175,58 @@ public class Database {
             return false;
         }
     }
+    private static final int STOCK_AMOUNT = 100;
+    public static void generateStock() {
+        try {
+            Connection connection = connect();
+            Statement selectStatement = connection.createStatement();
+            String sql = "SELECT ingredient_id FROM Ingredients";
+            ResultSet resultSet = selectStatement.executeQuery(sql);
+            while (resultSet.next()) {
+                int ingredientID = resultSet.getInt("ingredient_id");
+                String updateSql = "UPDATE Ingredients SET ingredient_amount = "+ STOCK_AMOUNT +" + 10 WHERE ingredient_id =  "+ingredientID;
+                Statement updateStatement = connection.createStatement();
+                updateStatement.execute(updateSql);
+                updateStatement.close();
+            }
+            resultSet.close();
+            selectStatement.close();
+            disconnect(connection);
+            logger.info("Stock successfully generated for all ingredients!");
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+        }
+    }
+
+
+    public static void populateIngredientsFromDecorators() {
+        try {
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+
+            ClassLoader classLoader = Database.class.getClassLoader();
+
+            String packageName = "org.kiosk.food.decorators";
+
+            Reflections reflections = new Reflections(new ConfigurationBuilder()
+                    .setUrls(ClasspathHelper.forPackage(packageName, classLoader))
+                    .setScanners(new SubTypesScanner(false)));
+
+            Set<Class<? extends IngridientDecorator>> decorators = reflections.getSubTypesOf(IngridientDecorator.class);
+
+            for (Class<? extends IngridientDecorator> decorator : decorators) {
+                String ingredientName = decorator.getSimpleName();
+                int ingredientPrice = (int) decorator.getMethod("getIngredientPrice").invoke(null);
+
+                String sql = "INSERT INTO Ingredients (ingredient_name, ingredient_price, ingredient_amount) VALUES ('" + ingredientName + "', " + ingredientPrice + ",0)";
+                statement.execute(sql);
+            }
+            disconnect(connection);
+            logger.info("Ingredients successfully populated in the database from IngredientDecorators!");
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+        }
+    }
+
 
 }

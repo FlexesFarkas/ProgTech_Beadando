@@ -6,8 +6,9 @@ public class Main {
     public static void main(String[] args) {
         Database.checkIfDatabaseExists();
         // -itt majd ki tudod próbálni ezt a nagyon kezdetleges verzióját a rendelésnek.
-
-        OrderProcess orderProcess = new OrderProcess();
+        Database.populateIngredientsFromDecorators();
+        Database.generateStock();
+        /*OrderProcess orderProcess = new OrderProcess();
         orderProcess.selectFood(FoodType.Burger);
 
         // Add cheese and tomato
@@ -21,7 +22,7 @@ public class Main {
         orderProcess.makePayment("Payment details here");
 
         // Place the order
-        orderProcess.placeOrder("Order ID here");
+        orderProcess.placeOrder("Order ID here");*/
     }
 
 
