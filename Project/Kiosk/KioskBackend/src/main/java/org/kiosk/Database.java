@@ -88,22 +88,22 @@ public class Database {
         }
     }
 
-    public static Boolean checkIngredient(int ingredientID, int amountToServe,FoodType type) {
+    public static Boolean checkIngredient(int ingredientID, int amountToServe) {
         try{
             Connection connection = connect();
             Statement statement = connection.createStatement();
-            String sql = "SELECT " + type.toString().toLowerCase() +"_ingredient_amount FROM \"" + type.toString() +"Ingredients\" WHERE \"" + type.toString().toLowerCase() + "_ingredient_id\" = " + ingredientID;
+            String sql = "SELECT ingredient_amount FROM \"Ingredients\" WHERE \"ingredient_id\" = '" + ingredientID + "';";
             ResultSet resultSet = statement.executeQuery(sql);
             resultSet.next();
             int amount = resultSet.getInt(1);
-            if(amountToServe - amount < 0){
+            if(amount - amountToServe < 0){
                 disconnect(connection);
                 logger.warning("Not enough ingredients to serve!");
                 return false;
             }
             else{
                 disconnect(connection);
-                logger.info("Ingredient can be served, remaining amount: " + (amountToServe - amount));
+                logger.info("Ingredient can be served, remaining amount: " + (amount - amountToServe));
                 return true;
             }
         }
@@ -117,7 +117,7 @@ public class Database {
         try{
             String foodString = food.toString();
             for (int i = 0; i < foodString.length(); i++) {
-                if(!checkIngredient(i, Character.getNumericValue(foodString.charAt(i)) ,type)) {
+                if(!checkIngredient(i, Character.getNumericValue(foodString.charAt(i)))) {
                     logger.info("Order could not be saved, not enough ingredients!");
                     return false;
                 }
