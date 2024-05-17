@@ -43,7 +43,7 @@ public class OrderProcess {
         }
     }
 
-    public void addTomato() {
+    public void addTomato() throws ClassNotFoundException {
         if (state == OrderState.FOOD_SELECTION || state == OrderState.INGREDIENT_SELECTION) {
             if (Database.checkIngredient(2, 1, food.getFoodType())) { // 2 is the id for tomato
                 this.food = new Tomato(food);

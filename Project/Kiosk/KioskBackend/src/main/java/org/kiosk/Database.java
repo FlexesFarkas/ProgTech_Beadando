@@ -147,7 +147,7 @@ public class Database {
         }
     }
 
-    private static int countIngredient(String ingredient){
+    public static Boolean saveOrder(Food food, FoodType type, String orderID) {
         try{
             Connection connection2 = connect();
             Statement statement = connection2.createStatement();
