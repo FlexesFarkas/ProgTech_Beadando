@@ -28,7 +28,7 @@ public class OrderProcess {
             logger.warning("Food can only be selected at the start of the order process.");
         }
     }
-
+/*
     public void addCheese() {
         if (state == OrderState.FOOD_SELECTION || state == OrderState.INGREDIENT_SELECTION) {
             if (Database.checkIngredient(1, 1, food.getFoodType())) { // 1 is the id for cheese
@@ -56,7 +56,7 @@ public class OrderProcess {
             logger.warning("Ingredients can only be added after food selection.");
         }
     }
-
+*/
     public void addToCart() {
         if (state == OrderState.FOOD_SELECTION || state == OrderState.INGREDIENT_SELECTION) {
             nextState();
@@ -96,8 +96,9 @@ public class OrderProcess {
     }
 
     public void placeOrder(String orderId) {
+        /*
         if (state == OrderState.PAYMENT_DONE) {
-            if (Database.saveOrder((Food) food, food.getFoodType(), orderId)) {
+            if (Database.saveOrder((Food) food, orderId)) {
                 nextState();
                 logger.info("Order placed successfully: " + food.getDescription());
             } else {
@@ -106,6 +107,7 @@ public class OrderProcess {
         } else {
             logger.warning("Order can only be placed after payment.");
         }
+        */
     }
 
     private void nextState() {
