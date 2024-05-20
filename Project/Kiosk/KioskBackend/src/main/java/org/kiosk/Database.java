@@ -1,6 +1,6 @@
 package org.kiosk;
-import org.kiosk.food.Food;
 import org.kiosk.food.IFood;
+import org.kiosk.food.GenericIngredient;
 
 import java.sql.*;
 import java.io.File;
@@ -262,6 +262,31 @@ public class Database {
         } catch (Exception e) {
             logger.severe(e.getMessage());
             return false;
+        }
+    }
+
+    public static ArrayList<GenericIngredient> returnSpecificIngredients(FoodType type) {
+        try{
+            ArrayList<GenericIngredient> ingredients = new ArrayList<>();
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+            String sql = "SELECT ingredient_name, ingredient_price FROM Ingredients INNER JOIN IngredientTypes ON Ingredients.ingredient_id = IngredientTypes.ingredient_id WHERE ingredient_type = '" + type.toString() + "';";
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String ingredientName = resultSet.getString(1);
+                double ingredientPrice = resultSet.getDouble(2);
+                GenericIngredient ingredient = new GenericIngredient(ingredientName, ingredientPrice);
+                ingredients.add(ingredient);
+            }
+            resultSet.close();
+            statement.close();
+            disconnect(connection);
+            logger.info("Ingredients of type " + type + " successfully retrieved.");
+            return ingredients;
+        }
+        catch(Exception e){
+            logger.severe(e.getMessage());
+            return null;
         }
     }
 
