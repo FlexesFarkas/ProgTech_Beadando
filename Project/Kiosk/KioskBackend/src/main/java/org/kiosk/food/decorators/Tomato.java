@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class Tomato extends IngridientDecorator {
     public Tomato(IFood food) throws ClassNotFoundException {
         super(food);
-        intialize();
+        initialize();
     }
 
-    private static void intialize() throws ClassNotFoundException {
+    private static void initialize() throws ClassNotFoundException {
         ingredientName = (Class.forName("org.kiosk.food.decorators.Tomato")).getName().split("\\.")[4];
         ingredientPrice = 100;
         foodTypes = new ArrayList<FoodType>();
@@ -40,22 +40,22 @@ public class Tomato extends IngridientDecorator {
     }
 
     public static FoodType getIngredientTypes(int number) throws ClassNotFoundException {
-        intialize();
+        initialize();
         return foodTypes.get(number);
     }
 
     public static int getIngredientTypesLength() throws ClassNotFoundException {
-        intialize();
+        initialize();
         return foodTypes.size();
     }
 
     public static String getIngredientName() throws ClassNotFoundException {
-        intialize();
+        initialize();
         return ingredientName;
     }
 
     public static int getIngredientPrice() throws ClassNotFoundException {
-        intialize();
+        initialize();
         return ingredientPrice;
     }
 }
