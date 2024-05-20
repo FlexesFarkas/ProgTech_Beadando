@@ -1,5 +1,6 @@
 package org.kiosk;
 import org.kiosk.food.IFood;
+import org.kiosk.food.GenericIngredient;
 
 import java.sql.*;
 import java.io.File;
@@ -147,25 +148,44 @@ public class Database {
         }
     }
 
-    public static Boolean saveOrder(Food food, FoodType type, String orderID) {
+    private static int countIngredient(String ingredient){
         try{
-            Connection connection2 = connect();
-            Statement statement = connection2.createStatement();
-            String sql = "SELECT ingredient_amount FROM Ingredients WHERE ingredient_name = '" + ingredient + "';";
-            ResultSet resultSet = statement.executeQuery(sql);
-            resultSet.next();
-            logger.info("Number of "+ ingredient +" found: " + resultSet.getInt(1));
-            int result = resultSet.getInt(1);
-            resultSet.close();
-            statement.close();
-            disconnect(connection2);
-            return result;
-        }
+                Connection connection2 = connect();
+                Statement statement = connection2.createStatement();
+                String sql = "SELECT ingredient_amount FROM Ingredients WHERE ingredient_name = '" + ingredient + "';";
+                ResultSet resultSet = statement.executeQuery(sql);
+                resultSet.next();
+                logger.info("Number of "+ ingredient +" found: " + resultSet.getInt(1));
+                int result = resultSet.getInt(1);
+                resultSet.close();
+                statement.close();
+                disconnect(connection2);
+                return result;
+            }
         catch (Exception e){
-            logger.severe(e.getMessage());
-            return 0;
+                logger.severe(e.getMessage());
+                return 0;
         }
     }
+
+    public static Boolean GenerateType() {
+        try {
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+            FoodType[] Ftypes = FoodType.values();
+            for (FoodType type : Ftypes) {
+                String sql = "INSERT OR IGNORE INTO Types (type) VALUES ('" + type.toString() + "')";
+                statement.execute(sql);
+            }
+            disconnect(connection);
+            logger.info("Types successfully generated in the database!");
+            return true;
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+            return false;
+        }
+    }
+
 
     private static int getFoodPrice(String[][] ingredients) {
         try{
@@ -242,6 +262,31 @@ public class Database {
         } catch (Exception e) {
             logger.severe(e.getMessage());
             return false;
+        }
+    }
+
+    public static ArrayList<GenericIngredient> returnSpecificIngredients(FoodType type) {
+        try{
+            ArrayList<GenericIngredient> ingredients = new ArrayList<>();
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+            String sql = "SELECT ingredient_name, ingredient_price FROM Ingredients INNER JOIN IngredientTypes ON Ingredients.ingredient_id = IngredientTypes.ingredient_id WHERE ingredient_type = '" + type.toString() + "';";
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String ingredientName = resultSet.getString(1);
+                double ingredientPrice = resultSet.getDouble(2);
+                GenericIngredient ingredient = new GenericIngredient(ingredientName, ingredientPrice);
+                ingredients.add(ingredient);
+            }
+            resultSet.close();
+            statement.close();
+            disconnect(connection);
+            logger.info("Ingredients of type " + type + " successfully retrieved.");
+            return ingredients;
+        }
+        catch(Exception e){
+            logger.severe(e.getMessage());
+            return null;
         }
     }
 
