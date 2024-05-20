@@ -1,4 +1,5 @@
 package org.kiosk;
+import org.kiosk.food.Food;
 import org.kiosk.food.IFood;
 
 import java.sql.*;
@@ -147,25 +148,44 @@ public class Database {
         }
     }
 
-    public static Boolean saveOrder(Food food, FoodType type, String orderID) {
+    private static int countIngredient(String ingredient){
         try{
-            Connection connection2 = connect();
-            Statement statement = connection2.createStatement();
-            String sql = "SELECT ingredient_amount FROM Ingredients WHERE ingredient_name = '" + ingredient + "';";
-            ResultSet resultSet = statement.executeQuery(sql);
-            resultSet.next();
-            logger.info("Number of "+ ingredient +" found: " + resultSet.getInt(1));
-            int result = resultSet.getInt(1);
-            resultSet.close();
-            statement.close();
-            disconnect(connection2);
-            return result;
-        }
+                Connection connection2 = connect();
+                Statement statement = connection2.createStatement();
+                String sql = "SELECT ingredient_amount FROM Ingredients WHERE ingredient_name = '" + ingredient + "';";
+                ResultSet resultSet = statement.executeQuery(sql);
+                resultSet.next();
+                logger.info("Number of "+ ingredient +" found: " + resultSet.getInt(1));
+                int result = resultSet.getInt(1);
+                resultSet.close();
+                statement.close();
+                disconnect(connection2);
+                return result;
+            }
         catch (Exception e){
-            logger.severe(e.getMessage());
-            return 0;
+                logger.severe(e.getMessage());
+                return 0;
         }
     }
+
+    public static Boolean GenerateType() {
+        try {
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+            FoodType[] Ftypes = FoodType.values();
+            for (FoodType type : Ftypes) {
+                String sql = "INSERT OR IGNORE INTO Types (type) VALUES ('" + type.toString() + "')";
+                statement.execute(sql);
+            }
+            disconnect(connection);
+            logger.info("Types successfully generated in the database!");
+            return true;
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+            return false;
+        }
+    }
+
 
     private static int getFoodPrice(String[][] ingredients) {
         try{
