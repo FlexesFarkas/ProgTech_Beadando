@@ -1,12 +1,18 @@
 package org.kiosk;
 import org.kiosk.food.IFood;
 import org.kiosk.food.GenericIngredient;
+import org.kiosk.food.IngridientDecorator;
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
 
 import java.sql.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 
 public class Database {
@@ -287,6 +293,35 @@ public class Database {
         catch(Exception e){
             logger.severe(e.getMessage());
             return null;
+        }
+    }
+
+    public static void populateIngredientsFromDecorators() {
+        try {
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+
+            ClassLoader classLoader = Database.class.getClassLoader();
+
+            String packageName = "org.kiosk.food.decorators";
+
+            Reflections reflections = new Reflections(new ConfigurationBuilder()
+                    .setUrls(ClasspathHelper.forPackage(packageName, classLoader))
+                    .setScanners(new SubTypesScanner(false)));
+
+            Set<Class<? extends IngridientDecorator>> decorators = reflections.getSubTypesOf(IngridientDecorator.class);
+
+            for (Class<? extends IngridientDecorator> decorator : decorators) {
+                String ingredientName = decorator.getSimpleName();
+                int ingredientPrice = (int) decorator.getMethod("getIngredientPrice").invoke(null);
+
+                String sql = "INSERT INTO Ingredients (ingredient_name, ingredient_price, ingredient_amount) VALUES ('" + ingredientName + "', " + ingredientPrice + ",0)";
+                statement.execute(sql);
+            }
+            disconnect(connection);
+            logger.info("Ingredients successfully populated in the database from IngredientDecorators!");
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
         }
     }
 
