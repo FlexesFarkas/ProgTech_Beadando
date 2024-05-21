@@ -137,6 +137,13 @@ class DatabaseTest {
     }
 
     @Test
+    void connectAndDisconnectFromDatabase() throws SQLException {
+        Connection connection = Database.connect();
+        Database.disconnect(connection);
+        Assertions.assertTrue(connection.isClosed());
+    }
+
+    @Test
     void deleteDatabaseWhileConnectionIsActive() throws DatabaseFailedToResetException, SQLException {
         Connection connection = Database.connect();
         Assertions.assertThrows(DatabaseFailedToResetException.class, Database::resetDatabase);
