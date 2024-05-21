@@ -1,6 +1,6 @@
 # Rendszerterv
 ## 1. A rendszer célja
-
+A rendszer célja, hogy egy olyan rendelési rendszer legyen, amelyben a megrendelt ételeket a felhasználó személyre tudja szabni, ezen kívűl könnyedén bővithető legyen új hozzávalókkal és ételtípusokkal. A rendszer egy adatbázist használ a hozzávalók mennyiségének a követésére. A rendszer azstali eszközökre lett tervezve Java nyelv használatával. 
 ## 2. Projektterv
 
 ### 2.1 Projektszerepkörök, felelőségek:
