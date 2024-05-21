@@ -4,9 +4,9 @@ A rendszer célja, hogy egy olyan rendelési rendszer legyen, amelyben a megrend
 ## 2. Projektterv
 
 ### 2.1 Projektszerepkörök, felelőségek:
-   * Scrum masters:
-   * Product owner: 
-   * Üzleti szereplő:
+   * Scrum masters: -
+   * Product owner: Troll Ede
+   * Üzleti szereplő: Kusper Gábor
      
 ### 2.2 Projektmunkások és felelőségek:
    * Frontend:
