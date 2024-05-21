@@ -1,4 +1,5 @@
 package org.kiosk;
+import org.kiosk.exceptions.DatabaseFailedToResetException;
 import org.kiosk.exceptions.NotEnoughIngredietnsException;
 import org.kiosk.food.IFood;
 import org.kiosk.food.GenericIngredient;
@@ -341,15 +342,13 @@ public class Database {
         }
     }
 
-    public static boolean resetDatabase(){
+    public static void resetDatabase() throws DatabaseFailedToResetException {
         File file = new File(DATABASE_FILE);
         if(file.delete()){
             logger.info("Database successfully reset.");
-            return true;
         }
         else {
-            logger.severe("Database could not be reset.");
-            return false;
+            throw new DatabaseFailedToResetException();
         }
     }
 

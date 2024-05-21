@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.kiosk.Database;
 import org.kiosk.FoodType;
+import org.kiosk.exceptions.DatabaseFailedToResetException;
 import org.kiosk.exceptions.NotEnoughIngredietnsException;
 import org.kiosk.food.Food;
 import org.kiosk.food.GenericIngredient;
@@ -133,5 +134,11 @@ class DatabaseTest {
         UUID orderId = UUID.randomUUID();
         foods.add(new Cucumber( new Cucumber( new Food(FoodType.Burger))));
         Assertions.assertThrowsExactly(NotEnoughIngredietnsException.class, () -> {Database.saveOrder(foods, orderId.toString());});
+    }
+
+    @Test
+    void deleteDatabaseWhileConnectionIsActive() throws DatabaseFailedToResetException, SQLException {
+        Connection connection = Database.connect();
+        Assertions.assertThrows(DatabaseFailedToResetException.class, Database::resetDatabase);
     }
 }
