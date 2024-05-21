@@ -71,6 +71,18 @@ Asztali gépek, amelyek képesek Java-ban írt alkalmazásokat futtatni.
 * Éttermi alkalmazott
 
 ### 5.2 Menühierarchiák
+* Kezdőképernyő:
+    * Rendelés kezdése
+* Rendelés:
+    * Új étel hozzáadása
+    * Hozzávalók mennyiségének állítása
+    * Tovább a fizetéshez
+    * Kosárból törlés
+    * Rendelés törlése
+* Fizetés:
+    * Fizetés törlése
+    * Fizetés
+* Rendelés befejezése
 
 ## 6. Fizikai környezet
 
