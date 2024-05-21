@@ -21,9 +21,6 @@ A rendszer célja, hogy egy olyan rendelési rendszer legyen, amelyben a megrend
 |Szoftver|Fejlesztés|2|14|14|14|
 Szoftver|Tesztelés|3|1|1|1|
 
-### 2.4 Mérföldkövek:
-   * Prototípus átadása
-
 ## 3. Üzleti folyamatok modellje
 
 ### 3.1 Üzleti szereplők
