@@ -263,7 +263,7 @@
             <Font name="Symbol" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="AddToCart_button1" layoutX="746.0" layoutY="234.0" mnemonicParsing="false" prefHeight="326.0" prefWidth="104.0" style="-fx-background-color: #ff8080; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #b30000; -fx-border-width: 2;" text="F&#10;I&#10;Z&#10;E&#10;T&#10;É&#10;S" textAlignment="CENTER">
+      <Button fx:id="pay_button" layoutX="746.0" layoutY="234.0" mnemonicParsing="false" prefHeight="326.0" prefWidth="104.0" style="-fx-background-color: #ff8080; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #b30000; -fx-border-width: 2;" text="F&#10;I&#10;Z&#10;E&#10;T&#10;É&#10;S" textAlignment="CENTER">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.45260663507109006" focusDistance="-0.25287356321839083" radius="0.9022988505747127">
                <stops>
