@@ -46,15 +46,23 @@ Vevő
 
 | ID | Megnevezés | Leírás |
 | --- | --- | --- |
-| K1 | ... | ... |
+| K1 | Étel személyre szabása | A felhasználó képes legyen személyre szabni az ételt, amit rendel |
+| K2 | Rendelés leadása | A felhasználó képes leadni a megrendelt ételeit |
+| K3 | Rendelés törlése | A felhasználó képes kitörölni a rendelését, mielőtt leadná |
+| K4 | Új hozzávalók hozzáadása | Új hozzávalók hozzáadása kódból |
+| K5 | Új ételtípusok hozzáadása | Új ételtípusok hozzáadása kódból |
+| K6 | Régi hozzávalók módosítása | Régi hozzávalók módosítása és törlése kódból |
+| K7 | Régi ételtípusok módosítása | Régi ételtípusok módosítása és törlése kódból |
+| K8 | Raktár tartalmának követése | A rendszer automatikusan számon tartja a felhasznált hozzávalókat |
 
 ### Nemfunkcionális követelmények
 
 | ID | Megnevezés | Leírás |
 | --- | --- | --- |
-| K4 | ... | ... |
+| K9 | Dinamikus felület | A felület automatikusan hozzáadja az új hozzávalókat és ételtípusokat indításkor. |
 
 ### Támogatott eszközök
+Asztali gépek, amelyek képesek Java-ban írt alkalmazásokat futtatni.
 
 ## 5. Funkcionális terv
 
