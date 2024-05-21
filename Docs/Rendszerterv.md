@@ -120,7 +120,8 @@ A szoftver futtatásához szükséges az Oracle Java SE 8-as verziója.
 * Types
     * type
 
-## 10. Implementációs terv
+## 9. Implementációs terv
+A backendhez Java-t használunk, a frontendhez JavaFX-et.
 
 ## 11. Tesztterv
 
