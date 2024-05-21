@@ -133,7 +133,7 @@ class DatabaseTest {
         ArrayList<IFood> foods = new ArrayList<>();
         UUID orderId = UUID.randomUUID();
         foods.add(new Cucumber( new Cucumber( new Food(FoodType.Burger))));
-        Assertions.assertThrowsExactly(NotEnoughIngredietnsException.class, () -> {Database.saveOrder(foods, orderId.toString());});
+        Assertions.assertFalse(Database.saveOrder(foods, orderId.toString()));
     }
 
     @Test
