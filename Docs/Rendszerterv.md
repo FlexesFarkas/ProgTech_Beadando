@@ -128,17 +128,16 @@ A backendhez Java-t használunk, a frontendhez JavaFX-et.
 Unit teszt:
 
 A backendben található osztályok függvényeit unit tesztekkel kell tesztelni.
-## 10. Telepítési terv
+## 12. Telepítési terv
 
-Fizikai telepítési terv:
-
-\-
+Fizikai telepítési terv: 
 
 Szoftver telepítési terv: 
 
 A szoftver működéséhez szükséges a Java SE 8-as verziója, standalone futtatható a szoftver.
 
-## 12. Karbantartási terv
+## 13. Karbantartási terv
+
 
 Fontos ellenőrizni, hogy a különböző rendelések helyesen mentődnek el, a rendszer bővítése nem okoz problémákat korábban létrehozott részein. Figyelembe kell venni a felhasználó által jött visszajelzést is a programmal kapcsolatban.
 Ha hibát talált, mielőbb orvosolni kell, lehet az:
