@@ -4,29 +4,22 @@ A rendszer célja, hogy egy olyan rendelési rendszer legyen, amelyben a megrend
 ## 2. Projektterv
 
 ### 2.1 Projektszerepkörök, felelőségek:
-   * Scrum masters:
-   * Product owner: 
-   * Üzleti szereplő:
+   * Scrum masters: -
+   * Product owner: Troll Ede
+   * Üzleti szereplő: Kusper Gábor
      
 ### 2.2 Projektmunkások és felelőségek:
-   * Frontend:
-   * Backend:
-   * Tesztelés:
+   * Frontend: Farkas Levente
+   * Backend: Cz. Tóth Csanád Benedek, Farkas Levente
+   * Tesztelés: Cz. Tóth Csanád Benedek, Farkas Levente
      
 ### 2.3 Ütemterv:
 
 |Funkció                  | Feladat                                | Prioritás | Becslés (nap) | Aktuális becslés (nap) | Eltelt idő (nap) | Becsült idő (nap) |
 |-------------------------|----------------------------------------|-----------|---------------|------------------------|------------------|---------------------|
-|Követelmény specifikáció |Megírás                                 |         1 |             1 |                      1 |                1 |                   1 |             
-|Funkcionális specifikáció|Megírás                                 |         1 |             1 |                      1 |                1 |                   1 |
 |Rendszerterv             |Megírás                                 |         1 |             1 |                      1 |                1 |                   1 |
-|Program                  |Képernyőtervek elkészítése              |         2 |             1 |                      1 |                1 |                   1 |
-|Program                  |Prototípus elkészítése                  |         3 |             8 |                      8 |                8 |                   8 |
-|Program                  |Alapfunkciók elkészítése                |         3 |             8 |                      8 |                8 |                   8 |
-|Program                  |Tesztelés                               |         4 |             2 |                      2 |                2 |                   2 |
-
-### 2.4 Mérföldkövek:
-   * Prototípus átadása
+|Szoftver|Fejlesztés|2|14|14|14|
+Szoftver|Tesztelés|3|1|1|1|
 
 ## 3. Üzleti folyamatok modellje
 
