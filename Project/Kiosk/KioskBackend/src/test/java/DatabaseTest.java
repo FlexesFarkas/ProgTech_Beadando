@@ -1,8 +1,12 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.kiosk.Database;
 import org.kiosk.FoodType;
+import org.kiosk.food.Food;
 import org.kiosk.food.GenericIngredient;
+import org.kiosk.food.IFood;
 import org.kiosk.food.IngridientDecorator;
+import org.kiosk.food.decorators.Cheese;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.util.ClasspathHelper;
@@ -15,6 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.UUID;
 
 class DatabaseTest {
     private DatabaseTest() {
@@ -102,7 +107,7 @@ class DatabaseTest {
         connection.close();
     }
 */
-    @org.junit.jupiter.api.Test
+    @Test
     void returnSpecificIngredient() throws SQLException, InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         ArrayList<GenericIngredient> expected = new ArrayList<>();
         expected.add(new GenericIngredient("Cheese", 200));
@@ -112,5 +117,13 @@ class DatabaseTest {
         Assertions.assertEquals(expected, actual);
     }
 
-
+    @Test
+    void saveOrder() throws ClassNotFoundException, SQLException {
+        ArrayList<IFood> foods = new ArrayList<>();
+        UUID orderId = UUID.randomUUID();
+        foods.add(new Cheese( new Food(FoodType.Burger)));
+        boolean expected = true;
+        boolean actual = Database.saveOrder(foods, orderId.toString());
+        Assertions.assertEquals(expected, actual);
+    }
 }
