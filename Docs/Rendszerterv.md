@@ -46,7 +46,14 @@ Vevő
 
 | ID | Megnevezés | Leírás |
 | --- | --- | --- |
-| K1 | ... | ... |
+| K1 | Étel személyre szabása | A felhasználó képes legyen személyre szabni az ételt, amit rendel |
+| K2 | Rendelés leadása | A felhasználó képes leadni a megrendelt ételeit |
+| K3 | Rendelés törlése | A felhasználó képes kitörölni a rendelését, mielőtt leadná |
+| K4 | Új hozzávalók hozzáadása | Új hozzávalók hozzáadása kódból |
+| K5 | Új ételtípusok hozzáadása | Új ételtípusok hozzáadása kódból |
+| K6 | Régi hozzávalók módosítása | Régi hozzávalók módosítása és törlése kódból |
+| K7 | Régi ételtípusok módosítása | Régi ételtípusok módosítása és törlése kódból |
+| K8 | Raktár tartalmának követése | A rendszer automatikusan számon tartja a felhasznált hozzávalókat |
 
 ### Nemfunkcionális követelmények
 
