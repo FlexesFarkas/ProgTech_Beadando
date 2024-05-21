@@ -1,4 +1,5 @@
 package org.kiosk;
+import org.kiosk.exceptions.NotEnoughIngredietnsException;
 import org.kiosk.food.IFood;
 import org.kiosk.food.GenericIngredient;
 import org.kiosk.food.IngridientDecorator;
@@ -99,7 +100,7 @@ public class Database {
         }
     }
 
-    public static Boolean saveOrder(ArrayList<IFood> foods, String orderID) throws SQLException {
+    public static Boolean saveOrder(ArrayList<IFood> foods, String orderID) {
 
         try{
             Connection connection = connect();
@@ -119,8 +120,7 @@ public class Database {
                 String sql1 = "BEGIN TRANSACTION;";
                 for (int j = 0; j < countedIngredients.length; j++) {
                     if((countIngredient(countedIngredients[j][0]) - Integer.parseInt(countedIngredients[j][1])) < 0){
-                        logger.warning("Not enough ingredients of " + countedIngredients[j][0]);
-                        return false;
+                        throw new NotEnoughIngredietnsException();
                     }
                     else {
                         int newAmount = countIngredient(countedIngredients[j][0]) - Integer.parseInt(countedIngredients[j][1]);
@@ -148,6 +148,10 @@ public class Database {
             statement.close();
             disconnect(connection);
             return true;
+        }
+        catch (NotEnoughIngredietnsException e){
+            logger.severe(e.getMessage());
+            return false;
         }
         catch(Exception e){
             logger.severe(e.getMessage());
@@ -192,7 +196,6 @@ public class Database {
             return false;
         }
     }
-
 
     private static int getFoodPrice(String[][] ingredients) {
         try{

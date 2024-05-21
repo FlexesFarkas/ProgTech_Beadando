@@ -2,11 +2,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.kiosk.Database;
 import org.kiosk.FoodType;
+import org.kiosk.exceptions.NotEnoughIngredietnsException;
 import org.kiosk.food.Food;
 import org.kiosk.food.GenericIngredient;
 import org.kiosk.food.IFood;
 import org.kiosk.food.IngridientDecorator;
 import org.kiosk.food.decorators.Cheese;
+import org.kiosk.food.decorators.Cucumber;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.util.ClasspathHelper;
@@ -122,8 +124,14 @@ class DatabaseTest {
         ArrayList<IFood> foods = new ArrayList<>();
         UUID orderId = UUID.randomUUID();
         foods.add(new Cheese( new Food(FoodType.Burger)));
-        boolean expected = true;
-        boolean actual = Database.saveOrder(foods, orderId.toString());
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertTrue(Database.saveOrder(foods, orderId.toString()));
+    }
+
+    @Test
+    void saveOrdersTooMuchIngredients() throws ClassNotFoundException, SQLException, NotEnoughIngredietnsException {
+        ArrayList<IFood> foods = new ArrayList<>();
+        UUID orderId = UUID.randomUUID();
+        foods.add(new Cucumber( new Cucumber( new Food(FoodType.Burger))));
+        Assertions.assertThrowsExactly(NotEnoughIngredietnsException.class, () -> {Database.saveOrder(foods, orderId.toString());});
     }
 }
