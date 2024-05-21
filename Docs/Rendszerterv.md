@@ -62,6 +62,7 @@ Vevő
 | K9 | Dinamikus felület | A felület automatikusan hozzáadja az új hozzávalókat és ételtípusokat indításkor. |
 
 ### Támogatott eszközök
+Asztali gépek, amelyek képesek Java-ban írt alkalmazásokat futtatni.
 
 ## 5. Funkcionális terv
 
