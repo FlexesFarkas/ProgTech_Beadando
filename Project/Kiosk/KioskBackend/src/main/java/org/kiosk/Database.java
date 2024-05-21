@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 public class Database {
     private static final String DATABASE_FILE = "./kiosk_db.sqlite";
     private static final String CONNECTION_URL = "jdbc:sqlite:" + DATABASE_FILE;
+    private static final int STOCK = 100;
     private static final Logger logger = Logger.getLogger(Database.class.getName());
     public static Connection connect(){
         try {
@@ -316,7 +317,7 @@ public class Database {
                 int ingredientPrice = (int) decorator.getMethod("getIngredientPrice").invoke(null);
                 int typeAmount = (int) decorator.getMethod("getIngredientTypesLength").invoke(null);
 
-                String sql = "INSERT INTO Ingredients (ingredient_name, ingredient_price, ingredient_amount) VALUES ('" + ingredientName + "', " + ingredientPrice + ",0);";
+                String sql = "INSERT INTO Ingredients (ingredient_name, ingredient_price, ingredient_amount) VALUES ('" + ingredientName + "', " + ingredientPrice + ", "+ STOCK +");";
                 statement.executeUpdate(sql);
                 for (int i = 0; i < typeAmount; i++) {
                     FoodType ingredientType = (FoodType) decorator.getMethod("getIngredientTypes", int.class).invoke(null, i);
