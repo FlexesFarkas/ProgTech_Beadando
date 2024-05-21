@@ -28,6 +28,17 @@ Vevő
 
 Étterem tulajdonos
 ### 3.2 Üzleti folyamatok
+#### Vevő:
+* étel személyreszabása
+* rendelés leadása
+* saját rendelés törlése
+* fizetés
+
+#### Étterem tulajdonos:
+* új ételtípusok megadása
+* új hozzávalók megadása
+* régi ételtípusok módosítása/törlése
+* régi hozzávalók módosítása/törlése
 
 ## 4. Követelmények
 
