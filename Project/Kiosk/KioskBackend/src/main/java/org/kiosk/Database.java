@@ -314,10 +314,22 @@ public class Database {
             for (Class<? extends IngridientDecorator> decorator : decorators) {
                 String ingredientName = decorator.getSimpleName();
                 int ingredientPrice = (int) decorator.getMethod("getIngredientPrice").invoke(null);
+                int typeAmount = (int) decorator.getMethod("getIngredientTypesLength").invoke(null);
 
-                String sql = "INSERT INTO Ingredients (ingredient_name, ingredient_price, ingredient_amount) VALUES ('" + ingredientName + "', " + ingredientPrice + ",0)";
-                statement.execute(sql);
+                String sql = "INSERT INTO Ingredients (ingredient_name, ingredient_price, ingredient_amount) VALUES ('" + ingredientName + "', " + ingredientPrice + ",0);";
+                statement.executeUpdate(sql);
+                for (int i = 0; i < typeAmount; i++) {
+                    FoodType ingredientType = (FoodType) decorator.getMethod("getIngredientTypes", int.class).invoke(null, i);
+                    sql = "SELECT ingredient_id FROM Ingredients WHERE ingredient_name='" + ingredientName + "';";
+                    ResultSet resultSet = statement.executeQuery(sql);
+                    resultSet.next();
+                    int ingredientId = resultSet.getInt(1);
+                    resultSet.close();
+                    sql = "INSERT INTO IngredientTypes VALUES ('" + ingredientId + "', '" + ingredientType + "');";
+                    statement.executeUpdate(sql);
+                }
             }
+            statement.close();
             disconnect(connection);
             logger.info("Ingredients successfully populated in the database from IngredientDecorators!");
         } catch (Exception e) {
