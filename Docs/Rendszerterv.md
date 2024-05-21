@@ -123,30 +123,11 @@ A szoftver futtatásához szükséges az Oracle Java SE 8-as verziója.
 ## 9. Implementációs terv
 A backendhez Java-t használunk, a frontendhez JavaFX-et.
 
-## 11. Tesztterv
+## 10. Tesztterv
 
-A tesztelések célja a rendszer és komponensei funkcionalitásának teljes vizsgálata,
-ellenőrzése a rendszer által megvalósított üzleti szolgáltatások verifikálása.
-A teszteléseket a fejlesztői csapat minden tagja elvégzi.
-Egy teszt eredményeit a tagok dokumentálják külön fájlokba.
+Unit teszt:
 
-### Tesztesetek
-
- | Teszteset | Elvárt eredmény | 
- |-----------|-----------------| 
- | ... | ... |
-
-### A tesztelési jegyzőkönyv kitöltésére egy sablon:
-
-**Tesztelő:** Vezetéknév Keresztnév
-
-**Tesztelés dátuma:** Év.Hónap.Nap
-
-Tesztszám | Rövid leírás | Várt eredmény | Eredmény | Megjegyzés
-----------|--------------|---------------|----------|-----------
-például. Teszt #01 | Regisztráció | A felhasználó az adatok megadásával sikeresen regisztrálni tud  | A felhasználó sikeresen regisztrált | Nem találtam problémát.
-... | ... | ... | ... | ...
-
+A backendben található osztályok függvényeit unit tesztekkel kell tesztelni.
 ## 12. Telepítési terv
 
 Fizikai telepítési terv: 
