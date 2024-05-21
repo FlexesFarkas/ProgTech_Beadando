@@ -11,14 +11,14 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="636.0" prefWidth="260.0">
                <children>
-                  <Button fx:id="food1_button" layoutY="120.0" mnemonicParsing="false" mouseTransparent="true" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_1">
+                  <Button fx:id="food1_button" layoutY="120.0" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#Food1_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_1">
                      <font>
                         <Font name="Verdana" size="31.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor></Button>
-                  <Button fx:id="food2_button" layoutY="235.0" mnemonicParsing="false" mouseTransparent="true" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_2">
+                  <Button fx:id="food2_button" layoutY="235.0" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#Food2_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_2">
                      <font>
                         <Font name="Verdana" size="31.0" />
                      </font>
@@ -26,7 +26,7 @@
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="food3_button" layoutY="352.0" mnemonicParsing="false" mouseTransparent="true" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_3">
+                  <Button fx:id="food3_button" layoutY="352.0" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#Food3_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_3">
                      <font>
                         <Font name="Verdana" size="31.0" />
                      </font>
@@ -34,7 +34,7 @@
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="food4_button" layoutY="468.0" mnemonicParsing="false" mouseTransparent="true" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_4">
+                  <Button fx:id="food4_button" layoutY="468.0" mnemonicParsing="false" mouseTransparent="true" onMouseClicked="#Food4_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_4">
                      <font>
                         <Font name="Verdana" size="31.0" />
                      </font>
@@ -44,7 +44,7 @@
                   </Button>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="636.0" prefWidth="613.0" />
         </items>
       </SplitPane>
    </children>
