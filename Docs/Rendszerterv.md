@@ -93,14 +93,13 @@ A szoftver asztali gépekre készült, amelyek képesek Java applikációkat fut
 IntelliJ, DB Browser (SQLite)
 
 
-## 8. Architekturális terv
-
-### Webszerver
+## 7. Architekturális terv
 
 ### Adatbázis rendszer
+Az adatbázis kezelése SQLite motorral történik.
 
 ### A program elérése, kezelése
-
+A szoftver futtatásához szükséges az Oracle Java SE 8-as verziója.
 ## 9. Adatbázis terv
 
 ## 10. Implementációs terv
