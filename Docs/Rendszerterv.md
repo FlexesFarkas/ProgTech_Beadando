@@ -67,6 +67,8 @@ Asztali gépek, amelyek képesek Java-ban írt alkalmazásokat futtatni.
 ## 5. Funkcionális terv
 
 ### 5.1 Rendszerszereplők
+* Vevő
+* Éttermi alkalmazott
 
 ### 5.2 Menühierarchiák
 
