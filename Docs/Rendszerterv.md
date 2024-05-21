@@ -138,12 +138,9 @@ Szoftver telepítési terv:
 
 A szoftver működéséhez szükséges a Java SE 8-as verziója, standalone futtatható a szoftver.
 
-## 13. Karbantartási terv
+## 12. Karbantartási terv
 
-Fontos ellenőrizni:
-...
-
-Figyelembe kell venni a felhasználó által jött visszajelzést is a programmal kapcsolatban.
+Fontos ellenőrizni, hogy a különböző rendelések helyesen mentődnek el, a rendszer bővítése nem okoz problémákat korábban létrehozott részein. Figyelembe kell venni a felhasználó által jött visszajelzést is a programmal kapcsolatban.
 Ha hibát talált, mielőbb orvosolni kell, lehet az:
 *	Működéssel kapcsolatos
 *	Kinézet, dizájnnal kapcsolatos
