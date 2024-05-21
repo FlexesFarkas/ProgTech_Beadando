@@ -100,7 +100,25 @@ Az adatbázis kezelése SQLite motorral történik.
 
 ### A program elérése, kezelése
 A szoftver futtatásához szükséges az Oracle Java SE 8-as verziója.
-## 9. Adatbázis terv
+## 8. Adatbázis terv
+* Foods
+    * food_id
+    * ingredients
+    * food_type
+    * price
+* IngredientTypes
+    * ingredient_id
+    * ingredient_type
+* Ingredients
+    * ingredient_id
+    * ingredient_name
+    * ingredient_price
+    * ingredient_amount
+* Orders
+    * order_id
+    * food_id
+* Types
+    * type
 
 ## 10. Implementációs terv
 
