@@ -85,14 +85,12 @@ Asztali gépek, amelyek képesek Java-ban írt alkalmazásokat futtatni.
 * Rendelés befejezése
 
 ## 6. Fizikai környezet
+A szoftver asztali gépekre készült, amelyek képesek Java applikációkat futtatni.
 
 ### Vásárolt softwarekomponensek és külső rendszerek
-
-### Hardver topológia
-
-### Fizikai alrendszerek
-
+\-
 ### Fejlesztő eszközök
+IntelliJ, DB Browser (SQLite)
 
 
 ## 8. Architekturális terv
