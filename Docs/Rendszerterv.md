@@ -59,7 +59,7 @@ Vevő
 
 | ID | Megnevezés | Leírás |
 | --- | --- | --- |
-| K4 | ... | ... |
+| K9 | Dinamikus felület | A felület automatikusan hozzáadja az új hozzávalókat és ételtípusokat indításkor. |
 
 ### Támogatott eszközök
 
