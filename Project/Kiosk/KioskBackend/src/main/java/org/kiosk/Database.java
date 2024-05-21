@@ -180,8 +180,8 @@ public class Database {
             Statement statement = connection.createStatement();
             FoodType[] Ftypes = FoodType.values();
             for (FoodType type : Ftypes) {
-                String sql = "INSERT OR IGNORE INTO Types (type) VALUES ('" + type.toString() + "')";
-                statement.execute(sql);
+                String sql = "INSERT INTO Types VALUES ('" + type + "')";
+                statement.executeUpdate(sql);
             }
             disconnect(connection);
             logger.info("Types successfully generated in the database!");
@@ -322,6 +322,18 @@ public class Database {
             logger.info("Ingredients successfully populated in the database from IngredientDecorators!");
         } catch (Exception e) {
             logger.severe(e.getMessage());
+        }
+    }
+
+    public static boolean resetDatabase(){
+        File file = new File(DATABASE_FILE);
+        if(file.delete()){
+            logger.info("Database successfully reset.");
+            return true;
+        }
+        else {
+            logger.severe("Database could not be reset.");
+            return false;
         }
     }
 
