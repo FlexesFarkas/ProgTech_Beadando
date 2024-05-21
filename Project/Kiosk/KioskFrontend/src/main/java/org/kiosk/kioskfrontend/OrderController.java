@@ -8,8 +8,11 @@ import javafx.scene.input.MouseEvent;
 public class OrderController {
     @FXML
     private Button food1_button;
+    @FXML
     private Button food2_button;
+    @FXML
     private Button food3_button;
+    @FXML
     private Button food4_button;
 
     @FXML
@@ -26,6 +29,27 @@ public class OrderController {
 
         food1_button.setOnMouseExited(event -> {
             food1_button.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        food2_button.setOnMouseEntered(event -> {
+            food2_button.setStyle("-fx-background-color: #ff0000; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+
+        food2_button.setOnMouseExited(event -> {
+            food2_button.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        food3_button.setOnMouseEntered(event -> {
+            food3_button.setStyle("-fx-background-color: #ff0000; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+
+        food3_button.setOnMouseExited(event -> {
+            food3_button.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        food4_button.setOnMouseEntered(event -> {
+            food4_button.setStyle("-fx-background-color: #ff0000; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+
+        food4_button.setOnMouseExited(event -> {
+            food4_button.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
         });
     }
 

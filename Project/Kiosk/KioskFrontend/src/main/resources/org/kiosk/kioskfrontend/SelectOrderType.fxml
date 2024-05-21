@@ -36,7 +36,7 @@
                            </stops>
                         </RadialGradient>
                      </textFill></Button>
-                  <Button fx:id="food2_button" layoutY="235.0" mnemonicParsing="false" onMouseClicked="#Food2_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_2">
+                  <Button fx:id="food2_button" layoutY="235.0" mnemonicParsing="false" onAction="#FoodButtonColorChange" onMouseClicked="#Food2_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_2">
                      <font>
                         <Font name="Verdana" size="31.0" />
                      </font>
@@ -60,7 +60,7 @@
                         </RadialGradient>
                      </textFill>
                   </Button>
-                  <Button fx:id="food3_button" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#Food3_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_3">
+                  <Button fx:id="food3_button" layoutY="352.0" mnemonicParsing="false" onAction="#FoodButtonColorChange" onMouseClicked="#Food3_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_3">
                      <font>
                         <Font name="Verdana" size="31.0" />
                      </font>
@@ -84,7 +84,7 @@
                         </RadialGradient>
                      </textFill>
                   </Button>
-                  <Button fx:id="food4_button" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#Food4_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_4">
+                  <Button fx:id="food4_button" layoutY="468.0" mnemonicParsing="false" onAction="#FoodButtonColorChange" onMouseClicked="#Food4_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_4">
                      <font>
                         <Font name="Verdana" size="31.0" />
                      </font>
