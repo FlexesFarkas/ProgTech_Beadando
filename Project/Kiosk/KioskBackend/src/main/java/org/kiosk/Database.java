@@ -1,4 +1,6 @@
 package org.kiosk;
+import org.kiosk.exceptions.DatabaseFailedToResetException;
+import org.kiosk.exceptions.NotEnoughIngredietnsException;
 import org.kiosk.food.IFood;
 import org.kiosk.food.GenericIngredient;
 import org.kiosk.food.IngridientDecorator;
@@ -15,6 +17,7 @@ import java.util.logging.Logger;
 public class Database {
     private static final String DATABASE_FILE = "./kiosk_db.sqlite";
     private static final String CONNECTION_URL = "jdbc:sqlite:" + DATABASE_FILE;
+    private static final int STOCK = 100;
     private static final Logger logger = Logger.getLogger(Database.class.getName());
     public static Connection connect(){
         try {
@@ -95,7 +98,7 @@ public class Database {
         }
     }
 
-    public static Boolean saveOrder(ArrayList<IFood> foods, String orderID) throws SQLException {
+    public static Boolean saveOrder(ArrayList<IFood> foods, String orderID) {
 
         try{
             Connection connection = connect();
@@ -115,8 +118,7 @@ public class Database {
                 String sql1 = "BEGIN TRANSACTION;";
                 for (int j = 0; j < countedIngredients.length; j++) {
                     if((countIngredient(countedIngredients[j][0]) - Integer.parseInt(countedIngredients[j][1])) < 0){
-                        logger.warning("Not enough ingredients of " + countedIngredients[j][0]);
-                        return false;
+                        throw new NotEnoughIngredietnsException();
                     }
                     else {
                         int newAmount = countIngredient(countedIngredients[j][0]) - Integer.parseInt(countedIngredients[j][1]);
@@ -144,6 +146,10 @@ public class Database {
             statement.close();
             disconnect(connection);
             return true;
+        }
+        catch (NotEnoughIngredietnsException e){
+            logger.severe(e.getMessage());
+            return false;
         }
         catch(Exception e){
             logger.severe(e.getMessage());
@@ -177,8 +183,8 @@ public class Database {
             Statement statement = connection.createStatement();
             FoodType[] Ftypes = FoodType.values();
             for (FoodType type : Ftypes) {
-                String sql = "INSERT OR IGNORE INTO Types (type) VALUES ('" + type.toString() + "')";
-                statement.execute(sql);
+                String sql = "INSERT INTO Types VALUES ('" + type + "')";
+                statement.executeUpdate(sql);
             }
             disconnect(connection);
             logger.info("Types successfully generated in the database!");
@@ -188,7 +194,6 @@ public class Database {
             return false;
         }
     }
-
 
     private static int getFoodPrice(String[][] ingredients) {
         try{
@@ -311,16 +316,29 @@ public class Database {
             for (Class<? extends IngridientDecorator> decorator : decorators) {
                 String ingredientName = decorator.getSimpleName();
                 int ingredientPrice = (int) decorator.getMethod("getIngredientPrice").invoke(null);
+                int typeAmount = (int) decorator.getMethod("getIngredientTypesLength").invoke(null);
 
-                String sql = "INSERT INTO Ingredients (ingredient_name, ingredient_price, ingredient_amount) VALUES ('" + ingredientName + "', " + ingredientPrice + ",0)";
-                statement.execute(sql);
+                String sql = "INSERT INTO Ingredients (ingredient_name, ingredient_price, ingredient_amount) VALUES ('" + ingredientName + "', " + ingredientPrice + ", "+ STOCK +");";
+                statement.executeUpdate(sql);
+                for (int i = 0; i < typeAmount; i++) {
+                    FoodType ingredientType = (FoodType) decorator.getMethod("getIngredientTypes", int.class).invoke(null, i);
+                    sql = "SELECT ingredient_id FROM Ingredients WHERE ingredient_name='" + ingredientName + "';";
+                    ResultSet resultSet = statement.executeQuery(sql);
+                    resultSet.next();
+                    int ingredientId = resultSet.getInt(1);
+                    resultSet.close();
+                    sql = "INSERT INTO IngredientTypes VALUES ('" + ingredientId + "', '" + ingredientType + "');";
+                    statement.executeUpdate(sql);
+                }
             }
+            statement.close();
             disconnect(connection);
             logger.info("Ingredients successfully populated in the database from IngredientDecorators!");
         } catch (Exception e) {
             logger.severe(e.getMessage());
         }
     }
+
 
     public static List<String> getFoodTypes() {
         List<String> foodTypes = new ArrayList<>();
@@ -343,5 +361,13 @@ public class Database {
         return foodTypes;
     }
 
-
+    public static void resetDatabase() throws DatabaseFailedToResetException {
+        File file = new File(DATABASE_FILE);
+        if(file.delete()){
+            logger.info("Database successfully reset.");
+        }
+        else {
+            throw new DatabaseFailedToResetException();
+        }
+    }
 }
