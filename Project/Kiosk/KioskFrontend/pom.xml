@@ -15,6 +15,12 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.kiosk</groupId>
+      <artifactId>KioskBackend</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
       <version>22-ea+11</version>
@@ -65,7 +71,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>org.kiosk.kioskfrontend/org.kiosk.kioskfrontend.HelloApplication</mainClass>
+              <mainClass>org.kiosk.kioskfrontend/org.kiosk.kioskfrontend.OrderApplication</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

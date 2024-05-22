@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import org.kiosk.Database.*;
+import org.kiosk.FoodType.*;
+
 
 public class OrderApplication extends Application {
     @Override

@@ -11,10 +11,7 @@ import org.reflections.util.ConfigurationBuilder;
 
 import java.sql.*;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class Database {
@@ -342,6 +339,28 @@ public class Database {
         }
     }
 
+
+    public static List<String> getFoodTypes() {
+        List<String> foodTypes = new ArrayList<>();
+        try {
+            Connection dbConnection = connect();
+            Statement statement = dbConnection.createStatement();
+            String sql = "SELECT type FROM Types";
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                foodTypes.add(resultSet.getString("type"));
+            }
+            if (foodTypes.size()<4){
+                while (foodTypes.size()!=4)
+                foodTypes.add("fejlesztés alatt");
+            }
+            disconnect(dbConnection);
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+        }
+        return foodTypes;
+    }
+
     public static void resetDatabase() throws DatabaseFailedToResetException {
         File file = new File(DATABASE_FILE);
         if(file.delete()){
@@ -351,5 +370,4 @@ public class Database {
             throw new DatabaseFailedToResetException();
         }
     }
-
 }
