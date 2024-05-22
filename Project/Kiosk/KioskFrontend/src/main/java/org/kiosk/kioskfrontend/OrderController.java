@@ -132,7 +132,16 @@ public class OrderController {
     }
     public void Food1_Selected(MouseEvent mouseEvent) {
         ToppingName_1.setVisible(true);
-        ToppingName_1.setText(Database.getIngredientsByFoodType(Database.getFoodTypes().get(0)).get(0));
+        ToppingName_1.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(0).getName()));
+        ToppingName_2.setVisible(true);
+        ToppingName_2.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(1).getName()));
+        ToppingName_3.setVisible(true);
+        ToppingName_3.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(2).getName()));
+        ToppingName_4.setVisible(true);
+        ToppingName_4.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(3).getName()));
+        ToppingName_5.setVisible(true);
+        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(4).getName()));
+
     }
 
     public void Food2_Selected(MouseEvent mouseEvent) {

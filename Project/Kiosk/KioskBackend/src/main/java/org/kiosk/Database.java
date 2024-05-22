@@ -371,24 +371,35 @@ public class Database {
         }
     }
 
-    public static List<String> getIngredientsByFoodType(String foodType) {
-        List<String> ingredients = new ArrayList<>();
-        try {
-            Connection dbConnection = connect();
-            String sql = "SELECT ingredients FROM Foods WHERE food_type = ?";
-            PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
-            preparedStatement.setString(1, foodType);
-            ResultSet resultSet = preparedStatement.executeQuery();
+    public static ArrayList<GenericIngredient> returnIndredientByFoodtype(String type) {
+        try{
+            ArrayList<GenericIngredient> ingredients = new ArrayList<>();
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+            String sql = "SELECT ingredient_name, ingredient_price FROM Ingredients INNER JOIN IngredientTypes ON Ingredients.ingredient_id = IngredientTypes.ingredient_id WHERE ingredient_type = '" + type + "';";
+            ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                String ingredientsString = resultSet.getString("ingredients");
-                String[] ingredientsArray = ingredientsString.split(",");
-                ingredients.addAll(Arrays.asList(ingredientsArray));
+                String ingredientName = resultSet.getString(1);
+                double ingredientPrice = resultSet.getDouble(2);
+                GenericIngredient ingredient = new GenericIngredient(ingredientName, ingredientPrice);
+                ingredients.add(ingredient);
             }
-            disconnect(dbConnection);
-        } catch (SQLException e) {
-            logger.severe(e.getMessage());
+            resultSet.close();
+            statement.close();
+            disconnect(connection);
+            logger.info("Ingredients of type " + type + " successfully retrieved.");
+            if (ingredients.size()<5){
+                while (ingredients.size()!=5){
+                    ingredients.add(new GenericIngredient("még nincs",0));
+                }
+
+            }
+            return ingredients;
         }
-        return ingredients;
+        catch(Exception e){
+            logger.severe(e.getMessage());
+            return null;
+        }
     }
 
 }

@@ -4,4 +4,5 @@ module KioskBackend {
     requires java.sql;
     exports org.kiosk;
     exports org.kiosk.order;
+    exports org.kiosk.food;
 }
