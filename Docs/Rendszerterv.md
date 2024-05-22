@@ -9,9 +9,9 @@ A rendszer célja, hogy egy olyan rendelési rendszer legyen, amelyben a megrend
    * Üzleti szereplő: Kusper Gábor
      
 ### 2.2 Projektmunkások és felelőségek:
-   * Frontend: Farkas Levente
-   * Backend: Cz. Tóth Csanád Benedek, Farkas Levente
-   * Tesztelés: Cz. Tóth Csanád Benedek, Farkas Levente
+   * Frontend: Détári Levente
+   * Backend: Cz. Tóth Csanád Benedek, Détári Levente
+   * Tesztelés: Cz. Tóth Csanád Benedek, Détári Levente
      
 ### 2.3 Ütemterv:
 
