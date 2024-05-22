@@ -370,4 +370,25 @@ public class Database {
             throw new DatabaseFailedToResetException();
         }
     }
+
+    public static List<String> getIngredientsByFoodType(String foodType) {
+        List<String> ingredients = new ArrayList<>();
+        try {
+            Connection dbConnection = connect();
+            String sql = "SELECT ingredients FROM Foods WHERE food_type = ?";
+            PreparedStatement preparedStatement = dbConnection.prepareStatement(sql);
+            preparedStatement.setString(1, foodType);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String ingredientsString = resultSet.getString("ingredients");
+                String[] ingredientsArray = ingredientsString.split(",");
+                ingredients.addAll(Arrays.asList(ingredientsArray));
+            }
+            disconnect(dbConnection);
+        } catch (SQLException e) {
+            logger.severe(e.getMessage());
+        }
+        return ingredients;
+    }
+
 }

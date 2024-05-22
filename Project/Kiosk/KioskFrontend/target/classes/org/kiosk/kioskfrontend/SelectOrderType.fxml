@@ -108,7 +108,7 @@
                         </RadialGradient>
                      </textFill>
                   </Button>
-                  <Label layoutX="-4.0" layoutY="-5.0" prefHeight="91.0" prefWidth="230.0" style="-fx-background-color: #ffe6e6;" text="  Kérem Válasszon Ételt" textAlignment="CENTER">
+                  <Label fx:id="fooftype_label" layoutX="-4.0" layoutY="-5.0" prefHeight="91.0" prefWidth="230.0" style="-fx-background-color: #ffe6e6;" text="  Kérem Válasszon Ételt" textAlignment="CENTER">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -139,7 +139,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="515.0">
                <children>
                   <Separator blendMode="SRC_ATOP" layoutX="-3.0" layoutY="85.0" mouseTransparent="true" prefHeight="4.0" prefWidth="524.0" style="-fx-background-color: #cc0000;" />
-                  <Label contentDisplay="CENTER" prefHeight="83.0" prefWidth="515.0" style="-fx-background-color: #ffe6e6;" text="  Kérem Válasszon hozzávalókat" textAlignment="CENTER">
+                  <Label fx:id="ingredient_label" contentDisplay="CENTER" prefHeight="83.0" prefWidth="515.0" style="-fx-background-color: #ffe6e6;" text="  Kérem Válasszon hozzávalókat" textAlignment="CENTER">
                      <font>
                         <Font size="21.0" />
                      </font>
