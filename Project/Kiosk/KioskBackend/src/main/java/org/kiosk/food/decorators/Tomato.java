@@ -7,6 +7,9 @@ import org.kiosk.food.IngridientDecorator;
 import java.util.ArrayList;
 
 public class Tomato extends IngridientDecorator {
+    private static String ingredientName;
+    private static int ingredientPrice;
+    private static ArrayList<FoodType> foodTypes;
     public Tomato(IFood food) throws ClassNotFoundException {
         super(food);
         initialize();
