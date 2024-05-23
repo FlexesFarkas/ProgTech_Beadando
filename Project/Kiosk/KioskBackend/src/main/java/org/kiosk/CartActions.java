@@ -9,4 +9,9 @@ public class CartActions {
         foods.add(food);
         return foods;
     }
+
+    public static ArrayList<IFood> removeFromCart(ArrayList<IFood> foods, IFood food) {
+        foods.remove(food);
+        return foods;
+    }
 }
