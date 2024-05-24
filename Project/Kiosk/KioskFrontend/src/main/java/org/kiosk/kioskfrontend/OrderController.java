@@ -9,12 +9,14 @@ import javafx.scene.input.MouseEvent;
 import org.kiosk.Database;
 import org.kiosk.Database.*;
 import org.kiosk.FoodType.*;
+import org.kiosk.food.Food;
 import org.kiosk.order.OrderProcess;
 import org.kiosk.order.OrderProcess.*;
 import org.kiosk.order.OrderState;
 import org.kiosk.order.OrderState.*;
 
 public class OrderController {
+    private Food newFood;
     @FXML
     private Button food1_button;
     @FXML
@@ -131,6 +133,17 @@ public class OrderController {
         });
     }
     public void Food1_Selected(MouseEvent mouseEvent) {
+        Topping1_m.setVisible(true);
+        Topping2_m.setVisible(true);
+        Topping3_m.setVisible(true);
+        Topping4_m.setVisible(true);
+        Topping5_m.setVisible(true);
+        Topping1_p.setVisible(true);
+        Topping2_p.setVisible(true);
+        Topping3_p.setVisible(true);
+        Topping4_p.setVisible(true);
+        Topping5_p.setVisible(true);
+
         ToppingName_1.setVisible(true);
         ToppingName_1.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(0).getName()));
         ToppingName_2.setVisible(true);
@@ -145,12 +158,75 @@ public class OrderController {
     }
 
     public void Food2_Selected(MouseEvent mouseEvent) {
+        Topping1_m.setVisible(true);
+        Topping2_m.setVisible(true);
+        Topping3_m.setVisible(true);
+        Topping4_m.setVisible(true);
+        Topping5_m.setVisible(true);
+        Topping1_p.setVisible(true);
+        Topping2_p.setVisible(true);
+        Topping3_p.setVisible(true);
+        Topping4_p.setVisible(true);
+        Topping5_p.setVisible(true);
+
+        ToppingName_1.setVisible(true);
+        ToppingName_1.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(1)).get(0).getName()));
+        ToppingName_2.setVisible(true);
+        ToppingName_2.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(1)).get(1).getName()));
+        ToppingName_3.setVisible(true);
+        ToppingName_3.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(1)).get(2).getName()));
+        ToppingName_4.setVisible(true);
+        ToppingName_4.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(1)).get(3).getName()));
+        ToppingName_5.setVisible(true);
+        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(1)).get(4).getName()));
     }
 
     public void Food3_Selected(MouseEvent mouseEvent) {
+        Topping1_m.setVisible(true);
+        Topping2_m.setVisible(true);
+        Topping3_m.setVisible(true);
+        Topping4_m.setVisible(true);
+        Topping5_m.setVisible(true);
+        Topping1_p.setVisible(true);
+        Topping2_p.setVisible(true);
+        Topping3_p.setVisible(true);
+        Topping4_p.setVisible(true);
+        Topping5_p.setVisible(true);
+
+        ToppingName_1.setVisible(true);
+        ToppingName_1.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(2)).get(0).getName()));
+        ToppingName_2.setVisible(true);
+        ToppingName_2.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(2)).get(1).getName()));
+        ToppingName_3.setVisible(true);
+        ToppingName_3.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(2)).get(2).getName()));
+        ToppingName_4.setVisible(true);
+        ToppingName_4.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(2)).get(3).getName()));
+        ToppingName_5.setVisible(true);
+        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(2)).get(4).getName()));
     }
 
     public void Food4_Selected(MouseEvent mouseEvent) {
+        Topping1_m.setVisible(true);
+        Topping2_m.setVisible(true);
+        Topping3_m.setVisible(true);
+        Topping4_m.setVisible(true);
+        Topping5_m.setVisible(true);
+        Topping1_p.setVisible(true);
+        Topping2_p.setVisible(true);
+        Topping3_p.setVisible(true);
+        Topping4_p.setVisible(true);
+        Topping5_p.setVisible(true);
+
+        ToppingName_1.setVisible(true);
+        ToppingName_1.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(3)).get(0).getName()));
+        ToppingName_2.setVisible(true);
+        ToppingName_2.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(3)).get(1).getName()));
+        ToppingName_3.setVisible(true);
+        ToppingName_3.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(3)).get(2).getName()));
+        ToppingName_4.setVisible(true);
+        ToppingName_4.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(3)).get(3).getName()));
+        ToppingName_5.setVisible(true);
+        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(3)).get(4).getName()));
     }
 
     public void Topping1_minus(MouseEvent mouseEvent) {

@@ -352,7 +352,7 @@ public class Database {
             }
             if (foodTypes.size()<4){
                 while (foodTypes.size()!=4)
-                foodTypes.add("fejlesztés alatt");
+                foodTypes.add("-");
             }
             disconnect(dbConnection);
         } catch (Exception e) {
@@ -390,7 +390,7 @@ public class Database {
             logger.info("Ingredients of type " + type + " successfully retrieved.");
             if (ingredients.size()<5){
                 while (ingredients.size()!=5){
-                    ingredients.add(new GenericIngredient("még nincs",0));
+                    ingredients.add(new GenericIngredient("-",0));
                 }
 
             }
