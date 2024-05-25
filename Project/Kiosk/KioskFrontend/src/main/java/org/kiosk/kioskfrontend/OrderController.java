@@ -260,6 +260,8 @@ public class OrderController {
                         Topping1_m.setVisible(!isHidden);
                         Topping1_p.setVisible(!isHidden);
                         ToppingSlider_1.setVisible(!isHidden);
+                        inum_1.setVisible(!isHidden);
+                        inum_1.setText(String.valueOf(i1));
                         break;
                     case 1:
                         ToppingName_2.setVisible(!isHidden);
@@ -267,6 +269,8 @@ public class OrderController {
                         Topping2_m.setVisible(!isHidden);
                         Topping2_p.setVisible(!isHidden);
                         ToppingSlider_2.setVisible(!isHidden);
+                        inum_2.setVisible(!isHidden);
+                        inum_2.setText(String.valueOf(i2));
                         break;
                     case 2:
                         ToppingName_3.setVisible(!isHidden);
@@ -274,6 +278,8 @@ public class OrderController {
                         Topping3_m.setVisible(!isHidden);
                         Topping3_p.setVisible(!isHidden);
                         ToppingSlider_3.setVisible(!isHidden);
+                        inum_3.setVisible(!isHidden);
+                        inum_3.setText(String.valueOf(i3));
                         break;
                     case 3:
                         ToppingName_4.setVisible(!isHidden);
@@ -281,6 +287,8 @@ public class OrderController {
                         Topping4_m.setVisible(!isHidden);
                         Topping4_p.setVisible(!isHidden);
                         ToppingSlider_4.setVisible(!isHidden);
+                        inum_4.setVisible(!isHidden);
+                        inum_4.setText(String.valueOf(i4));
                         break;
                     case 4:
                         ToppingName_5.setVisible(!isHidden);
@@ -288,6 +296,8 @@ public class OrderController {
                         Topping5_m.setVisible(!isHidden);
                         Topping5_p.setVisible(!isHidden);
                         ToppingSlider_5.setVisible(!isHidden);
+                        inum_5.setVisible(!isHidden);
+                        inum_5.setText(String.valueOf(i5));
                         break;
                     default:
                         break;
@@ -506,6 +516,11 @@ public class OrderController {
         i3=0;
         i4=0;
         i5=0;
+        inum_1.setVisible(false);
+        inum_2.setVisible(false);
+        inum_3.setVisible(false);
+        inum_4.setVisible(false);
+        inum_5.setVisible(false);
     }
 }
 
