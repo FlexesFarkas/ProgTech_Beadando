@@ -298,6 +298,8 @@ public class OrderController {
                 Topping1_p.setVisible(true);
             }
             i1--;
+
+            ToppingSlider_1.adjustValue(i1);
             inum_1.setText(String.valueOf(i1));
 
         }
@@ -316,6 +318,7 @@ public class OrderController {
                 Topping2_p.setVisible(true);
             }
             i2--;
+            ToppingSlider_2.adjustValue(i2);
             inum_2.setText(String.valueOf(i2));
         }
         else{
@@ -333,6 +336,7 @@ public class OrderController {
                 Topping3_p.setVisible(true);
             }
             i3--;
+            ToppingSlider_3.adjustValue(i3);
             inum_3.setText(String.valueOf(i3));
         }
         else{
@@ -351,6 +355,7 @@ public class OrderController {
             }
             i4--;
             inum_4.setText(String.valueOf(i4));
+            ToppingSlider_4.adjustValue(i4);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -368,6 +373,7 @@ public class OrderController {
             }
             i5--;
             inum_5.setText(String.valueOf(i5));
+            ToppingSlider_5.adjustValue(i5);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -386,6 +392,7 @@ public class OrderController {
             }
             i1++;
             inum_1.setText(String.valueOf(i1));
+            ToppingSlider_1.adjustValue(i1);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -404,6 +411,7 @@ public class OrderController {
             }
             i2++;
             inum_2.setText(String.valueOf(i2));
+            ToppingSlider_2.adjustValue(i2);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -422,6 +430,7 @@ public class OrderController {
             }
             i3++;
             inum_3.setText(String.valueOf(i3));
+            ToppingSlider_3.adjustValue(i3);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -440,6 +449,7 @@ public class OrderController {
             }
             i4++;
             inum_4.setText(String.valueOf(i4));
+            ToppingSlider_4.adjustValue(i4);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -458,6 +468,7 @@ public class OrderController {
             }
             i5++;
             inum_5.setText(String.valueOf(i5));
+            ToppingSlider_5.adjustValue(i5);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
