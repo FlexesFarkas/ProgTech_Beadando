@@ -247,63 +247,7 @@ public class OrderController {
             alert.show();
             initialize();
         }else{
-            ftype=Database.getFoodTypes().get(0);
-            ingredient_label.setText("Kérem válasszon összetevőket! kiválasztott étel: "+ftype);
-            for (int i = 0; i < 5; i++) {
-                String ingredientName = String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(i).getName());
-                boolean isHidden = ingredientName.equals("-");
-
-                switch (i) {
-                    case 0:
-                        ToppingName_1.setVisible(!isHidden);
-                        ToppingName_1.setText(ingredientName);
-                        Topping1_m.setVisible(!isHidden);
-                        Topping1_p.setVisible(!isHidden);
-                        ToppingSlider_1.setVisible(!isHidden);
-                        inum_1.setVisible(!isHidden);
-                        inum_1.setText(String.valueOf(i1));
-                        break;
-                    case 1:
-                        ToppingName_2.setVisible(!isHidden);
-                        ToppingName_2.setText(ingredientName);
-                        Topping2_m.setVisible(!isHidden);
-                        Topping2_p.setVisible(!isHidden);
-                        ToppingSlider_2.setVisible(!isHidden);
-                        inum_2.setVisible(!isHidden);
-                        inum_2.setText(String.valueOf(i2));
-                        break;
-                    case 2:
-                        ToppingName_3.setVisible(!isHidden);
-                        ToppingName_3.setText(ingredientName);
-                        Topping3_m.setVisible(!isHidden);
-                        Topping3_p.setVisible(!isHidden);
-                        ToppingSlider_3.setVisible(!isHidden);
-                        inum_3.setVisible(!isHidden);
-                        inum_3.setText(String.valueOf(i3));
-                        break;
-                    case 3:
-                        ToppingName_4.setVisible(!isHidden);
-                        ToppingName_4.setText(ingredientName);
-                        Topping4_m.setVisible(!isHidden);
-                        Topping4_p.setVisible(!isHidden);
-                        ToppingSlider_4.setVisible(!isHidden);
-                        inum_4.setVisible(!isHidden);
-                        inum_4.setText(String.valueOf(i4));
-                        break;
-                    case 4:
-                        ToppingName_5.setVisible(!isHidden);
-                        ToppingName_5.setText(ingredientName);
-                        Topping5_m.setVisible(!isHidden);
-                        Topping5_p.setVisible(!isHidden);
-                        ToppingSlider_5.setVisible(!isHidden);
-                        inum_5.setVisible(!isHidden);
-                        inum_5.setText(String.valueOf(i5));
-                        break;
-                    default:
-                        break;
-                }
-            }
-
+            FoodSelected(0);
         }
     }
 
@@ -317,52 +261,7 @@ public class OrderController {
             alert.show();
             initialize();
         }else {
-            ftype=Database.getFoodTypes().get(1);
-            ingredient_label.setText("Kérem válasszon összetevőket! kiválasztott étel: "+ftype);
-            for (int i = 0; i < 5; i++) {
-                String ingredientName = String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(1)).get(i).getName());
-                boolean isHidden = ingredientName.equals("-");
-
-                switch (i) {
-                    case 0:
-                        ToppingName_1.setVisible(!isHidden);
-                        ToppingName_1.setText(ingredientName);
-                        Topping1_m.setVisible(!isHidden);
-                        Topping1_p.setVisible(!isHidden);
-                        ToppingSlider_1.setVisible(!isHidden);
-                        break;
-                    case 1:
-                        ToppingName_2.setVisible(!isHidden);
-                        ToppingName_2.setText(ingredientName);
-                        Topping2_m.setVisible(!isHidden);
-                        Topping2_p.setVisible(!isHidden);
-                        ToppingSlider_2.setVisible(!isHidden);
-                        break;
-                    case 2:
-                        ToppingName_3.setVisible(!isHidden);
-                        ToppingName_3.setText(ingredientName);
-                        Topping3_m.setVisible(!isHidden);
-                        Topping3_p.setVisible(!isHidden);
-                        ToppingSlider_3.setVisible(!isHidden);
-                        break;
-                    case 3:
-                        ToppingName_4.setVisible(!isHidden);
-                        ToppingName_4.setText(ingredientName);
-                        Topping4_m.setVisible(!isHidden);
-                        Topping4_p.setVisible(!isHidden);
-                        ToppingSlider_4.setVisible(!isHidden);
-                        break;
-                    case 4:
-                        ToppingName_5.setVisible(!isHidden);
-                        ToppingName_5.setText(ingredientName);
-                        Topping5_m.setVisible(!isHidden);
-                        Topping5_p.setVisible(!isHidden);
-                        ToppingSlider_5.setVisible(!isHidden);
-                        break;
-                    default:
-                        break;
-                }
-            }
+            FoodSelected(1);
         }
     }
 
@@ -373,54 +272,9 @@ public class OrderController {
             alert.setContentText("A jelen termék még nem elérhető!.");
             alert.show();
             initialize();
-        }else{
-            ftype=Database.getFoodTypes().get(2);
-
-            ingredient_label.setText("Kérem válasszon összetevőket! kiválasztott étel: "+ftype);
-            for (int i = 0; i < 5; i++) {
-                String ingredientName = String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(2)).get(i).getName());
-                boolean isHidden = ingredientName.equals("-");
-
-                switch (i) {
-                    case 0:
-                        ToppingName_1.setVisible(!isHidden);
-                        ToppingName_1.setText(ingredientName);
-                        Topping1_m.setVisible(!isHidden);
-                        Topping1_p.setVisible(!isHidden);
-                        ToppingSlider_1.setVisible(!isHidden);
-                        break;
-                    case 1:
-                        ToppingName_2.setVisible(!isHidden);
-                        ToppingName_2.setText(ingredientName);
-                        Topping2_m.setVisible(!isHidden);
-                        Topping2_p.setVisible(!isHidden);
-                        ToppingSlider_2.setVisible(!isHidden);
-                        break;
-                    case 2:
-                        ToppingName_3.setVisible(!isHidden);
-                        ToppingName_3.setText(ingredientName);
-                        Topping3_m.setVisible(!isHidden);
-                        Topping3_p.setVisible(!isHidden);
-                        ToppingSlider_3.setVisible(!isHidden);
-                        break;
-                    case 3:
-                        ToppingName_4.setVisible(!isHidden);
-                        ToppingName_4.setText(ingredientName);
-                        Topping4_m.setVisible(!isHidden);
-                        Topping4_p.setVisible(!isHidden);
-                        ToppingSlider_4.setVisible(!isHidden);
-                        break;
-                    case 4:
-                        ToppingName_5.setVisible(!isHidden);
-                        ToppingName_5.setText(ingredientName);
-                        Topping5_m.setVisible(!isHidden);
-                        Topping5_p.setVisible(!isHidden);
-                        ToppingSlider_5.setVisible(!isHidden);
-                        break;
-                    default:
-                        break;
-                }
-            }}
+        }else {
+            FoodSelected(2);
+        }
     }
 
     public void Food4_Selected(MouseEvent mouseEvent) {
@@ -431,82 +285,185 @@ public class OrderController {
             alert.show();
             initialize();
         }else{
-            ftype=Database.getFoodTypes().get(3);
-            ingredient_label.setText("Kérem válasszon összetevőket! kiválasztott étel: "+ftype);
-            for (int i = 0; i < 5; i++) {
-            String ingredientName = String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(i).getName());
-            boolean isHidden = ingredientName.equals("-");
-
-            switch (i) {
-                case 0:
-                    ToppingName_1.setVisible(!isHidden);
-                    ToppingName_1.setText(ingredientName);
-                    Topping1_m.setVisible(!isHidden);
-                    Topping1_p.setVisible(!isHidden);
-                    ToppingSlider_1.setVisible(!isHidden);
-                    break;
-                case 1:
-                    ToppingName_2.setVisible(!isHidden);
-                    ToppingName_2.setText(ingredientName);
-                    Topping2_m.setVisible(!isHidden);
-                    Topping2_p.setVisible(!isHidden);
-                    ToppingSlider_2.setVisible(!isHidden);
-                    break;
-                case 2:
-                    ToppingName_3.setVisible(!isHidden);
-                    ToppingName_3.setText(ingredientName);
-                    Topping3_m.setVisible(!isHidden);
-                    Topping3_p.setVisible(!isHidden);
-                    ToppingSlider_3.setVisible(!isHidden);
-                    break;
-                case 3:
-                    ToppingName_4.setVisible(!isHidden);
-                    ToppingName_4.setText(ingredientName);
-                    Topping4_m.setVisible(!isHidden);
-                    Topping4_p.setVisible(!isHidden);
-                    ToppingSlider_4.setVisible(!isHidden);
-                    break;
-                case 4:
-                    ToppingName_5.setVisible(!isHidden);
-                    ToppingName_5.setText(ingredientName);
-                    Topping5_m.setVisible(!isHidden);
-                    Topping5_p.setVisible(!isHidden);
-                    ToppingSlider_5.setVisible(!isHidden);
-                    break;
-                default:
-                    break;
+            FoodSelected(3);
             }
-        }}
     }
 
     public void Topping1_minus(MouseEvent mouseEvent) {
+        if (i1>0){
+            if (i1==1){
+                Topping1_m.setVisible(false);
+            }
+            if (i1==5){
+                Topping1_p.setVisible(true);
+            }
+            i1--;
+            inum_1.setText(String.valueOf(i1));
+
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Nem lehet kevesebb nullánál.");
+            alert.show();
+        }
     }
 
     public void Topping2_minus(MouseEvent mouseEvent) {
+        if (i2>0){
+            if (i2==1){
+                Topping2_m.setVisible(false);
+            }if (i2==5){
+                Topping2_p.setVisible(true);
+            }
+            i2--;
+            inum_2.setText(String.valueOf(i2));
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Nem lehet kevesebb nullánál.");
+            alert.show();
+        }
     }
 
     public void Topping3_minus(MouseEvent mouseEvent) {
+        if (i3>0){
+            if (i3==1){
+                Topping3_m.setVisible(false);
+            }if (i3==5){
+                Topping3_p.setVisible(true);
+            }
+            i3--;
+            inum_3.setText(String.valueOf(i3));
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Nem lehet kevesebb nullánál.");
+            alert.show();
+        }
     }
 
     public void Topping4_minus(MouseEvent mouseEvent) {
+        if (i4>0){
+            if (i4==1){
+                Topping4_m.setVisible(false);
+            }if (i4==5){
+                Topping4_p.setVisible(true);
+            }
+            i4--;
+            inum_4.setText(String.valueOf(i4));
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Nem lehet kevesebb nullánál.");
+            alert.show();
+        }
     }
 
     public void Topping5_minus(MouseEvent mouseEvent) {
+        if (i5>0){
+            if (i5==1){
+                Topping5_m.setVisible(false);
+            }if (i5==5){
+                Topping5_p.setVisible(true);
+            }
+            i5--;
+            inum_5.setText(String.valueOf(i5));
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Nem lehet kevesebb nullánál.");
+            alert.show();
+        }
     }
 
     public void Topping1_plus(MouseEvent mouseEvent) {
+        if (i1<5){
+            if (i1==0){
+                Topping1_m.setVisible(true);
+            }
+            if (i1==4){
+                Topping1_p.setVisible(false);
+            }
+            i1++;
+            inum_1.setText(String.valueOf(i1));
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Nem lehet több ötnél.");
+            alert.show();
+        }
     }
 
     public void Topping2_plus(MouseEvent mouseEvent) {
+        if (i2<5){
+            if (i2==0){
+                Topping2_m.setVisible(true);
+            }
+            if (i2==4){
+                Topping2_p.setVisible(false);
+            }
+            i2++;
+            inum_2.setText(String.valueOf(i2));
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Nem lehet több ötnél.");
+            alert.show();
+        }
     }
 
     public void Topping3_plus(MouseEvent mouseEvent) {
+        if (i3<5){
+            if (i3==0){
+                Topping3_m.setVisible(true);
+            }
+            if (i3==4){
+                Topping3_p.setVisible(false);
+            }
+            i3++;
+            inum_3.setText(String.valueOf(i3));
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Nem lehet több ötnél.");
+            alert.show();
+        }
     }
 
     public void Topping4_plus(MouseEvent mouseEvent) {
+        if (i4<5){
+            if (i4==0){
+                Topping4_m.setVisible(true);
+            }
+            if (i4==4){
+                Topping4_p.setVisible(false);
+            }
+            i4++;
+            inum_4.setText(String.valueOf(i4));
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Nem lehet több ötnél.");
+            alert.show();
+        }
     }
 
     public void Topping5_plus(MouseEvent mouseEvent) {
+        if (i5<5){
+            if (i5==0){
+                Topping5_m.setVisible(true);
+            }
+            if (i5==4){
+                Topping5_p.setVisible(false);
+            }
+            i5++;
+            inum_5.setText(String.valueOf(i5));
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Nem lehet több ötnél.");
+            alert.show();
+        }
     }
 
     public void  ResetIngredients(){
@@ -521,6 +478,60 @@ public class OrderController {
         inum_3.setVisible(false);
         inum_4.setVisible(false);
         inum_5.setVisible(false);
+    }
+
+    public void FoodSelected(int foodid){
+        ftype=Database.getFoodTypes().get(foodid);
+        ingredient_label.setText("Kérem válasszon összetevőket! kiválasztott étel: "+ftype);
+        for (int i = 0; i < 5; i++) {
+            String ingredientName = String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(foodid)).get(i).getName());
+            boolean isHidden = ingredientName.equals("-");
+
+            switch (i) {
+                case 0:
+                    ToppingName_1.setVisible(!isHidden);
+                    ToppingName_1.setText(ingredientName);
+                    Topping1_p.setVisible(!isHidden);
+                    ToppingSlider_1.setVisible(!isHidden);
+                    inum_1.setVisible(!isHidden);
+                    inum_1.setText(String.valueOf(i1));
+                    break;
+                case 1:
+                    ToppingName_2.setVisible(!isHidden);
+                    ToppingName_2.setText(ingredientName);
+                    Topping2_p.setVisible(!isHidden);
+                    ToppingSlider_2.setVisible(!isHidden);
+                    inum_2.setVisible(!isHidden);
+                    inum_2.setText(String.valueOf(i2));
+                    break;
+                case 2:
+                    ToppingName_3.setVisible(!isHidden);
+                    ToppingName_3.setText(ingredientName);
+                    Topping3_p.setVisible(!isHidden);
+                    ToppingSlider_3.setVisible(!isHidden);
+                    inum_3.setVisible(!isHidden);
+                    inum_3.setText(String.valueOf(i3));
+                    break;
+                case 3:
+                    ToppingName_4.setVisible(!isHidden);
+                    ToppingName_4.setText(ingredientName);
+                    Topping4_p.setVisible(!isHidden);
+                    ToppingSlider_4.setVisible(!isHidden);
+                    inum_4.setVisible(!isHidden);
+                    inum_4.setText(String.valueOf(i4));
+                    break;
+                case 4:
+                    ToppingName_5.setVisible(!isHidden);
+                    ToppingName_5.setText(ingredientName);
+                    Topping5_p.setVisible(!isHidden);
+                    ToppingSlider_5.setVisible(!isHidden);
+                    inum_5.setVisible(!isHidden);
+                    inum_5.setText(String.valueOf(i5));
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
 
