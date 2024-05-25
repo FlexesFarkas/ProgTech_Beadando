@@ -86,9 +86,17 @@ public class OrderController {
     private Label inum_4;
     @FXML
     private Label inum_5;
+    @FXML
+    private Label ingredient_label;
 
     private OrderState os;
     Alert a = new Alert(Alert.AlertType.WARNING);
+    private int i1;
+    private int i2;
+    private int i3;
+    private  int i4;
+    private int i5;
+    private String ftype;
 
 
 
@@ -129,6 +137,7 @@ public class OrderController {
         ToppingSlider_3.setVisible(false);
         ToppingSlider_4.setVisible(false);
         ToppingSlider_5.setVisible(false);
+        ingredient_label.setText("");
 
     }
 
@@ -231,13 +240,15 @@ public class OrderController {
     }
 
     public void Food1_Selected(MouseEvent mouseEvent) {
+        ResetIngredients();
         if (food1_button.getText().equals("-")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("A jelen termék még nem elérhető!.");
             alert.show();
             initialize();
         }else{
-
+            ftype=Database.getFoodTypes().get(0);
+            ingredient_label.setText("Kérem válasszon összetevőket! kiválasztott étel: "+ftype);
             for (int i = 0; i < 5; i++) {
                 String ingredientName = String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(i).getName());
                 boolean isHidden = ingredientName.equals("-");
@@ -289,12 +300,15 @@ public class OrderController {
 
 
     public void Food2_Selected(MouseEvent mouseEvent) {
+        ResetIngredients();
         if (food2_button.getText().equals("-")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("A jelen termék még nem elérhető!.");
             alert.show();
             initialize();
         }else {
+            ftype=Database.getFoodTypes().get(1);
+            ingredient_label.setText("Kérem válasszon összetevőket! kiválasztott étel: "+ftype);
             for (int i = 0; i < 5; i++) {
                 String ingredientName = String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(1)).get(i).getName());
                 boolean isHidden = ingredientName.equals("-");
@@ -343,13 +357,16 @@ public class OrderController {
     }
 
     public void Food3_Selected(MouseEvent mouseEvent) {
-
+        ResetIngredients();
         if (food3_button.getText().equals("-")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("A jelen termék még nem elérhető!.");
             alert.show();
             initialize();
         }else{
+            ftype=Database.getFoodTypes().get(2);
+
+            ingredient_label.setText("Kérem válasszon összetevőket! kiválasztott étel: "+ftype);
             for (int i = 0; i < 5; i++) {
                 String ingredientName = String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(2)).get(i).getName());
                 boolean isHidden = ingredientName.equals("-");
@@ -397,12 +414,16 @@ public class OrderController {
     }
 
     public void Food4_Selected(MouseEvent mouseEvent) {
+        ResetIngredients();
         if (food4_button.getText().equals("-")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("A jelen termék még nem elérhető!.");
             alert.show();
             initialize();
-        }else{for (int i = 0; i < 5; i++) {
+        }else{
+            ftype=Database.getFoodTypes().get(3);
+            ingredient_label.setText("Kérem válasszon összetevőket! kiválasztott étel: "+ftype);
+            for (int i = 0; i < 5; i++) {
             String ingredientName = String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(i).getName());
             boolean isHidden = ingredientName.equals("-");
 
@@ -476,6 +497,15 @@ public class OrderController {
     }
 
     public void Topping5_plus(MouseEvent mouseEvent) {
+    }
+
+    public void  ResetIngredients(){
+        ftype="";
+        i1=0;
+        i2=0;
+        i3=0;
+        i4=0;
+        i5=0;
     }
 }
 
