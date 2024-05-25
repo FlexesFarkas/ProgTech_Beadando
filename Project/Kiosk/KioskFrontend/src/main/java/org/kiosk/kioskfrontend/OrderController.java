@@ -1,11 +1,19 @@
 package org.kiosk.kioskfrontend;
 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
 import org.kiosk.Database;
 import org.kiosk.Database.*;
 import org.kiosk.FoodType.*;
@@ -14,8 +22,11 @@ import org.kiosk.order.OrderProcess;
 import org.kiosk.order.OrderProcess.*;
 import org.kiosk.order.OrderState;
 import org.kiosk.order.OrderState.*;
+import javafx.scene.control.*;
+
 
 public class OrderController {
+
     private Food newFood;
     @FXML
     private Button food1_button;
@@ -67,11 +78,16 @@ public class OrderController {
     private Slider ToppingSlider_5;
 
     private OrderState os;
+    Alert a = new Alert(Alert.AlertType.WARNING);
+
+
+
 
     @FXML
     public void initialize() {
         FoodButtonColorChange();
         foodtypeInit();
+
     }
     public void foodtypeInit(){
         food1_button.setText(Database.getFoodTypes().get(0));
@@ -132,7 +148,25 @@ public class OrderController {
             food4_button.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
         });
     }
+
     public void Food1_Selected(MouseEvent mouseEvent) {
+        if (food1_button.getText()=="-"){
+            TilePane r = new TilePane();
+            EventHandler<ActionEvent> event3 = new
+                    EventHandler<ActionEvent>() {
+                        public void handle(ActionEvent e)
+                        {
+                            // set alert type
+                            a.setAlertType(Alert.AlertType.WARNING);
+
+                            // set content text
+                            a.setContentText("Warning Dialog");
+
+                            // show the dialog
+                            a.show();
+                        }
+                    };
+        }
         Topping1_m.setVisible(true);
         Topping2_m.setVisible(true);
         Topping3_m.setVisible(true);
@@ -156,6 +190,8 @@ public class OrderController {
         ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(4).getName()));
 
     }
+
+
 
     public void Food2_Selected(MouseEvent mouseEvent) {
         Topping1_m.setVisible(true);
@@ -206,6 +242,15 @@ public class OrderController {
     }
 
     public void Food4_Selected(MouseEvent mouseEvent) {
+        if (food4_button.getText().equals("-")) {
+            // Megjelenítjük a figyelmeztető ablakot
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("A jelen termék még nem elérhető!.");
+            alert.show();
+
+            // Lefuttatjuk az initialize metódust
+            initialize();
+        }else{
         Topping1_m.setVisible(true);
         Topping2_m.setVisible(true);
         Topping3_m.setVisible(true);
@@ -226,7 +271,7 @@ public class OrderController {
         ToppingName_4.setVisible(true);
         ToppingName_4.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(3)).get(3).getName()));
         ToppingName_5.setVisible(true);
-        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(3)).get(4).getName()));
+        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(3)).get(4).getName()));}
     }
 
     public void Topping1_minus(MouseEvent mouseEvent) {
@@ -259,3 +304,4 @@ public class OrderController {
     public void Topping5_plus(MouseEvent mouseEvent) {
     }
 }
+
