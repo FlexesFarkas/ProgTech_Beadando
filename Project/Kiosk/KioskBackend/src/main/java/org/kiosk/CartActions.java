@@ -14,4 +14,12 @@ public class CartActions {
         foods.remove(food);
         return foods;
     }
+
+    public static double getCartPrice(ArrayList<IFood> foods) {
+        double price = 0;
+        for (IFood food : foods) {
+            price += food.getCost();
+        }
+        return price;
+    }
 }
