@@ -489,6 +489,11 @@ public class OrderController {
         inum_3.setVisible(false);
         inum_4.setVisible(false);
         inum_5.setVisible(false);
+        ToppingSlider_1.adjustValue(0);
+        ToppingSlider_2.adjustValue(0);
+        ToppingSlider_3.adjustValue(0);
+        ToppingSlider_4.adjustValue(0);
+        ToppingSlider_5.adjustValue(0);
     }
 
     public void FoodSelected(int foodid){
@@ -505,6 +510,7 @@ public class OrderController {
                     Topping1_p.setVisible(!isHidden);
                     ToppingSlider_1.setVisible(!isHidden);
                     inum_1.setVisible(!isHidden);
+                    if (isHidden){i1=-1;}
                     inum_1.setText(String.valueOf(i1));
                     break;
                 case 1:
@@ -513,6 +519,7 @@ public class OrderController {
                     Topping2_p.setVisible(!isHidden);
                     ToppingSlider_2.setVisible(!isHidden);
                     inum_2.setVisible(!isHidden);
+                    if (isHidden){i2=-1;}
                     inum_2.setText(String.valueOf(i2));
                     break;
                 case 2:
@@ -521,6 +528,7 @@ public class OrderController {
                     Topping3_p.setVisible(!isHidden);
                     ToppingSlider_3.setVisible(!isHidden);
                     inum_3.setVisible(!isHidden);
+                    if (isHidden){i3=-1;}
                     inum_3.setText(String.valueOf(i3));
                     break;
                 case 3:
@@ -529,6 +537,7 @@ public class OrderController {
                     Topping4_p.setVisible(!isHidden);
                     ToppingSlider_4.setVisible(!isHidden);
                     inum_4.setVisible(!isHidden);
+                    if (isHidden){i4=-1;}
                     inum_4.setText(String.valueOf(i4));
                     break;
                 case 4:
@@ -537,12 +546,189 @@ public class OrderController {
                     Topping5_p.setVisible(!isHidden);
                     ToppingSlider_5.setVisible(!isHidden);
                     inum_5.setVisible(!isHidden);
+                    if (isHidden){i5=-1;}
                     inum_5.setText(String.valueOf(i5));
                     break;
                 default:
                     break;
             }
         }
+    }
+    public void ToppingRefresh(){
+
+
+
+        if (!ToppingName_1.equals("-")){
+        inum_1.setText(String.valueOf(i1));
+        if (i1==0){
+           Topping1_m.setVisible(false);
+           Topping1_p.setVisible(true);
+        }
+        if (i1==5){
+            Topping1_p.setVisible(false);
+            Topping1_m.setVisible(true);
+        }
+        if (i1>0&&i1<5){
+            Topping1_p.setVisible(true);
+            Topping1_m.setVisible(true);
+        }}
+        if (!ToppingName_2.equals("-")){
+        inum_2.setText(String.valueOf(i2));
+        if (i2==0){
+            Topping2_m.setVisible(false);
+            Topping2_p.setVisible(true);
+        }
+        else if (i2==5){
+            Topping2_p.setVisible(false);
+            Topping2_m.setVisible(true);
+        }else {
+            Topping2_p.setVisible(true);
+            Topping2_m.setVisible(true);
+        }}
+        if (!ToppingName_3.equals("-")){
+        inum_3.setText(String.valueOf(i3));
+        if (i3==0){
+            Topping3_m.setVisible(false);
+            Topping3_p.setVisible(true);
+        }
+        else if (i3==5){
+            Topping3_p.setVisible(false);
+            Topping3_m.setVisible(true);
+        }else {
+            Topping3_p.setVisible(true);
+            Topping3_m.setVisible(true);
+        }}
+        if (!ToppingName_4.equals("-")){
+            inum_4.setText(String.valueOf(i1));
+            if (i4==0){
+                Topping4_m.setVisible(false);
+                Topping4_p.setVisible(true);
+            }
+            else if (i4==5){
+                Topping4_p.setVisible(false);
+                Topping4_m.setVisible(true);
+            }else {
+                Topping4_p.setVisible(true);
+                Topping4_m.setVisible(true);
+        }}
+        if (!ToppingName_5.equals("-")){
+        inum_5.setText(String.valueOf(i5));
+        if (i5==0){
+            Topping5_m.setVisible(false);
+            Topping5_p.setVisible(true);
+        }
+        else if (i5==5){
+            Topping5_p.setVisible(false);
+            Topping5_m.setVisible(true);
+        }else {
+            Topping5_p.setVisible(true);
+            Topping5_m.setVisible(true);
+        }}
+
+        if (i1==-1){
+            Topping1_p.setVisible(false);
+            Topping1_m.setVisible(false);
+        }
+
+        if (i2==-1){
+            Topping2_p.setVisible(false);
+            Topping2_m.setVisible(false);
+        }
+
+        if (i3==-1){
+            Topping3_p.setVisible(false);
+            Topping3_m.setVisible(false);
+        }
+
+        if (i4==-1){
+            Topping4_p.setVisible(false);
+            Topping4_m.setVisible(false);
+        }
+
+        if (i5==-1){
+            Topping5_p.setVisible(false);
+            Topping5_m.setVisible(false);
+        }
+    }
+
+    public void T1SliderClicked(MouseEvent mouseEvent) {
+        if (i1==0){
+            Topping1_m.setVisible(true);
+        }
+        i1= (int) ToppingSlider_1.getValue();
+        ToppingRefresh();
+    }
+
+    public void T1SliderDragged(MouseEvent mouseEvent) {
+        if (i1==0){
+            Topping1_m.setVisible(true);
+        }
+        i1= (int) ToppingSlider_1.getValue();
+        ToppingRefresh();
+    }
+
+    public void T2SliderClicked(MouseEvent mouseEvent) {
+        if (i2==0){
+            Topping2_m.setVisible(true);
+        }
+        i2= (int) ToppingSlider_2.getValue();
+        ToppingRefresh();
+    }
+
+    public void T2SliderDragged(MouseEvent mouseEvent) {
+        if (i3==0){
+            Topping3_m.setVisible(true);
+        }
+        i1= (int) ToppingSlider_3.getValue();
+        ToppingRefresh();
+    }
+
+    public void T3SliderClicked(MouseEvent mouseEvent) {
+        if (i3==0){
+            Topping3_m.setVisible(true);
+        }
+        i3= (int) ToppingSlider_3.getValue();
+        ToppingRefresh();
+    }
+
+    public void T3SliderDragged(MouseEvent mouseEvent) {
+        if (i3==0){
+            Topping3_m.setVisible(true);
+        }
+        i3= (int) ToppingSlider_3.getValue();
+        ToppingRefresh();
+    }
+
+    public void T4SliderClicked(MouseEvent mouseEvent) {
+        if (i4==0){
+            Topping4_m.setVisible(true);
+        }
+        i1= (int) ToppingSlider_1.getValue();
+        ToppingRefresh();
+    }
+
+    public void T4SliderDragged(MouseEvent mouseEvent) {
+        if (i4==0){
+            Topping4_m.setVisible(true);
+        }
+        i4= (int) ToppingSlider_4.getValue();
+        ToppingRefresh();
+    }
+
+    public void T5SliderClicked(MouseEvent mouseEvent) {
+        if (i5==0){
+            Topping5_m.setVisible(true);
+        }
+        i5= (int) ToppingSlider_5.getValue();
+        ToppingRefresh();
+    }
+
+    public void T5SliderDragged(MouseEvent mouseEvent) {
+        if (i5==0){
+            Topping5_m.setVisible(true);
+        }
+        i5= (int) ToppingSlider_5.getValue();
+        ToppingRefresh();
     }
 }
 
