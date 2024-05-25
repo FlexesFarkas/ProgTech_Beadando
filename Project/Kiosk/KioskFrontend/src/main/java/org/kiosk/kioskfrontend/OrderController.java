@@ -150,23 +150,12 @@ public class OrderController {
     }
 
     public void Food1_Selected(MouseEvent mouseEvent) {
-        if (food1_button.getText()=="-"){
-            TilePane r = new TilePane();
-            EventHandler<ActionEvent> event3 = new
-                    EventHandler<ActionEvent>() {
-                        public void handle(ActionEvent e)
-                        {
-                            // set alert type
-                            a.setAlertType(Alert.AlertType.WARNING);
-
-                            // set content text
-                            a.setContentText("Warning Dialog");
-
-                            // show the dialog
-                            a.show();
-                        }
-                    };
-        }
+        if (food1_button.getText().equals("-")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("A jelen termék még nem elérhető!.");
+            alert.show();
+            initialize();
+        }else{
         Topping1_m.setVisible(true);
         Topping2_m.setVisible(true);
         Topping3_m.setVisible(true);
@@ -187,13 +176,19 @@ public class OrderController {
         ToppingName_4.setVisible(true);
         ToppingName_4.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(3).getName()));
         ToppingName_5.setVisible(true);
-        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(4).getName()));
+        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(4).getName()));}
 
     }
 
 
 
     public void Food2_Selected(MouseEvent mouseEvent) {
+        if (food2_button.getText().equals("-")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("A jelen termék még nem elérhető!.");
+            alert.show();
+            initialize();
+        }else{
         Topping1_m.setVisible(true);
         Topping2_m.setVisible(true);
         Topping3_m.setVisible(true);
@@ -214,10 +209,17 @@ public class OrderController {
         ToppingName_4.setVisible(true);
         ToppingName_4.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(1)).get(3).getName()));
         ToppingName_5.setVisible(true);
-        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(1)).get(4).getName()));
+        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(1)).get(4).getName()));}
     }
 
     public void Food3_Selected(MouseEvent mouseEvent) {
+
+        if (food3_button.getText().equals("-")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("A jelen termék még nem elérhető!.");
+            alert.show();
+            initialize();
+        }else{
         Topping1_m.setVisible(true);
         Topping2_m.setVisible(true);
         Topping3_m.setVisible(true);
@@ -238,17 +240,14 @@ public class OrderController {
         ToppingName_4.setVisible(true);
         ToppingName_4.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(2)).get(3).getName()));
         ToppingName_5.setVisible(true);
-        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(2)).get(4).getName()));
+        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(2)).get(4).getName()));}
     }
 
     public void Food4_Selected(MouseEvent mouseEvent) {
         if (food4_button.getText().equals("-")) {
-            // Megjelenítjük a figyelmeztető ablakot
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("A jelen termék még nem elérhető!.");
             alert.show();
-
-            // Lefuttatjuk az initialize metódust
             initialize();
         }else{
         Topping1_m.setVisible(true);
