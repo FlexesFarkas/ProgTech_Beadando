@@ -352,7 +352,7 @@ public class Database {
             }
             if (foodTypes.size()<4){
                 while (foodTypes.size()!=4)
-                foodTypes.add("fejlesztés alatt");
+                foodTypes.add("-");
             }
             disconnect(dbConnection);
         } catch (Exception e) {
@@ -370,4 +370,36 @@ public class Database {
             throw new DatabaseFailedToResetException();
         }
     }
+
+    public static ArrayList<GenericIngredient> returnIndredientByFoodtype(String type) {
+        try{
+            ArrayList<GenericIngredient> ingredients = new ArrayList<>();
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+            String sql = "SELECT ingredient_name, ingredient_price FROM Ingredients INNER JOIN IngredientTypes ON Ingredients.ingredient_id = IngredientTypes.ingredient_id WHERE ingredient_type = '" + type + "';";
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String ingredientName = resultSet.getString(1);
+                double ingredientPrice = resultSet.getDouble(2);
+                GenericIngredient ingredient = new GenericIngredient(ingredientName, ingredientPrice);
+                ingredients.add(ingredient);
+            }
+            resultSet.close();
+            statement.close();
+            disconnect(connection);
+            logger.info("Ingredients of type " + type + " successfully retrieved.");
+            if (ingredients.size()<5){
+                while (ingredients.size()!=5){
+                    ingredients.add(new GenericIngredient("-",0));
+                }
+
+            }
+            return ingredients;
+        }
+        catch(Exception e){
+            logger.severe(e.getMessage());
+            return null;
+        }
+    }
+
 }
