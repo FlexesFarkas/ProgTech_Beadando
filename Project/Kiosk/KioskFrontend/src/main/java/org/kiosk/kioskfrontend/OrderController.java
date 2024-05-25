@@ -156,28 +156,68 @@ public class OrderController {
             alert.show();
             initialize();
         }else{
-        Topping1_m.setVisible(true);
-        Topping2_m.setVisible(true);
-        Topping3_m.setVisible(true);
-        Topping4_m.setVisible(true);
-        Topping5_m.setVisible(true);
-        Topping1_p.setVisible(true);
-        Topping2_p.setVisible(true);
-        Topping3_p.setVisible(true);
-        Topping4_p.setVisible(true);
-        Topping5_p.setVisible(true);
 
-        ToppingName_1.setVisible(true);
-        ToppingName_1.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(0).getName()));
-        ToppingName_2.setVisible(true);
-        ToppingName_2.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(1).getName()));
-        ToppingName_3.setVisible(true);
-        ToppingName_3.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(2).getName()));
-        ToppingName_4.setVisible(true);
-        ToppingName_4.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(3).getName()));
-        ToppingName_5.setVisible(true);
-        ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(4).getName()));}
-
+        if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(0).getName()).equals("-")){
+            Topping1_m.setVisible(false);
+            Topping1_p.setVisible(false);
+            ToppingName_1.setVisible(false);
+            ToppingSlider_1.setVisible(false);
+        }else{
+            ToppingName_1.setVisible(true);
+            ToppingName_1.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(0).getName()));
+            Topping1_m.setVisible(true);
+            Topping1_p.setVisible(true);
+            ToppingSlider_1.setVisible(true);
+        }
+        if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(1).getName()).equals("-")){
+            Topping2_m.setVisible(false);
+            Topping2_p.setVisible(false);
+            ToppingName_2.setVisible(false);
+            ToppingSlider_2.setVisible(false);
+        }else{
+            ToppingName_2.setVisible(true);
+            ToppingName_2.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(1).getName()));
+            Topping2_m.setVisible(true);
+            Topping2_p.setVisible(true);
+            ToppingSlider_2.setVisible(true);
+        }
+        if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(2).getName()).equals("-")){
+            Topping3_m.setVisible(false);
+            Topping3_p.setVisible(false);
+            ToppingName_3.setVisible(false);
+            ToppingSlider_3.setVisible(false);
+        }else{
+            ToppingName_3.setVisible(true);
+            ToppingName_3.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(2).getName()));
+            Topping3_m.setVisible(true);
+            Topping3_p.setVisible(true);
+            ToppingSlider_3.setVisible(true);
+        }
+        if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(3).getName()).equals("-")){
+            Topping4_m.setVisible(false);
+            Topping4_p.setVisible(false);
+            ToppingName_4.setVisible(false);
+            ToppingSlider_4.setVisible(false);
+        }else{
+            ToppingName_4.setVisible(true);
+            ToppingName_4.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(3).getName()));
+            Topping4_m.setVisible(true);
+            Topping4_p.setVisible(true);
+            ToppingSlider_4.setVisible(true);
+        }
+        if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(3).getName()).equals("-")){
+            Topping5_m.setVisible(false);
+            Topping5_p.setVisible(false);
+            ToppingName_5.setVisible(false);
+            ToppingSlider_5.setVisible(false);
+        }else{
+            ToppingName_5.setVisible(true);
+            ToppingName_5.setText(String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(0)).get(3).getName()));
+            Topping5_m.setVisible(true);
+            Topping5_p.setVisible(true);
+            ToppingSlider_5.setVisible(true);
+        }
+        }
     }
 
 
