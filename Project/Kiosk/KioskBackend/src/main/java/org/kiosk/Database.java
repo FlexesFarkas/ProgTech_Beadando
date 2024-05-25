@@ -402,4 +402,31 @@ public class Database {
         }
     }
 
+    public static int returnIndredientCountByFoodtype(String type,int index) {
+        try{
+            ArrayList<GenericIngredient> ingredients = new ArrayList<>();
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+            String sql = "SELECT ingredient_name, ingredient_price, ingredient_amount FROM Ingredients INNER JOIN IngredientTypes ON Ingredients.ingredient_id = IngredientTypes.ingredient_id WHERE ingredient_type = '" + type + "';";
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String ingredientName = resultSet.getString(1);
+                double ingredientPrice = resultSet.getDouble(2);
+                int ingredientAmount = resultSet.getInt(3);
+                GenericIngredient ingredient = new GenericIngredient(ingredientName, ingredientPrice,ingredientAmount);
+                ingredients.add(ingredient);
+            }
+            resultSet.close();
+            statement.close();
+            disconnect(connection);
+            logger.info("Ingredient amount of type " + type + " successfully retrieved= "+ingredients.get(index).getAmount());
+            return ingredients.get(index).getAmount();
+        }
+        catch(Exception e){
+            logger.severe(e.getMessage());
+            return 0;
+        }
+    }
+
+
 }

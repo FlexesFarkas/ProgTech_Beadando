@@ -377,7 +377,7 @@ public class OrderController {
     }
 
     public void Topping1_plus(MouseEvent mouseEvent) {
-        if (i1<5){
+        if (i1<5 && Database.returnIndredientCountByFoodtype(ftype,0)>i1){
             if (i1==0){
                 Topping1_m.setVisible(true);
             }
@@ -395,7 +395,7 @@ public class OrderController {
     }
 
     public void Topping2_plus(MouseEvent mouseEvent) {
-        if (i2<5){
+        if (i2<5&& Database.returnIndredientCountByFoodtype(ftype,0)>i2){
             if (i2==0){
                 Topping2_m.setVisible(true);
             }
@@ -413,7 +413,7 @@ public class OrderController {
     }
 
     public void Topping3_plus(MouseEvent mouseEvent) {
-        if (i3<5){
+        if (i3<5&& Database.returnIndredientCountByFoodtype(ftype,0)>i3){
             if (i3==0){
                 Topping3_m.setVisible(true);
             }
@@ -431,7 +431,7 @@ public class OrderController {
     }
 
     public void Topping4_plus(MouseEvent mouseEvent) {
-        if (i4<5){
+        if (i4<5&& Database.returnIndredientCountByFoodtype(ftype,0)>i4){
             if (i4==0){
                 Topping4_m.setVisible(true);
             }
@@ -449,7 +449,7 @@ public class OrderController {
     }
 
     public void Topping5_plus(MouseEvent mouseEvent) {
-        if (i5<5){
+        if (i5<5&& Database.returnIndredientCountByFoodtype(ftype,0)>i5){
             if (i5==0){
                 Topping5_m.setVisible(true);
             }
