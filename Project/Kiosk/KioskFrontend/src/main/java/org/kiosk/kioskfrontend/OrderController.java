@@ -76,6 +76,16 @@ public class OrderController {
     private Slider ToppingSlider_4;
     @FXML
     private Slider ToppingSlider_5;
+    @FXML
+    private Label inum_1;
+    @FXML
+    private Label inum_2;
+    @FXML
+    private Label inum_3;
+    @FXML
+    private Label inum_4;
+    @FXML
+    private Label inum_5;
 
     private OrderState os;
     Alert a = new Alert(Alert.AlertType.WARNING);
@@ -94,6 +104,11 @@ public class OrderController {
         food2_button.setText(Database.getFoodTypes().get(1));
         food3_button.setText(Database.getFoodTypes().get(2));
         food4_button.setText(Database.getFoodTypes().get(3));
+        inum_1.setVisible(false);
+        inum_2.setVisible(false);
+        inum_3.setVisible(false);
+        inum_4.setVisible(false);
+        inum_5.setVisible(false);
         Topping1_m.setVisible(false);
         Topping2_m.setVisible(false);
         Topping3_m.setVisible(false);
@@ -120,32 +135,98 @@ public class OrderController {
 
     public void FoodButtonColorChange() {
         food1_button.setOnMouseEntered(event -> {
-            food1_button.setStyle("-fx-background-color: #ff0000; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+            food1_button.setStyle("-fx-background-color: coral; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
         });
 
         food1_button.setOnMouseExited(event -> {
             food1_button.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
         });
         food2_button.setOnMouseEntered(event -> {
-            food2_button.setStyle("-fx-background-color: #ff0000; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+            food2_button.setStyle("-fx-background-color:coral; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
         });
 
         food2_button.setOnMouseExited(event -> {
             food2_button.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
         });
         food3_button.setOnMouseEntered(event -> {
-            food3_button.setStyle("-fx-background-color: #ff0000; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+            food3_button.setStyle("-fx-background-color: coral; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
         });
 
         food3_button.setOnMouseExited(event -> {
             food3_button.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
         });
         food4_button.setOnMouseEntered(event -> {
-            food4_button.setStyle("-fx-background-color: #ff0000; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+            food4_button.setStyle("-fx-background-color: coral; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
         });
 
         food4_button.setOnMouseExited(event -> {
             food4_button.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+
+        Topping1_m.setOnMouseEntered(event -> {
+            Topping1_m.setStyle("-fx-background-color: coral; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        Topping1_m.setOnMouseExited(event -> {
+            Topping1_m.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+
+        Topping2_m.setOnMouseEntered(event -> {
+            Topping2_m.setStyle("-fx-background-color: coral; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        Topping2_m.setOnMouseExited(event -> {
+            Topping2_m.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+
+        Topping3_m.setOnMouseEntered(event -> {
+            Topping3_m.setStyle("-fx-background-color: coral; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        Topping3_m.setOnMouseExited(event -> {
+            Topping3_m.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        Topping4_m.setOnMouseEntered(event -> {
+            Topping4_m.setStyle("-fx-background-color: coral; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        Topping4_m.setOnMouseExited(event -> {
+            Topping4_m.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });Topping5_m.setOnMouseEntered(event -> {
+            Topping5_m.setStyle("-fx-background-color: coral; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        Topping5_m.setOnMouseExited(event -> {
+            Topping5_m.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+
+
+
+        Topping1_p.setOnMouseEntered(event -> {
+            Topping1_p.setStyle("-fx-background-color: lightgreen; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        Topping1_p.setOnMouseExited(event -> {
+            Topping1_p.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+
+        Topping2_p.setOnMouseEntered(event -> {
+            Topping2_p.setStyle("-fx-background-color: lightgreen; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        Topping2_p.setOnMouseExited(event -> {
+            Topping2_p.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+
+        Topping3_p.setOnMouseEntered(event -> {
+            Topping3_p.setStyle("-fx-background-color: lightgreen; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        Topping3_p.setOnMouseExited(event -> {
+            Topping3_p.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        Topping4_p.setOnMouseEntered(event -> {
+            Topping4_p.setStyle("-fx-background-color: lightgreen; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        Topping4_p.setOnMouseExited(event -> {
+            Topping4_p.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });Topping5_p.setOnMouseEntered(event -> {
+            Topping5_p.setStyle("-fx-background-color: lightgreen; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
+        });
+        Topping5_p.setOnMouseExited(event -> {
+            Topping5_p.setStyle("-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
         });
     }
 
