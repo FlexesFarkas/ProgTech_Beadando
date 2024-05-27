@@ -314,7 +314,7 @@
          <font>
             <Font name="Unispace-Bold" size="24.0" />
          </font></Label>
-      <Button fx:id="clearcart_button" graphicTextGap="7.0" layoutX="746.0" layoutY="572.0" mnemonicParsing="false" onMousePressed="#ClearCart" prefHeight="187.0" prefWidth="104.0" style="-fx-background-color: #ff8080; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #b30000; -fx-border-width: 2;" text="K&#10;O&#10;S&#10;Á&#10;R&#10;" textAlignment="CENTER">
+      <Button fx:id="clearcart_button" graphicTextGap="7.0" layoutX="746.0" layoutY="572.0" mnemonicParsing="false" onMousePressed="#ClearCart" prefHeight="187.0" prefWidth="104.0" style="-fx-background-color: #ff8080; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #b30000; -fx-border-width: 2;" text="Ü&#10;R&#10;I&#10;T&#10;É&#10;S&#10;" textAlignment="CENTER">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.45260663507109006" focusDistance="-0.25287356321839083" radius="0.9022988505747127">
                <stops>
