@@ -806,5 +806,20 @@ public class OrderController {
     public void OpenPayment(MouseEvent mouseEvent) {
 
     }
+
+    public void ClearCart(MouseEvent mouseEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("A kosár kiürítve :)");
+        alert.show();
+        initialize();
+        cartList= new ArrayList<>();
+        cartString="";
+        CartListLabel.setText(cartString);
+        initialize();
+        ResetIngredients();
+
+
+
+    }
 }
 
