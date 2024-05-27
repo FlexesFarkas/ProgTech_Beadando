@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="531.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kiosk.kioskfrontend.OrderController">
+<AnchorPane prefHeight="785.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kiosk.kioskfrontend.OrderController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" layoutX="6.0" layoutY="7.0" prefHeight="554.0" prefWidth="740.0">
         <items>
@@ -136,7 +136,7 @@
                   </Separator>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="515.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="539.0" prefWidth="515.0">
                <children>
                   <Separator blendMode="SRC_ATOP" layoutX="-3.0" layoutY="85.0" mouseTransparent="true" prefHeight="4.0" prefWidth="524.0" style="-fx-background-color: #cc0000;" />
                   <Label fx:id="ingredient_label" contentDisplay="CENTER" prefHeight="83.0" prefWidth="515.0" style="-fx-background-color: #ffe6e6;" text="  Kérem Válasszon hozzávalókat" textAlignment="CENTER">
@@ -310,5 +310,6 @@
          </font>
       </Button>
       <Separator layoutX="743.0" layoutY="-11.0" orientation="VERTICAL" prefHeight="565.0" prefWidth="6.0" style="-fx-background-color: #cc4400;" />
+      <Label fx:id="CartListLabel" layoutX="14.0" layoutY="561.0" prefHeight="223.0" prefWidth="831.0" text="asd" wrapText="true" />
    </children>
 </AnchorPane>
