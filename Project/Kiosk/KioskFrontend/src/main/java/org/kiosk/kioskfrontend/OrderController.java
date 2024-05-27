@@ -57,6 +57,12 @@ public class OrderController {
     @FXML
     private Button Topping5_p;
     @FXML
+    private Button pay_button;
+    @FXML
+    private Button addtocart_button;
+    @FXML
+    private Button FinalPayButton;
+    @FXML
     private Label ToppingName_1;
     @FXML
     private Label ToppingName_2;
@@ -108,6 +114,7 @@ public class OrderController {
 
     }
     public void foodtypeInit(){
+
         food1_button.setText(Database.getFoodTypes().get(0));
         food2_button.setText(Database.getFoodTypes().get(1));
         food3_button.setText(Database.getFoodTypes().get(2));
@@ -143,6 +150,23 @@ public class OrderController {
 
 
     public void FoodButtonColorChange() {
+        pay_button.setOnMouseEntered(event -> {
+            pay_button.setStyle("-fx-background-color: coral; -fx-background-radius: 10; -fx-border-color: #b30000; -fx-border-radius: 10; -fx-border-width: 2;");
+        });
+        pay_button.setOnMouseExited(event -> {
+            pay_button.setStyle("-fx-background-color: lightcoral; -fx-background-radius: 10; -fx-border-color: #b30000; -fx-border-radius: 10; -fx-border-width: 2;");
+        });
+
+
+        addtocart_button.setOnMouseEntered(event -> {
+            addtocart_button.setStyle("-fx-background-color: lightgreen; -fx-background-radius: 10; -fx-border-color: #b30000; -fx-border-radius: 10; -fx-border-width: 2;");
+        });
+        addtocart_button.setOnMouseExited(event -> {
+            addtocart_button.setStyle("-fx-background-color: lightcoral; -fx-background-radius: 10; -fx-border-color: #b30000; -fx-border-radius: 10; -fx-border-width: 2;");
+        });
+
+
+
         food1_button.setOnMouseEntered(event -> {
             food1_button.setStyle("-fx-background-color: coral; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;");
         });
@@ -729,6 +753,16 @@ public class OrderController {
         }
         i5= (int) ToppingSlider_5.getValue();
         ToppingRefresh();
+    }
+
+    public void FinalPayment(MouseEvent mouseEvent) {
+    }
+
+    public void AddItemToCart(MouseEvent mouseEvent) {
+    }
+
+    public void OpenPayment(MouseEvent mouseEvent) {
+
     }
 }
 
