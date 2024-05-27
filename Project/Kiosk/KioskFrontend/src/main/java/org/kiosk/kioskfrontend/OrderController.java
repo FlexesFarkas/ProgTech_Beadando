@@ -61,6 +61,8 @@ public class OrderController {
     @FXML
     private Button addtocart_button;
     @FXML
+    private Button FinalPayButton;
+    @FXML
     private Label ToppingName_1;
     @FXML
     private Label ToppingName_2;
@@ -154,6 +156,7 @@ public class OrderController {
         pay_button.setOnMouseExited(event -> {
             pay_button.setStyle("-fx-background-color: lightcoral; -fx-background-radius: 10; -fx-border-color: #b30000; -fx-border-radius: 10; -fx-border-width: 2;");
         });
+
 
         addtocart_button.setOnMouseEntered(event -> {
             addtocart_button.setStyle("-fx-background-color: lightgreen; -fx-background-radius: 10; -fx-border-color: #b30000; -fx-border-radius: 10; -fx-border-width: 2;");
@@ -759,7 +762,7 @@ public class OrderController {
     }
 
     public void OpenPayment(MouseEvent mouseEvent) {
-        
+
     }
 }
 

@@ -12,12 +12,10 @@ import org.kiosk.FoodType.*;
 public class OrderApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader1 = new FXMLLoader(OrderApplication.class.getResource("SelectOrderType.fxml"));
-        Scene scene1 = new Scene(fxmlLoader1.load());
-        FXMLLoader fxmlLoader2 = new FXMLLoader(OrderApplication.class.getResource("OrderPayment.fxml"));
-        Scene scene2 = new Scene(fxmlLoader2.load());
+        FXMLLoader fxmlLoader = new FXMLLoader(OrderApplication.class.getResource("SelectOrderType.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
 
-        stage.setScene(scene1);
+        stage.setScene(scene);
         stage.show();
     }
 
