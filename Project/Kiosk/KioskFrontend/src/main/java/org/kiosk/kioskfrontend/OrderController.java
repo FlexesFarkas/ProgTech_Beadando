@@ -640,51 +640,134 @@ public class OrderController {
         }
 
     }
-    public void ToppingRefresh(){
 
-
-
-        if (!ToppingName_1.equals("-")){
-        inum_1.setText(String.valueOf(i1));
+    public void T1SliderClicked(MouseEvent mouseEvent) {
         if (i1==0){
-           Topping1_m.setVisible(false);
-           Topping1_p.setVisible(true);
-        }
-        if (i1==5){
-            Topping1_p.setVisible(false);
             Topping1_m.setVisible(true);
         }
-        if (i1>0&&i1<5){
-            Topping1_p.setVisible(true);
+        i1= (int) ToppingSlider_1.getValue();
+        if (!ToppingName_1.equals("-")){
+            inum_1.setText(String.valueOf(i1));
+            if (i1==0){
+                Topping1_m.setVisible(false);
+                Topping1_p.setVisible(true);
+            }
+            if (i1==5){
+                Topping1_p.setVisible(false);
+                Topping1_m.setVisible(true);
+            }
+            if (i1>0&&i1<5){
+                Topping1_p.setVisible(true);
+                Topping1_m.setVisible(true);
+            }}
+    }
+
+    public void T1SliderDragged(MouseEvent mouseEvent) {
+        if (i1==0){
             Topping1_m.setVisible(true);
-        }}
-        if (!ToppingName_2.equals("-")){
-        inum_2.setText(String.valueOf(i2));
+        }
+        i1= (int) ToppingSlider_1.getValue();
+        if (!ToppingName_1.equals("-")){
+            inum_1.setText(String.valueOf(i1));
+            if (i1==0){
+                Topping1_m.setVisible(false);
+                Topping1_p.setVisible(true);
+            }
+            if (i1==5){
+                Topping1_p.setVisible(false);
+                Topping1_m.setVisible(true);
+            }
+            if (i1>0&&i1<5){
+                Topping1_p.setVisible(true);
+                Topping1_m.setVisible(true);
+            }}
+    }
+
+    public void T2SliderClicked(MouseEvent mouseEvent) {
         if (i2==0){
-            Topping2_m.setVisible(false);
-            Topping2_p.setVisible(true);
+            Topping2_m.setVisible(true);
         }
-        else if (i2==5){
-            Topping2_p.setVisible(false);
-            Topping2_m.setVisible(true);
-        }else {
-            Topping2_p.setVisible(true);
-            Topping2_m.setVisible(true);
-        }}
-        if (!ToppingName_3.equals("-")){
-        inum_3.setText(String.valueOf(i3));
+        i2= (int) ToppingSlider_2.getValue();
+        if (!ToppingName_2.equals("-")){
+            inum_2.setText(String.valueOf(i2));
+            if (i2==0){
+                Topping2_m.setVisible(false);
+                Topping2_p.setVisible(true);
+            }
+            else if (i2==5){
+                Topping2_p.setVisible(false);
+                Topping2_m.setVisible(true);
+            }else {
+                Topping2_p.setVisible(true);
+                Topping2_m.setVisible(true);
+            }}
+    }
+
+    public void T2SliderDragged(MouseEvent mouseEvent) {
         if (i3==0){
-            Topping3_m.setVisible(false);
-            Topping3_p.setVisible(true);
+            Topping3_m.setVisible(true);
         }
-        else if (i3==5){
-            Topping3_p.setVisible(false);
+        i1= (int) ToppingSlider_3.getValue();
+        if (!ToppingName_2.equals("-")){
+            inum_2.setText(String.valueOf(i2));
+            if (i2==0){
+                Topping2_m.setVisible(false);
+                Topping2_p.setVisible(true);
+            }
+            else if (i2==5){
+                Topping2_p.setVisible(false);
+                Topping2_m.setVisible(true);
+            }else {
+                Topping2_p.setVisible(true);
+                Topping2_m.setVisible(true);
+            }}
+    }
+
+    public void T3SliderClicked(MouseEvent mouseEvent) {
+        if (i3==0){
             Topping3_m.setVisible(true);
-        }else {
-            Topping3_p.setVisible(true);
+        }
+        i3= (int) ToppingSlider_3.getValue();
+        if (!ToppingName_3.equals("-")){
+            inum_3.setText(String.valueOf(i3));
+            if (i3==0){
+                Topping3_m.setVisible(false);
+                Topping3_p.setVisible(true);
+            }
+            else if (i3==5){
+                Topping3_p.setVisible(false);
+                Topping3_m.setVisible(true);
+            }else {
+                Topping3_p.setVisible(true);
+                Topping3_m.setVisible(true);
+            }}
+    }
+
+    public void T3SliderDragged(MouseEvent mouseEvent) {
+        if (i3==0){
             Topping3_m.setVisible(true);
-        }}
-        if (!ToppingName_4.equals("-")){
+        }
+        i3= (int) ToppingSlider_3.getValue();
+        if (!ToppingName_3.equals("-")){
+            inum_3.setText(String.valueOf(i3));
+            if (i3==0){
+                Topping3_m.setVisible(false);
+                Topping3_p.setVisible(true);
+            }
+            else if (i3==5){
+                Topping3_p.setVisible(false);
+                Topping3_m.setVisible(true);
+            }else {
+                Topping3_p.setVisible(true);
+                Topping3_m.setVisible(true);
+            }}
+    }
+
+    public void T4SliderClicked(MouseEvent mouseEvent) {
+        if (i4==0){
+            Topping4_m.setVisible(true);
+        }
+        i1= (int) ToppingSlider_1.getValue(); if (!ToppingName_4.equals("-")){
             inum_4.setText(String.valueOf(i1));
             if (i4==0){
                 Topping4_m.setVisible(false);
@@ -696,102 +779,64 @@ public class OrderController {
             }else {
                 Topping4_p.setVisible(true);
                 Topping4_m.setVisible(true);
-        }}
-        if (!ToppingName_5.equals("-")){
-        inum_5.setText(String.valueOf(i5));
-        if (i5==0){
-            Topping5_m.setVisible(false);
-            Topping5_p.setVisible(true);
-        }
-        else if (i5==5){
-            Topping5_p.setVisible(false);
-            Topping5_m.setVisible(true);
-        }else {
-            Topping5_p.setVisible(true);
-            Topping5_m.setVisible(true);
-        }}
-
-
-    }
-
-    public void T1SliderClicked(MouseEvent mouseEvent) {
-        if (i1==0){
-            Topping1_m.setVisible(true);
-        }
-        i1= (int) ToppingSlider_1.getValue();
-        ToppingRefresh();
-    }
-
-    public void T1SliderDragged(MouseEvent mouseEvent) {
-        if (i1==0){
-            Topping1_m.setVisible(true);
-        }
-        i1= (int) ToppingSlider_1.getValue();
-        ToppingRefresh();
-    }
-
-    public void T2SliderClicked(MouseEvent mouseEvent) {
-        if (i2==0){
-            Topping2_m.setVisible(true);
-        }
-        i2= (int) ToppingSlider_2.getValue();
-        ToppingRefresh();
-    }
-
-    public void T2SliderDragged(MouseEvent mouseEvent) {
-        if (i3==0){
-            Topping3_m.setVisible(true);
-        }
-        i1= (int) ToppingSlider_3.getValue();
-        ToppingRefresh();
-    }
-
-    public void T3SliderClicked(MouseEvent mouseEvent) {
-        if (i3==0){
-            Topping3_m.setVisible(true);
-        }
-        i3= (int) ToppingSlider_3.getValue();
-        ToppingRefresh();
-    }
-
-    public void T3SliderDragged(MouseEvent mouseEvent) {
-        if (i3==0){
-            Topping3_m.setVisible(true);
-        }
-        i3= (int) ToppingSlider_3.getValue();
-        ToppingRefresh();
-    }
-
-    public void T4SliderClicked(MouseEvent mouseEvent) {
-        if (i4==0){
-            Topping4_m.setVisible(true);
-        }
-        i1= (int) ToppingSlider_1.getValue();
-        ToppingRefresh();
+            }}
     }
 
     public void T4SliderDragged(MouseEvent mouseEvent) {
         if (i4==0){
             Topping4_m.setVisible(true);
         }
-        i4= (int) ToppingSlider_4.getValue();
-        ToppingRefresh();
+        i4= (int) ToppingSlider_4.getValue(); if (!ToppingName_4.equals("-")){
+            inum_4.setText(String.valueOf(i1));
+            if (i4==0){
+                Topping4_m.setVisible(false);
+                Topping4_p.setVisible(true);
+            }
+            else if (i4==5){
+                Topping4_p.setVisible(false);
+                Topping4_m.setVisible(true);
+            }else {
+                Topping4_p.setVisible(true);
+                Topping4_m.setVisible(true);
+            }}
     }
 
     public void T5SliderClicked(MouseEvent mouseEvent) {
         if (i5==0){
             Topping5_m.setVisible(true);
         }
-        i5= (int) ToppingSlider_5.getValue();
-        ToppingRefresh();
+        i5= (int) ToppingSlider_5.getValue();if (!ToppingName_5.equals("-")){
+            inum_5.setText(String.valueOf(i5));
+            if (i5==0){
+                Topping5_m.setVisible(false);
+                Topping5_p.setVisible(true);
+            }
+            else if (i5==5){
+                Topping5_p.setVisible(false);
+                Topping5_m.setVisible(true);
+            }else {
+                Topping5_p.setVisible(true);
+                Topping5_m.setVisible(true);
+            }}
     }
 
     public void T5SliderDragged(MouseEvent mouseEvent) {
         if (i5==0){
             Topping5_m.setVisible(true);
         }
-        i5= (int) ToppingSlider_5.getValue();
-        ToppingRefresh();
+        i5= (int) ToppingSlider_5.getValue();if (!ToppingName_5.equals("-")){
+            inum_5.setText(String.valueOf(i5));
+            if (i5==0){
+                Topping5_m.setVisible(false);
+                Topping5_p.setVisible(true);
+            }
+            else if (i5==5){
+                Topping5_p.setVisible(false);
+                Topping5_m.setVisible(true);
+            }else {
+                Topping5_p.setVisible(true);
+                Topping5_m.setVisible(true);
+            }}
     }
 
     public void FinalPayment(MouseEvent mouseEvent) {
