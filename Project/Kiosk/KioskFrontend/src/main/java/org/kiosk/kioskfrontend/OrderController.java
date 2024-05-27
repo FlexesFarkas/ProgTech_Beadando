@@ -18,11 +18,15 @@ import org.kiosk.Database;
 import org.kiosk.Database.*;
 import org.kiosk.FoodType.*;
 import org.kiosk.food.Food;
+import org.kiosk.food.GenFood;
+import org.kiosk.food.IFood;
 import org.kiosk.order.OrderProcess;
 import org.kiosk.order.OrderProcess.*;
 import org.kiosk.order.OrderState;
 import org.kiosk.order.OrderState.*;
 import javafx.scene.control.*;
+
+import java.util.ArrayList;
 
 
 public class OrderController {
@@ -94,17 +98,55 @@ public class OrderController {
     private Label inum_5;
     @FXML
     private Label ingredient_label;
+    @FXML
+    private Label CartListLabel;
 
     private OrderState os;
     Alert a = new Alert(Alert.AlertType.WARNING);
-    private int i1;
-    private int i2;
-    private int i3;
-    private  int i4;
-    private int i5;
+    private int i1=0;
+    private int i2=0;
+    private int i3=0;
+    private  int i4=0;
+    private int i5=0;
     private String ftype;
+    private int fid;
+    private ArrayList<GenFood> cartList = new ArrayList<>();
+    private String cartString="";
 
+    public void AddFoodToCart(){
+        if (i1+i2+i3+i4+i5==0){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Nem vásárolhat üres terméket!");
+            alert.show();
+            initialize();
+        }else {
+            GenFood newfood = new GenFood(ftype,i1,i2,i3,i4,i5);
+            cartString+=ftype+"   hozzávalók= ";
+            if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(0).getName())!="-" && i1!=0){
+                cartString+=String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(0).getName())+
+                        " : "+i1+" ";
+            }
+            if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(1).getName())!="-" && i2!=0){
+                cartString+=String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(1).getName())+
+                        " : "+i2+" ";
+            }
+            if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(2).getName())!="-" && i3!=0){
+                cartString+=String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(2).getName())+
+                        " : "+i3+" ";
+            }
+            if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(3).getName())!="-" && i4!=0){
+                cartString+=String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(3).getName())+
+                        " : "+i4+" ";
+            }
+            if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(4).getName())!="-" && i5!=0){
+                cartString+=String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(4).getName())+
+                        " : "+i5+" ";
+            }
+            cartString+="\n";
 
+            CartListLabel.setText(cartString);
+        }
+    }
 
 
     @FXML
@@ -145,6 +187,11 @@ public class OrderController {
         ToppingSlider_4.setVisible(false);
         ToppingSlider_5.setVisible(false);
         ingredient_label.setText("");
+        i1=0;
+        i2=0;
+        i3=0;
+        i4=0;
+        i5=0;
 
     }
 
@@ -521,8 +568,11 @@ public class OrderController {
     }
 
     public void FoodSelected(int foodid){
+
+        fid=foodid;
         ftype=Database.getFoodTypes().get(foodid);
         ingredient_label.setText("Kérem válasszon összetevőket! kiválasztott étel: "+ftype);
+        initialize();
         for (int i = 0; i < 5; i++) {
             String ingredientName = String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(foodid)).get(i).getName());
             boolean isHidden = ingredientName.equals("-");
@@ -534,7 +584,6 @@ public class OrderController {
                     Topping1_p.setVisible(!isHidden);
                     ToppingSlider_1.setVisible(!isHidden);
                     inum_1.setVisible(!isHidden);
-                    if (isHidden){i1=-1;}
                     inum_1.setText(String.valueOf(i1));
                     break;
                 case 1:
@@ -543,7 +592,6 @@ public class OrderController {
                     Topping2_p.setVisible(!isHidden);
                     ToppingSlider_2.setVisible(!isHidden);
                     inum_2.setVisible(!isHidden);
-                    if (isHidden){i2=-1;}
                     inum_2.setText(String.valueOf(i2));
                     break;
                 case 2:
@@ -552,7 +600,6 @@ public class OrderController {
                     Topping3_p.setVisible(!isHidden);
                     ToppingSlider_3.setVisible(!isHidden);
                     inum_3.setVisible(!isHidden);
-                    if (isHidden){i3=-1;}
                     inum_3.setText(String.valueOf(i3));
                     break;
                 case 3:
@@ -561,7 +608,6 @@ public class OrderController {
                     Topping4_p.setVisible(!isHidden);
                     ToppingSlider_4.setVisible(!isHidden);
                     inum_4.setVisible(!isHidden);
-                    if (isHidden){i4=-1;}
                     inum_4.setText(String.valueOf(i4));
                     break;
                 case 4:
@@ -570,13 +616,13 @@ public class OrderController {
                     Topping5_p.setVisible(!isHidden);
                     ToppingSlider_5.setVisible(!isHidden);
                     inum_5.setVisible(!isHidden);
-                    if (isHidden){i5=-1;}
                     inum_5.setText(String.valueOf(i5));
                     break;
                 default:
                     break;
             }
         }
+
     }
     public void ToppingRefresh(){
 
@@ -649,30 +695,7 @@ public class OrderController {
             Topping5_m.setVisible(true);
         }}
 
-        if (i1==-1){
-            Topping1_p.setVisible(false);
-            Topping1_m.setVisible(false);
-        }
 
-        if (i2==-1){
-            Topping2_p.setVisible(false);
-            Topping2_m.setVisible(false);
-        }
-
-        if (i3==-1){
-            Topping3_p.setVisible(false);
-            Topping3_m.setVisible(false);
-        }
-
-        if (i4==-1){
-            Topping4_p.setVisible(false);
-            Topping4_m.setVisible(false);
-        }
-
-        if (i5==-1){
-            Topping5_p.setVisible(false);
-            Topping5_m.setVisible(false);
-        }
     }
 
     public void T1SliderClicked(MouseEvent mouseEvent) {
@@ -759,6 +782,9 @@ public class OrderController {
     }
 
     public void AddItemToCart(MouseEvent mouseEvent) {
+        if (ftype!=""){
+            AddFoodToCart();
+        }
     }
 
     public void OpenPayment(MouseEvent mouseEvent) {
