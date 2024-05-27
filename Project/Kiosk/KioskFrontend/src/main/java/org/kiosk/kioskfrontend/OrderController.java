@@ -68,6 +68,8 @@ public class OrderController {
     @FXML
     private Button FinalPayButton;
     @FXML
+    private Button clearcart_button;
+    @FXML
     private Label ToppingName_1;
     @FXML
     private Label ToppingName_2;
@@ -151,6 +153,7 @@ public class OrderController {
 
             CartListLabel.setText(cartString);
         }
+        foodtypeInit();
     }
 
 
@@ -199,6 +202,13 @@ public class OrderController {
         i3=0;
         i4=0;
         i5=0;
+        if (cartString==""){
+            clearcart_button.setVisible(false);
+            pay_button.setVisible(false);
+        }else{
+            clearcart_button.setVisible(true);
+            pay_button.setVisible(true);
+        }
 
     }
     public void WelcomePanel(){
