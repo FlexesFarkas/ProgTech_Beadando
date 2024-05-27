@@ -3,12 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="127.0" prefWidth="322.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kiosk.kioskfrontend.OrderController">
+<AnchorPane prefHeight="197.0" prefWidth="334.0" style="-fx-border-color: coral; -fx-border-width: 3; -fx-border-radius: 20; -fx-background-color: black; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kiosk.kioskfrontend.OrderController">
    <children>
-      <Button fx:id="FinalPayButton" layoutX="272.0" layoutY="-14.0" mnemonicParsing="false" prefHeight="160.0" prefWidth="50.0" style="-fx-background-color: coral; -fx-background-radius: 20;" text="F&#10;I&#10;Z&#10;E&#10;T&#10;É&#10;S" />
-      <Label layoutY="-2.0" prefHeight="36.0" prefWidth="166.0" style="-fx-background-color: lightcoral;" text="Fizetési Felület" />
-      <Label fx:id="PriceLabel" layoutX="166.0" prefHeight="36.0" prefWidth="106.0" style="-fx-background-color: lightyellow;" text="Végösszeg:" />
-      <Label fx:id="ListCartLabel" layoutX="14.0" layoutY="36.0" prefHeight="117.0" prefWidth="233.0" text="-kaja1&#10;-kaja2" />
+      <Button fx:id="FinalPayButton" layoutX="278.0" layoutY="7.0" mnemonicParsing="false" onMousePressed="#FinalPayment" prefHeight="183.0" prefWidth="50.0" style="-fx-background-color: coral; -fx-background-radius: 20;" text="F&#10;I&#10;Z&#10;E&#10;T&#10;É&#10;S" />
+      <Label layoutX="7.0" layoutY="7.0" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: lightcoral; -fx-background-radius: 20;" text="Fizetési Felület" />
+      <Label fx:id="PriceLabel" layoutX="173.0" layoutY="11.0" prefHeight="36.0" prefWidth="101.0" style="-fx-background-color: lightyellow; -fx-background-radius: 20;" text="Végösszeg:" />
+      <Label fx:id="ListCartLabel" layoutX="7.0" layoutY="51.0" prefHeight="138.0" prefWidth="267.0" style="-fx-background-color: #ffc29c; -fx-background-radius: 20; -fx-background-radius: 20;" text="-kaja1&#10;-kaja2" />
    </children>
 </AnchorPane>

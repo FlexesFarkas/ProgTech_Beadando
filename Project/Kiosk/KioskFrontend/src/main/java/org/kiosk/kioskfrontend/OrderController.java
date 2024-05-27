@@ -751,5 +751,15 @@ public class OrderController {
         i5= (int) ToppingSlider_5.getValue();
         ToppingRefresh();
     }
+
+    public void FinalPayment(MouseEvent mouseEvent) {
+    }
+
+    public void AddItemToCart(MouseEvent mouseEvent) {
+    }
+
+    public void OpenPayment(MouseEvent mouseEvent) {
+        
+    }
 }
 
