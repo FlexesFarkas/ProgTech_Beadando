@@ -27,6 +27,7 @@ import org.kiosk.order.OrderState.*;
 import javafx.scene.control.*;
 
 import java.util.ArrayList;
+import java.util.concurrent.Delayed;
 
 
 public class OrderController {
@@ -112,6 +113,7 @@ public class OrderController {
     private int fid;
     private ArrayList<GenFood> cartList = new ArrayList<>();
     private String cartString="";
+    private boolean Opened= false;
 
     public void AddFoodToCart(){
         if (i1+i2+i3+i4+i5==0){
@@ -143,6 +145,9 @@ public class OrderController {
                         " : "+i5+" ";
             }
             cartString+="\n";
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Sikeresen hozzáadta a "+ftype+" a kosarába :)");
+            alert.show();
 
             CartListLabel.setText(cartString);
         }
@@ -153,6 +158,8 @@ public class OrderController {
     public void initialize() {
         FoodButtonColorChange();
         foodtypeInit();
+
+
 
     }
     public void foodtypeInit(){
@@ -193,6 +200,15 @@ public class OrderController {
         i4=0;
         i5=0;
 
+    }
+    public void WelcomePanel(){
+        if (!Opened){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Kérem, válasszon kínálatunkból :)");
+            alert.show();
+            initialize();
+            Opened=true;
+        }
     }
 
 
