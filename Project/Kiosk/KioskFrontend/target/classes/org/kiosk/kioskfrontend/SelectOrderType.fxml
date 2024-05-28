@@ -7,13 +7,13 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane onMouseEntered="#WelcomePanel" prefHeight="776.0" prefWidth="856.0" style="-fx-background-radius: 10; -fx-background-color: black; -fx-border-color: coral; -fx-border-radius: 20; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kiosk.kioskfrontend.OrderController">
+<AnchorPane onMouseEntered="#WelcomePanel" prefHeight="711.0" prefWidth="859.0" style="-fx-background-radius: 10; -fx-background-color: black; -fx-border-color: coral; -fx-border-radius: 20; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kiosk.kioskfrontend.OrderController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="6.0" layoutY="7.0" prefHeight="554.0" prefWidth="740.0">
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="6.0" layoutY="7.0" prefHeight="517.0" prefWidth="740.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="588.0" prefWidth="217.0" style="-fx-background-color: black;">
                <children>
-                  <Button fx:id="food1_button" layoutY="120.0" mnemonicParsing="false" onAction="#FoodButtonColorChange" onMouseClicked="#Food1_Selected" onMouseDragged="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_1">
+                  <Button fx:id="food1_button" layoutX="16.0" layoutY="95.0" mnemonicParsing="false" onAction="#FoodButtonColorChange" onMouseClicked="#Food1_Selected" onMouseDragged="#FoodButtonColorChange" prefHeight="20.0" prefWidth="191.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_1">
                      <font>
                         <Font name="Verdana" size="31.0" />
                      </font>
@@ -36,7 +36,7 @@
                            </stops>
                         </RadialGradient>
                      </textFill></Button>
-                  <Button fx:id="food2_button" layoutY="235.0" mnemonicParsing="false" onAction="#FoodButtonColorChange" onMouseClicked="#Food2_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_2">
+                  <Button fx:id="food2_button" layoutX="16.0" layoutY="181.0" mnemonicParsing="false" onAction="#FoodButtonColorChange" onMouseClicked="#Food2_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="4.0" prefWidth="191.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_2">
                      <font>
                         <Font name="Verdana" size="31.0" />
                      </font>
@@ -60,7 +60,7 @@
                         </RadialGradient>
                      </textFill>
                   </Button>
-                  <Button fx:id="food3_button" layoutY="352.0" mnemonicParsing="false" onAction="#FoodButtonColorChange" onMouseClicked="#Food3_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_3">
+                  <Button fx:id="food3_button" layoutX="16.0" layoutY="268.0" mnemonicParsing="false" onAction="#FoodButtonColorChange" onMouseClicked="#Food3_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="27.0" prefWidth="191.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_3">
                      <font>
                         <Font name="Verdana" size="31.0" />
                      </font>
@@ -84,7 +84,7 @@
                         </RadialGradient>
                      </textFill>
                   </Button>
-                  <Button fx:id="food4_button" layoutY="468.0" mnemonicParsing="false" onAction="#FoodButtonColorChange" onMouseClicked="#Food4_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="83.0" prefWidth="217.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_4">
+                  <Button fx:id="food4_button" layoutX="16.0" layoutY="357.0" mnemonicParsing="false" onAction="#FoodButtonColorChange" onMouseClicked="#Food4_Selected" onMouseDragOver="#FoodButtonColorChange" prefHeight="4.0" prefWidth="191.0" style="-fx-background-color: #ffcccc; -fx-background-radius: 45; -fx-border-color: #b30000; -fx-border-radius: 45; -fx-border-width: 2;" styleClass="etel_gomb_style" text="etel_4">
                      <font>
                         <Font name="Verdana" size="31.0" />
                      </font>
@@ -108,7 +108,7 @@
                         </RadialGradient>
                      </textFill>
                   </Button>
-                  <Label fx:id="fooftype_label" layoutX="-4.0" layoutY="-5.0" prefHeight="91.0" prefWidth="230.0" style="-fx-background-color: #ffe6e6;" text="  Kérem Válasszon Ételt" textAlignment="CENTER">
+                  <Label layoutX="-4.0" layoutY="-5.0" prefHeight="46.0" prefWidth="230.0" style="-fx-background-color: #ffe6e6;" text="     Ételeink:" textAlignment="CENTER">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -129,17 +129,17 @@
                         </RadialGradient>
                      </textFill>
                   </Label>
-                  <Separator layoutX="-2.0" layoutY="85.0" prefHeight="4.0" prefWidth="740.0" style="-fx-background-color: #cc0000;">
+                  <Separator layoutX="-4.0" layoutY="41.0" prefHeight="4.0" prefWidth="757.0" style="-fx-background-color: #cc0000;">
                      <effect>
                         <Bloom />
                      </effect>
                   </Separator>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="539.0" prefWidth="515.0" style="-fx-background-color: black;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="532.0" prefWidth="515.0" style="-fx-background-color: black;">
                <children>
-                  <Separator blendMode="SRC_ATOP" layoutX="-3.0" layoutY="85.0" mouseTransparent="true" prefHeight="4.0" prefWidth="524.0" style="-fx-background-color: #cc0000;" />
-                  <Label fx:id="ingredient_label" contentDisplay="CENTER" prefHeight="83.0" prefWidth="515.0" style="-fx-background-color: #ffe6e6;" text="  Kérem Válasszon hozzávalókat" textAlignment="CENTER">
+                  <Separator blendMode="SRC_ATOP" layoutX="-2.0" layoutY="41.0" mouseTransparent="true" prefHeight="4.0" prefWidth="524.0" style="-fx-background-color: #cc0000;" />
+                  <Label fx:id="ingredient_label" contentDisplay="CENTER" prefHeight="41.0" prefWidth="515.0" style="-fx-background-color: #ffe6e6;" text="  Kérem Válasszon hozzávalókat" textAlignment="CENTER">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -160,106 +160,106 @@
                         </RadialGradient>
                      </textFill>
                   </Label>
-                  <Label fx:id="ToppingName_1" layoutX="152.0" layoutY="120.0" prefHeight="50.0" prefWidth="191.0" style="-fx-background-color: #ffddcc; -fx-background-radius: 20;" text="feltét1" textAlignment="CENTER" textFill="#9e3500" textOverrun="CLIP">
+                  <Label fx:id="ToppingName_1" layoutX="139.0" layoutY="68.0" prefHeight="38.0" prefWidth="183.0" style="-fx-background-color: #ffddcc; -fx-background-radius: 20;" text="feltét1" textAlignment="CENTER" textFill="#9e3500" textOverrun="CLIP">
                      <font>
                         <Font name="Verdana" size="30.0" />
                      </font></Label>
-                  <Slider fx:id="ToppingSlider_1" blockIncrement="1.0" layoutX="152.0" layoutY="167.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" onMouseClicked="#T1SliderClicked" onMouseDragged="#T1SliderDragged" prefHeight="14.0" prefWidth="191.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: lightyellow; -fx-background-radius: 100;" />
-                  <Label fx:id="ToppingName_2" layoutX="152.0" layoutY="205.0" prefHeight="50.0" prefWidth="191.0" style="-fx-background-color: #ffddcc; -fx-background-radius: 20;" text="feltét2" textAlignment="CENTER" textFill="#9e3500" textOverrun="CLIP">
+                  <Slider fx:id="ToppingSlider_1" blockIncrement="1.0" layoutX="137.0" layoutY="99.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" onMouseClicked="#T1SliderClicked" onMouseDragged="#T1SliderDragged" prefHeight="17.0" prefWidth="191.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: lightyellow; -fx-background-radius: 100;" />
+                  <Label fx:id="ToppingName_2" layoutX="137.0" layoutY="152.0" prefHeight="38.0" prefWidth="191.0" style="-fx-background-color: #ffddcc; -fx-background-radius: 20;" text="feltét2" textAlignment="CENTER" textFill="#9e3500" textOverrun="CLIP">
                      <font>
                         <Font name="Verdana" size="30.0" />
                      </font>
                   </Label>
-                  <Slider fx:id="ToppingSlider_2" blockIncrement="5.0" layoutX="152.0" layoutY="253.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" onMouseClicked="#T2SliderClicked" onMouseDragged="#T2SliderDragged" prefHeight="14.0" prefWidth="191.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-radius: 100; -fx-background-color: lightyellow;" />
-                  <Label fx:id="ToppingName_3" layoutX="152.0" layoutY="301.0" prefHeight="50.0" prefWidth="191.0" style="-fx-background-color: #ffddcc; -fx-background-radius: 20;" text="feltét3" textAlignment="CENTER" textFill="#9e3500" textOverrun="CLIP">
+                  <Slider fx:id="ToppingSlider_2" blockIncrement="5.0" layoutX="137.0" layoutY="187.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" onMouseClicked="#T2SliderClicked" onMouseDragged="#T2SliderDragged" prefHeight="14.0" prefWidth="191.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-radius: 100; -fx-background-color: lightyellow;" />
+                  <Label fx:id="ToppingName_3" layoutX="137.0" layoutY="242.0" prefHeight="38.0" prefWidth="191.0" style="-fx-background-color: #ffddcc; -fx-background-radius: 20;" text="feltét3" textAlignment="CENTER" textFill="#9e3500" textOverrun="CLIP">
                      <font>
                         <Font name="Verdana" size="30.0" />
                      </font>
                   </Label>
-                  <Slider fx:id="ToppingSlider_3" blockIncrement="1.0" layoutX="152.0" layoutY="344.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" onMouseClicked="#T3SliderClicked" onMouseDragged="#T3SliderDragged" prefHeight="14.0" prefWidth="191.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: lightyellow; -fx-background-radius: 100;" />
-                  <Label fx:id="ToppingName_4" layoutX="152.0" layoutY="381.0" prefHeight="50.0" prefWidth="191.0" style="-fx-background-color: #ffddcc; -fx-background-radius: 20;" text="feltét4" textAlignment="CENTER" textFill="#9e3500" textOverrun="CLIP">
+                  <Slider fx:id="ToppingSlider_3" blockIncrement="1.0" layoutX="137.0" layoutY="277.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" onMouseClicked="#T3SliderClicked" onMouseDragged="#T3SliderDragged" prefHeight="14.0" prefWidth="191.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: lightyellow; -fx-background-radius: 100;" />
+                  <Label fx:id="ToppingName_4" layoutX="137.0" layoutY="328.0" prefHeight="38.0" prefWidth="191.0" style="-fx-background-color: #ffddcc; -fx-background-radius: 20;" text="feltét4" textAlignment="CENTER" textFill="#9e3500" textOverrun="CLIP">
                      <font>
                         <Font name="Verdana" size="30.0" />
                      </font>
                   </Label>
-                  <Slider fx:id="ToppingSlider_4" blockIncrement="1.0" layoutX="152.0" layoutY="431.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" onMouseClicked="#T4SliderClicked" onMouseDragged="#T4SliderDragged" prefHeight="14.0" prefWidth="191.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: lightyellow; -fx-background-radius: 100;" />
-                  <Label fx:id="ToppingName_5" layoutX="152.0" layoutY="467.0" prefHeight="50.0" prefWidth="191.0" style="-fx-background-color: #ffddcc; -fx-background-radius: 20;" text="feltét5" textAlignment="CENTER" textFill="#9e3500" textOverrun="CLIP">
+                  <Slider fx:id="ToppingSlider_4" blockIncrement="1.0" layoutX="137.0" layoutY="363.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" onMouseClicked="#T4SliderClicked" onMouseDragged="#T4SliderDragged" prefHeight="14.0" prefWidth="191.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: lightyellow; -fx-background-radius: 100;" />
+                  <Label fx:id="ToppingName_5" layoutX="137.0" layoutY="417.0" prefHeight="38.0" prefWidth="191.0" style="-fx-background-color: #ffddcc; -fx-background-radius: 20;" text="feltét5" textAlignment="CENTER" textFill="#9e3500" textOverrun="CLIP">
                      <font>
                         <Font name="Verdana" size="30.0" />
                      </font>
                   </Label>
-                  <Slider fx:id="ToppingSlider_5" blockIncrement="1.0" layoutX="152.0" layoutY="512.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" onMouseClicked="#T5SliderClicked" onMouseDragged="#T5SliderDragged" prefHeight="14.0" prefWidth="191.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: lightyellow; -fx-background-radius: 100;" />
-                  <Button fx:id="Topping1_m" layoutX="80.0" layoutY="120.0" mnemonicParsing="false" onMouseClicked="#Topping1_minus" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="-">
+                  <Slider fx:id="ToppingSlider_5" blockIncrement="1.0" layoutX="137.0" layoutY="453.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" onMouseClicked="#T5SliderClicked" onMouseDragged="#T5SliderDragged" prefHeight="14.0" prefWidth="191.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: lightyellow; -fx-background-radius: 100;" />
+                  <Button fx:id="Topping1_m" layoutX="53.0" layoutY="62.0" mnemonicParsing="false" onMouseClicked="#Topping1_minus" prefHeight="26.0" prefWidth="35.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="-">
                      <font>
                         <Font name="Unispace-Bold" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Topping2_m" layoutX="80.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#Topping2_minus" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="-">
+                  <Button fx:id="Topping2_m" layoutX="53.0" layoutY="151.0" mnemonicParsing="false" onMouseClicked="#Topping2_minus" prefHeight="4.0" prefWidth="0.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="-">
                      <font>
                         <Font name="Unispace-Bold" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Topping3_m" layoutX="80.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#Topping3_minus" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="-">
+                  <Button fx:id="Topping3_m" layoutX="53.0" layoutY="241.0" mnemonicParsing="false" onMouseClicked="#Topping3_minus" prefHeight="4.0" prefWidth="0.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="-">
                      <font>
                         <Font name="Unispace-Bold" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Topping4_m" layoutX="80.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#Topping4_minus" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="-">
+                  <Button fx:id="Topping4_m" layoutX="53.0" layoutY="327.0" mnemonicParsing="false" onMouseClicked="#Topping4_minus" prefHeight="4.0" prefWidth="6.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="-">
                      <font>
                         <Font name="Unispace-Bold" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Topping5_m" layoutX="80.0" layoutY="469.0" mnemonicParsing="false" onMouseClicked="#Topping5_minus" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="-">
+                  <Button fx:id="Topping5_m" layoutX="53.0" layoutY="416.0" mnemonicParsing="false" onMouseClicked="#Topping5_minus" prefHeight="4.0" prefWidth="0.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="-">
                      <font>
                         <Font name="Unispace-Bold" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Topping1_p" layoutX="360.0" layoutY="120.0" mnemonicParsing="false" onMouseClicked="#Topping1_plus" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="+">
+                  <Button fx:id="Topping1_p" layoutX="359.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#Topping1_plus" prefHeight="23.0" prefWidth="35.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="+">
                      <font>
                         <Font name="Unispace-Bold" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Topping2_p" layoutX="360.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#Topping2_plus" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="+">
+                  <Button fx:id="Topping2_p" layoutX="359.0" layoutY="151.0" mnemonicParsing="false" onMouseClicked="#Topping2_plus" prefHeight="4.0" prefWidth="0.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="+">
                      <font>
                         <Font name="Unispace-Bold" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Topping3_p" layoutX="360.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#Topping3_plus" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="+">
+                  <Button fx:id="Topping3_p" layoutX="359.0" layoutY="241.0" mnemonicParsing="false" onMouseClicked="#Topping3_plus" prefHeight="4.0" prefWidth="0.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="+">
                      <font>
                         <Font name="Unispace-Bold" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Topping4_p" layoutX="360.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#Topping4_plus" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="+">
+                  <Button fx:id="Topping4_p" layoutX="359.0" layoutY="327.0" mnemonicParsing="false" onMouseClicked="#Topping4_plus" prefHeight="4.0" prefWidth="0.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="+">
                      <font>
                         <Font name="Unispace-Bold" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Topping5_p" layoutX="360.0" layoutY="467.0" mnemonicParsing="false" onMouseClicked="#Topping5_plus" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="+">
+                  <Button fx:id="Topping5_p" layoutX="359.0" layoutY="416.0" mnemonicParsing="false" onMouseClicked="#Topping5_plus" prefHeight="4.0" prefWidth="6.0" style="-fx-background-radius: 100; -fx-background-color: #ffccb3;" text="+">
                      <font>
                         <Font name="Unispace-Bold" size="21.0" />
                      </font>
                   </Button>
-                  <Label fx:id="inum_1" layoutX="424.0" layoutY="122.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: coral; -fx-background-radius: 100;" text="i1" textAlignment="CENTER">
+                  <Label fx:id="inum_1" layoutX="433.0" layoutY="65.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: coral; -fx-background-radius: 100;" text="i1" textAlignment="CENTER">
                      <font>
                         <Font size="31.0" />
                      </font>
                   </Label>
-                  <Label fx:id="inum_2" layoutX="424.0" layoutY="207.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: coral; -fx-background-radius: 100;" text="i1" textAlignment="CENTER">
+                  <Label fx:id="inum_2" layoutX="433.0" layoutY="149.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: coral; -fx-background-radius: 100;" text="i1" textAlignment="CENTER">
                      <font>
                         <Font size="31.0" />
                      </font>
                   </Label>
-                  <Label fx:id="inum_3" layoutX="424.0" layoutY="303.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: coral; -fx-background-radius: 100;" text="i1" textAlignment="CENTER">
+                  <Label fx:id="inum_3" layoutX="433.0" layoutY="239.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: coral; -fx-background-radius: 100;" text="i1" textAlignment="CENTER">
                      <font>
                         <Font size="31.0" />
                      </font>
                   </Label>
-                  <Label fx:id="inum_4" layoutX="424.0" layoutY="383.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: coral; -fx-background-radius: 100;" text="i1" textAlignment="CENTER">
+                  <Label fx:id="inum_4" layoutX="433.0" layoutY="324.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: coral; -fx-background-radius: 100;" text="i1" textAlignment="CENTER">
                      <font>
                         <Font size="31.0" />
                      </font>
                   </Label>
-                  <Label fx:id="inum_5" layoutX="424.0" layoutY="471.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: coral; -fx-background-radius: 100;" text="i1" textAlignment="CENTER">
+                  <Label fx:id="inum_5" layoutX="433.0" layoutY="414.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: coral; -fx-background-radius: 100;" text="i1" textAlignment="CENTER">
                      <font>
                         <Font size="31.0" />
                      </font>
@@ -267,7 +267,7 @@
                </children></AnchorPane>
         </items>
       </SplitPane>
-      <Button fx:id="addtocart_button" graphicTextGap="7.0" layoutX="746.0" layoutY="4.0" mnemonicParsing="false" onMousePressed="#AddItemToCart" prefHeight="223.0" prefWidth="104.0" style="-fx-background-color: #ff8080; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #b30000; -fx-border-width: 2;" text="K&#10;O&#10;S&#10;Á&#10;R&#10;" textAlignment="CENTER">
+      <Button fx:id="addtocart_button" graphicTextGap="7.0" layoutX="749.0" mnemonicParsing="false" onMousePressed="#AddItemToCart" prefHeight="166.0" prefWidth="104.0" style="-fx-background-color: #ff8080; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #b30000; -fx-border-width: 2;" text="K&#10;O&#10;S&#10;Á&#10;R&#10;" textAlignment="CENTER">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.45260663507109006" focusDistance="-0.25287356321839083" radius="0.9022988505747127">
                <stops>
@@ -288,7 +288,7 @@
             <Font name="Symbol" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="pay_button" layoutX="746.0" layoutY="234.0" mnemonicParsing="false" onMousePressed="#OpenPayment" prefHeight="326.0" prefWidth="104.0" style="-fx-background-color: #ff8080; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #b30000; -fx-border-width: 2;" text="F&#10;I&#10;Z&#10;E&#10;T&#10;É&#10;S" textAlignment="CENTER">
+      <Button fx:id="pay_button" layoutX="749.0" layoutY="167.0" mnemonicParsing="false" onMousePressed="#OpenPayment" prefHeight="356.0" prefWidth="104.0" style="-fx-background-color: #ff8080; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #b30000; -fx-border-width: 2;" text="F&#10;I&#10;Z&#10;E&#10;T&#10;É&#10;S" textAlignment="CENTER">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.45260663507109006" focusDistance="-0.25287356321839083" radius="0.9022988505747127">
                <stops>
@@ -310,11 +310,11 @@
          </font>
       </Button>
       <Separator layoutX="743.0" layoutY="-11.0" orientation="VERTICAL" prefHeight="565.0" prefWidth="6.0" style="-fx-background-color: #cc4400;" />
-      <Label fx:id="CartListLabel" layoutX="14.0" layoutY="561.0" prefHeight="209.0" prefWidth="731.0" text="asd" textFill="#ff5400" wrapText="true">
+      <Label fx:id="CartListLabel" layoutX="5.0" layoutY="526.0" prefHeight="107.0" prefWidth="740.0" text="asd" textFill="#ff5400" wrapText="true">
          <font>
-            <Font name="Unispace-Bold" size="24.0" />
+            <Font name="Unispace-Bold" size="18.0" />
          </font></Label>
-      <Button fx:id="clearcart_button" graphicTextGap="7.0" layoutX="746.0" layoutY="572.0" mnemonicParsing="false" onMousePressed="#ClearCart" prefHeight="187.0" prefWidth="104.0" style="-fx-background-color: #ff8080; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #b30000; -fx-border-width: 2;" text="Ü&#10;R&#10;I&#10;T&#10;É&#10;S&#10;" textAlignment="CENTER">
+      <Button fx:id="clearcart_button" graphicTextGap="7.0" layoutX="749.0" layoutY="524.0" mnemonicParsing="false" onMousePressed="#ClearCart" prefHeight="188.0" prefWidth="104.0" style="-fx-background-color: #ff8080; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #b30000; -fx-border-width: 2;" text="Ü&#10;R&#10;I&#10;T&#10;É&#10;S&#10;" textAlignment="CENTER">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.45260663507109006" focusDistance="-0.25287356321839083" radius="0.9022988505747127">
                <stops>
@@ -335,5 +335,47 @@
             <Font name="Symbol" size="19.0" />
          </font>
       </Button>
+      <Label layoutX="6.0" layoutY="649.0" prefHeight="63.0" prefWidth="217.0" style="-fx-background-color: #ffe6e6;" text="     A végösszeg:" textAlignment="CENTER">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.45260663507109006" focusDistance="-0.25287356321839083" radius="0.9022988505747127">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
+      <Label fx:id="ingredient_label1" contentDisplay="CENTER" layoutX="223.0" layoutY="649.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-color: #ffe6e6;" text="      xy forint" textAlignment="CENTER">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.45260663507109006" focusDistance="-0.25287356321839083" radius="0.9022988505747127">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
    </children>
 </AnchorPane>
