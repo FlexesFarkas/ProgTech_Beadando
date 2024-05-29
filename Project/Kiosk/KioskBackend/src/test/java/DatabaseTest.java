@@ -148,4 +148,12 @@ class DatabaseTest {
         Connection connection = Database.connect();
         Assertions.assertThrows(DatabaseFailedToResetException.class, Database::resetDatabase);
     }
+
+    @Test
+    public void testReturnIndredientNameByFoodtype() throws DatabaseFailedToResetException,SQLException, InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        String result = Database.returnIndredientNameByFoodtype("Burger", 0);
+        String expected = "Cheese";
+        Assertions.assertEquals(expected, result, "Az összetevő név nem megfelelő.");
+    }
+
 }
