@@ -431,23 +431,20 @@ public class Database {
     }
     public static String returnIndredientNameByFoodtype(String type, int index) {
         try{
-            ArrayList<GenericIngredient> ingredients = new ArrayList<>();
+            ArrayList<String> ingredients = new ArrayList<>();
             Connection connection = connect();
             Statement statement = connection.createStatement();
-            String sql = "SELECT ingredient_name, ingredient_price, ingredient_amount FROM Ingredients INNER JOIN IngredientTypes ON Ingredients.ingredient_id = IngredientTypes.ingredient_id WHERE ingredient_type = '" + type + "';";
+            String sql = "SELECT ingredient_name FROM Ingredients INNER JOIN IngredientTypes ON Ingredients.ingredient_id = IngredientTypes.ingredient_id WHERE ingredient_type = '" + type + "';";
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 String ingredientName = resultSet.getString(1);
-                double ingredientPrice = resultSet.getDouble(2);
-                int ingredientAmount = resultSet.getInt(3);
-                GenericIngredient ingredient = new GenericIngredient(ingredientName, ingredientPrice,ingredientAmount);
-                ingredients.add(ingredient);
+                ingredients.add(ingredientName);
             }
             resultSet.close();
             statement.close();
             disconnect(connection);
-            logger.info("Ingredient amount of type " + type + " successfully retrieved= "+ingredients.get(index).getAmount());
-            return ingredients.get(index).getName();
+            logger.info("Ingredient "+ ingredients.get(index) +" of type " + type + " successfully found at " + index);
+            return ingredients.get(index);
         }
         catch(Exception e){
             logger.severe(e.getMessage());
