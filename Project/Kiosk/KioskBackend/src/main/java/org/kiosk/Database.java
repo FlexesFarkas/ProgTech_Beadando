@@ -459,17 +459,17 @@ public class Database {
         try {
             int temp = 0;
             for (GenFood food : newfoods) {
-                if ((returnIndredientCountByFoodtype(food.getFoodtype(), temp) - food.returnIngredientAmount(temp) >= 0)) {
+                if ((returnIndredientCountByFoodtype(food.getFoodtype(), temp) - food.getIngredientAmounts()[temp] >= 0)) {
                     if (!(returnIndredientByFoodtype(food.getFoodtype()).get(temp).getName().equals("-"))) {
                         Connection connection = connect();
                         Statement statement = connection.createStatement();
-                        String sql = "UPDATE Ingredients SET ingredient_amount = ingredient_amount - " + food.returnIngredientAmount(temp) +
+                        String sql = "UPDATE Ingredients SET ingredient_amount = ingredient_amount - " + food.getIngredientAmounts()[temp] +
                                 " WHERE ingredient_id IN (SELECT ingredient_id FROM IngredientTypes WHERE ingredient_type = '" + food.getFoodtype() + "') " +
                                 "AND ingredient_name = '" + returnIndredientNameByFoodtype(food.getFoodtype(), temp) + "'";
                         statement.executeUpdate(sql); // Changed to executeUpdate
                         statement.close();
                         disconnect(connection);
-                        logger.info("Successful ingredient update: " + food.returnIngredientAmount(temp) + " " + food.getFoodtype());
+                        logger.info("Successful ingredient update: " + food.getIngredientAmounts()[temp] + " " + food.getFoodtype());
                     }
                 }
                 temp++;
@@ -492,13 +492,13 @@ public class Database {
                 ResultSet resultSet = statement.executeQuery(sql);
                 while (resultSet.next()) {
                     int ingredientPrice = resultSet.getInt(1);
-                    price+= (ingredientPrice*food.returnIngredientAmount(temp));
+                    price+= (ingredientPrice*food.getIngredientAmounts()[temp]);
 
                 }
                 resultSet.close();
                 statement.close();
                 disconnect(connection);
-                logger.info("Successful ingredient price check: " + food.returnIngredientAmount(temp) + " " + food.getFoodtype());
+                logger.info("Successful ingredient price check: " + food.getIngredientAmounts()[temp] + " " + food.getFoodtype());
                 temp++;
             }
             return price;

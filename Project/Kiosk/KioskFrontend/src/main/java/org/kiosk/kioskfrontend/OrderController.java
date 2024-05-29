@@ -27,6 +27,7 @@ import org.kiosk.order.OrderState.*;
 import javafx.scene.control.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.Delayed;
 
 import static org.kiosk.Database.*;
@@ -110,11 +111,7 @@ public class OrderController {
 
     private OrderState os;
     Alert a = new Alert(Alert.AlertType.WARNING);
-    private int i1=0;
-    private int i2=0;
-    private int i3=0;
-    private  int i4=0;
-    private int i5=0;
+    private  int[] ingredientAmounts = new int[]{0,0,0,0,0};
     private String ftype;
     private int fid;
     private ArrayList<GenFood> cartList = new ArrayList<>();
@@ -123,33 +120,33 @@ public class OrderController {
 
     public void AddFoodToCart(){
         payamountLabel.setText(String.valueOf(ProcessPrice(cartList)));
-        if (i1+i2+i3+i4+i5==0){
+        if (Arrays.stream(ingredientAmounts).sum()==0){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Nem vásárolhat üres terméket!");
             alert.show();
             initialize();
         }else {
-            GenFood newfood = new GenFood(ftype,i1,i2,i3,i4,i5);
+            GenFood newfood = new GenFood(ftype,ingredientAmounts);
             cartString+=ftype+"   hozzávalók= ";
-            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(0).getName())!="-" && i1!=0){
+            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(0).getName())!="-" && ingredientAmounts[0]!=0){
                 cartString+=String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(0).getName())+
-                        " : "+i1+" ";
+                        " : "+ingredientAmounts[0]+" ";
             }
-            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(1).getName())!="-" && i2!=0){
+            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(1).getName())!="-" && ingredientAmounts[1]!=0){
                 cartString+=String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(1).getName())+
-                        " : "+i2+" ";
+                        " : "+ingredientAmounts[1]+" ";
             }
-            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(2).getName())!="-" && i3!=0){
+            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(2).getName())!="-" && ingredientAmounts[2]!=0){
                 cartString+=String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(2).getName())+
-                        " : "+i3+" ";
+                        " : "+ingredientAmounts[2]+" ";
             }
-            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(3).getName())!="-" && i4!=0){
+            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(3).getName())!="-" && ingredientAmounts[3]!=0){
                 cartString+=String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(3).getName())+
-                        " : "+i4+" ";
+                        " : "+ingredientAmounts[3]+" ";
             }
-            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(4).getName())!="-" && i5!=0){
+            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(4).getName())!="-" && ingredientAmounts[4]!=0){
                 cartString+=String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(4).getName())+
-                        " : "+i5+" ";
+                        " : "+ingredientAmounts[4]+" ";
             }
             cartString+="\n";
             cartList.add(newfood);
@@ -201,11 +198,7 @@ public class OrderController {
         ToppingSlider_3.setVisible(false);
         ToppingSlider_4.setVisible(false);
         ToppingSlider_5.setVisible(false);
-        i1=0;
-        i2=0;
-        i3=0;
-        i4=0;
-        i5=0;
+        ingredientAmounts= new int[]{0,0,0,0,0};
         if (cartString==""){
             clearcart_button.setVisible(false);
             pay_button.setVisible(false);
@@ -391,17 +384,17 @@ public class OrderController {
     }
 
     public void Topping1_minus(MouseEvent mouseEvent) {
-        if (i1>0){
-            if (i1==1){
+        if (ingredientAmounts[0]>0){
+            if (ingredientAmounts[0]==1){
                 Topping1_m.setVisible(false);
             }
-            if (i1==5){
+            if (ingredientAmounts[0]==5){
                 Topping1_p.setVisible(true);
             }
-            i1--;
+            ingredientAmounts[0]--;
 
-            ToppingSlider_1.adjustValue(i1);
-            inum_1.setText(String.valueOf(i1));
+            ToppingSlider_1.adjustValue(ingredientAmounts[0]);
+            inum_1.setText(String.valueOf(ingredientAmounts[0]));
 
         }
         else{
@@ -412,15 +405,15 @@ public class OrderController {
     }
 
     public void Topping2_minus(MouseEvent mouseEvent) {
-        if (i2>0){
-            if (i2==1){
+        if (ingredientAmounts[1]>0){
+            if (ingredientAmounts[1]==1){
                 Topping2_m.setVisible(false);
-            }if (i2==5){
+            }if (ingredientAmounts[1]==5){
                 Topping2_p.setVisible(true);
             }
-            i2--;
-            ToppingSlider_2.adjustValue(i2);
-            inum_2.setText(String.valueOf(i2));
+            ingredientAmounts[1]--;
+            ToppingSlider_2.adjustValue(ingredientAmounts[1]);
+            inum_2.setText(String.valueOf(ingredientAmounts[1]));
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -430,15 +423,15 @@ public class OrderController {
     }
 
     public void Topping3_minus(MouseEvent mouseEvent) {
-        if (i3>0){
-            if (i3==1){
+        if (ingredientAmounts[2]>0){
+            if (ingredientAmounts[2]==1){
                 Topping3_m.setVisible(false);
-            }if (i3==5){
+            }if (ingredientAmounts[2]==5){
                 Topping3_p.setVisible(true);
             }
-            i3--;
-            ToppingSlider_3.adjustValue(i3);
-            inum_3.setText(String.valueOf(i3));
+            ingredientAmounts[2]--;
+            ToppingSlider_3.adjustValue(ingredientAmounts[2]);
+            inum_3.setText(String.valueOf(ingredientAmounts[2]));
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -448,15 +441,15 @@ public class OrderController {
     }
 
     public void Topping4_minus(MouseEvent mouseEvent) {
-        if (i4>0){
-            if (i4==1){
+        if (ingredientAmounts[3]>0){
+            if (ingredientAmounts[3]==1){
                 Topping4_m.setVisible(false);
-            }if (i4==5){
+            }if (ingredientAmounts[3]==5){
                 Topping4_p.setVisible(true);
             }
-            i4--;
-            inum_4.setText(String.valueOf(i4));
-            ToppingSlider_4.adjustValue(i4);
+            ingredientAmounts[3]--;
+            inum_4.setText(String.valueOf(ingredientAmounts[3]));
+            ToppingSlider_4.adjustValue(ingredientAmounts[3]);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -466,15 +459,15 @@ public class OrderController {
     }
 
     public void Topping5_minus(MouseEvent mouseEvent) {
-        if (i5>0){
-            if (i5==1){
+        if (ingredientAmounts[4]>0){
+            if (ingredientAmounts[4]==1){
                 Topping5_m.setVisible(false);
-            }if (i5==5){
+            }if (ingredientAmounts[4]==5){
                 Topping5_p.setVisible(true);
             }
-            i5--;
-            inum_5.setText(String.valueOf(i5));
-            ToppingSlider_5.adjustValue(i5);
+            ingredientAmounts[4]--;
+            inum_5.setText(String.valueOf(ingredientAmounts[4]));
+            ToppingSlider_5.adjustValue(ingredientAmounts[4]);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -484,16 +477,16 @@ public class OrderController {
     }
 
     public void Topping1_plus(MouseEvent mouseEvent) {
-        if (i1<5 && returnIndredientCountByFoodtype(ftype,0)>i1){
-            if (i1==0){
+        if (ingredientAmounts[0]<5 && returnIndredientCountByFoodtype(ftype,0)>ingredientAmounts[0]){
+            if (ingredientAmounts[0]==0){
                 Topping1_m.setVisible(true);
             }
-            if (i1==4){
+            if (ingredientAmounts[0]==4){
                 Topping1_p.setVisible(false);
             }
-            i1++;
-            inum_1.setText(String.valueOf(i1));
-            ToppingSlider_1.adjustValue(i1);
+            ingredientAmounts[0]++;
+            inum_1.setText(String.valueOf(ingredientAmounts[0]));
+            ToppingSlider_1.adjustValue(ingredientAmounts[0]);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -503,16 +496,16 @@ public class OrderController {
     }
 
     public void Topping2_plus(MouseEvent mouseEvent) {
-        if (i2<5&& returnIndredientCountByFoodtype(ftype,1)>i2){
-            if (i2==0){
+        if (ingredientAmounts[1]<5&& returnIndredientCountByFoodtype(ftype,1)>ingredientAmounts[1]){
+            if (ingredientAmounts[1]==0){
                 Topping2_m.setVisible(true);
             }
-            if (i2==4){
+            if (ingredientAmounts[1]==4){
                 Topping2_p.setVisible(false);
             }
-            i2++;
-            inum_2.setText(String.valueOf(i2));
-            ToppingSlider_2.adjustValue(i2);
+            ingredientAmounts[1]++;
+            inum_2.setText(String.valueOf(ingredientAmounts[1]));
+            ToppingSlider_2.adjustValue(ingredientAmounts[1]);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -522,16 +515,16 @@ public class OrderController {
     }
 
     public void Topping3_plus(MouseEvent mouseEvent) {
-        if (i3<5&& returnIndredientCountByFoodtype(ftype,2)>i3){
-            if (i3==0){
+        if (ingredientAmounts[2]<5&& returnIndredientCountByFoodtype(ftype,2)>ingredientAmounts[2]){
+            if (ingredientAmounts[2]==0){
                 Topping3_m.setVisible(true);
             }
-            if (i3==4){
+            if (ingredientAmounts[2]==4){
                 Topping3_p.setVisible(false);
             }
-            i3++;
-            inum_3.setText(String.valueOf(i3));
-            ToppingSlider_3.adjustValue(i3);
+            ingredientAmounts[2]++;
+            inum_3.setText(String.valueOf(ingredientAmounts[2]));
+            ToppingSlider_3.adjustValue(ingredientAmounts[2]);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -541,16 +534,16 @@ public class OrderController {
     }
 
     public void Topping4_plus(MouseEvent mouseEvent) {
-        if (i4<5&& returnIndredientCountByFoodtype(ftype,3)>i4){
-            if (i4==0){
+        if (ingredientAmounts[3]<5&& returnIndredientCountByFoodtype(ftype,3)>ingredientAmounts[3]){
+            if (ingredientAmounts[3]==0){
                 Topping4_m.setVisible(true);
             }
-            if (i4==4){
+            if (ingredientAmounts[3]==4){
                 Topping4_p.setVisible(false);
             }
-            i4++;
-            inum_4.setText(String.valueOf(i4));
-            ToppingSlider_4.adjustValue(i4);
+            ingredientAmounts[3]++;
+            inum_4.setText(String.valueOf(ingredientAmounts[3]));
+            ToppingSlider_4.adjustValue(ingredientAmounts[3]);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -560,16 +553,16 @@ public class OrderController {
     }
 
     public void Topping5_plus(MouseEvent mouseEvent) {
-        if (i5<5&& returnIndredientCountByFoodtype(ftype,4)>i5){
-            if (i5==0){
+        if (ingredientAmounts[4]<5&& returnIndredientCountByFoodtype(ftype,4)>ingredientAmounts[4]){
+            if (ingredientAmounts[4]==0){
                 Topping5_m.setVisible(true);
             }
-            if (i5==4){
+            if (ingredientAmounts[4]==4){
                 Topping5_p.setVisible(false);
             }
-            i5++;
-            inum_5.setText(String.valueOf(i5));
-            ToppingSlider_5.adjustValue(i5);
+            ingredientAmounts[4]++;
+            inum_5.setText(String.valueOf(ingredientAmounts[4]));
+            ToppingSlider_5.adjustValue(ingredientAmounts[4]);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -580,11 +573,11 @@ public class OrderController {
 
     public void  ResetIngredients(){
         ftype="";
-        i1=0;
-        i2=0;
-        i3=0;
-        i4=0;
-        i5=0;
+        ingredientAmounts[0]=0;
+        ingredientAmounts[1]=0;
+        ingredientAmounts[2]=0;
+        ingredientAmounts[3]=0;
+        ingredientAmounts[4]=0;
         inum_1.setVisible(false);
         inum_2.setVisible(false);
         inum_3.setVisible(false);
@@ -614,7 +607,7 @@ public class OrderController {
                     Topping1_p.setVisible(!isHidden);
                     ToppingSlider_1.setVisible(!isHidden);
                     inum_1.setVisible(!isHidden);
-                    inum_1.setText(String.valueOf(i1));
+                    inum_1.setText(String.valueOf(ingredientAmounts[0]));
                     break;
                 case 1:
                     ToppingName_2.setVisible(!isHidden);
@@ -622,7 +615,7 @@ public class OrderController {
                     Topping2_p.setVisible(!isHidden);
                     ToppingSlider_2.setVisible(!isHidden);
                     inum_2.setVisible(!isHidden);
-                    inum_2.setText(String.valueOf(i2));
+                    inum_2.setText(String.valueOf(ingredientAmounts[1]));
                     break;
                 case 2:
                     ToppingName_3.setVisible(!isHidden);
@@ -630,7 +623,7 @@ public class OrderController {
                     Topping3_p.setVisible(!isHidden);
                     ToppingSlider_3.setVisible(!isHidden);
                     inum_3.setVisible(!isHidden);
-                    inum_3.setText(String.valueOf(i3));
+                    inum_3.setText(String.valueOf(ingredientAmounts[2]));
                     break;
                 case 3:
                     ToppingName_4.setVisible(!isHidden);
@@ -638,7 +631,7 @@ public class OrderController {
                     Topping4_p.setVisible(!isHidden);
                     ToppingSlider_4.setVisible(!isHidden);
                     inum_4.setVisible(!isHidden);
-                    inum_4.setText(String.valueOf(i4));
+                    inum_4.setText(String.valueOf(ingredientAmounts[3]));
                     break;
                 case 4:
                     ToppingName_5.setVisible(!isHidden);
@@ -646,7 +639,7 @@ public class OrderController {
                     Topping5_p.setVisible(!isHidden);
                     ToppingSlider_5.setVisible(!isHidden);
                     inum_5.setVisible(!isHidden);
-                    inum_5.setText(String.valueOf(i5));
+                    inum_5.setText(String.valueOf(ingredientAmounts[4]));
                     break;
                 default:
                     break;
@@ -656,59 +649,59 @@ public class OrderController {
     }
 
     public void T1SliderClicked(MouseEvent mouseEvent) {
-        if (i1==0){
+        if (ingredientAmounts[0]==0){
             Topping1_m.setVisible(true);
         }
-        i1= (int) ToppingSlider_1.getValue();
+        ingredientAmounts[0]= (int) ToppingSlider_1.getValue();
         if (!ToppingName_1.equals("-")){
-            inum_1.setText(String.valueOf(i1));
-            if (i1==0){
+            inum_1.setText(String.valueOf(ingredientAmounts[0]));
+            if (ingredientAmounts[0]==0){
                 Topping1_m.setVisible(false);
                 Topping1_p.setVisible(true);
             }
-            if (i1==5){
+            if (ingredientAmounts[0]==5){
                 Topping1_p.setVisible(false);
                 Topping1_m.setVisible(true);
             }
-            if (i1>0&&i1<5){
+            if (ingredientAmounts[0]>0&&ingredientAmounts[0]<5){
                 Topping1_p.setVisible(true);
                 Topping1_m.setVisible(true);
             }}
     }
 
     public void T1SliderDragged(MouseEvent mouseEvent) {
-        if (i1==0){
+        if (ingredientAmounts[0]==0){
             Topping1_m.setVisible(true);
         }
-        i1= (int) ToppingSlider_1.getValue();
+        ingredientAmounts[0]= (int) ToppingSlider_1.getValue();
         if (!ToppingName_1.equals("-")){
-            inum_1.setText(String.valueOf(i1));
-            if (i1==0){
+            inum_1.setText(String.valueOf(ingredientAmounts[0]));
+            if (ingredientAmounts[0]==0){
                 Topping1_m.setVisible(false);
                 Topping1_p.setVisible(true);
             }
-            if (i1==5){
+            if (ingredientAmounts[0]==5){
                 Topping1_p.setVisible(false);
                 Topping1_m.setVisible(true);
             }
-            if (i1>0&&i1<5){
+            if (ingredientAmounts[0]>0&&ingredientAmounts[0]<5){
                 Topping1_p.setVisible(true);
                 Topping1_m.setVisible(true);
             }}
     }
 
     public void T2SliderClicked(MouseEvent mouseEvent) {
-        if (i2==0){
+        if (ingredientAmounts[1]==0){
             Topping2_m.setVisible(true);
         }
-        i2= (int) ToppingSlider_2.getValue();
+        ingredientAmounts[1]= (int) ToppingSlider_2.getValue();
         if (!ToppingName_2.equals("-")){
-            inum_2.setText(String.valueOf(i2));
-            if (i2==0){
+            inum_2.setText(String.valueOf(ingredientAmounts[1]));
+            if (ingredientAmounts[1]==0){
                 Topping2_m.setVisible(false);
                 Topping2_p.setVisible(true);
             }
-            else if (i2==5){
+            else if (ingredientAmounts[1]==5){
                 Topping2_p.setVisible(false);
                 Topping2_m.setVisible(true);
             }else {
@@ -718,17 +711,17 @@ public class OrderController {
     }
 
     public void T2SliderDragged(MouseEvent mouseEvent) {
-        if (i3==0){
+        if (ingredientAmounts[2]==0){
             Topping3_m.setVisible(true);
         }
-        i1= (int) ToppingSlider_3.getValue();
+        ingredientAmounts[0]= (int) ToppingSlider_3.getValue();
         if (!ToppingName_2.equals("-")){
-            inum_2.setText(String.valueOf(i2));
-            if (i2==0){
+            inum_2.setText(String.valueOf(ingredientAmounts[1]));
+            if (ingredientAmounts[1]==0){
                 Topping2_m.setVisible(false);
                 Topping2_p.setVisible(true);
             }
-            else if (i2==5){
+            else if (ingredientAmounts[1]==5){
                 Topping2_p.setVisible(false);
                 Topping2_m.setVisible(true);
             }else {
@@ -738,17 +731,17 @@ public class OrderController {
     }
 
     public void T3SliderClicked(MouseEvent mouseEvent) {
-        if (i3==0){
+        if (ingredientAmounts[2]==0){
             Topping3_m.setVisible(true);
         }
-        i3= (int) ToppingSlider_3.getValue();
+        ingredientAmounts[2]= (int) ToppingSlider_3.getValue();
         if (!ToppingName_3.equals("-")){
-            inum_3.setText(String.valueOf(i3));
-            if (i3==0){
+            inum_3.setText(String.valueOf(ingredientAmounts[2]));
+            if (ingredientAmounts[2]==0){
                 Topping3_m.setVisible(false);
                 Topping3_p.setVisible(true);
             }
-            else if (i3==5){
+            else if (ingredientAmounts[2]==5){
                 Topping3_p.setVisible(false);
                 Topping3_m.setVisible(true);
             }else {
@@ -758,17 +751,17 @@ public class OrderController {
     }
 
     public void T3SliderDragged(MouseEvent mouseEvent) {
-        if (i3==0){
+        if (ingredientAmounts[2]==0){
             Topping3_m.setVisible(true);
         }
-        i3= (int) ToppingSlider_3.getValue();
+        ingredientAmounts[2]= (int) ToppingSlider_3.getValue();
         if (!ToppingName_3.equals("-")){
-            inum_3.setText(String.valueOf(i3));
-            if (i3==0){
+            inum_3.setText(String.valueOf(ingredientAmounts[2]));
+            if (ingredientAmounts[2]==0){
                 Topping3_m.setVisible(false);
                 Topping3_p.setVisible(true);
             }
-            else if (i3==5){
+            else if (ingredientAmounts[2]==5){
                 Topping3_p.setVisible(false);
                 Topping3_m.setVisible(true);
             }else {
@@ -778,16 +771,16 @@ public class OrderController {
     }
 
     public void T4SliderClicked(MouseEvent mouseEvent) {
-        if (i4==0){
+        if (ingredientAmounts[3]==0){
             Topping4_m.setVisible(true);
         }
-        i1= (int) ToppingSlider_1.getValue(); if (!ToppingName_4.equals("-")){
-            inum_4.setText(String.valueOf(i1));
-            if (i4==0){
+        ingredientAmounts[0]= (int) ToppingSlider_1.getValue(); if (!ToppingName_4.equals("-")){
+            inum_4.setText(String.valueOf(ingredientAmounts[0]));
+            if (ingredientAmounts[3]==0){
                 Topping4_m.setVisible(false);
                 Topping4_p.setVisible(true);
             }
-            else if (i4==5){
+            else if (ingredientAmounts[3]==5){
                 Topping4_p.setVisible(false);
                 Topping4_m.setVisible(true);
             }else {
@@ -797,16 +790,16 @@ public class OrderController {
     }
 
     public void T4SliderDragged(MouseEvent mouseEvent) {
-        if (i4==0){
+        if (ingredientAmounts[3]==0){
             Topping4_m.setVisible(true);
         }
-        i4= (int) ToppingSlider_4.getValue(); if (!ToppingName_4.equals("-")){
-            inum_4.setText(String.valueOf(i1));
-            if (i4==0){
+        ingredientAmounts[3]= (int) ToppingSlider_4.getValue(); if (!ToppingName_4.equals("-")){
+            inum_4.setText(String.valueOf(ingredientAmounts[0]));
+            if (ingredientAmounts[3]==0){
                 Topping4_m.setVisible(false);
                 Topping4_p.setVisible(true);
             }
-            else if (i4==5){
+            else if (ingredientAmounts[3]==5){
                 Topping4_p.setVisible(false);
                 Topping4_m.setVisible(true);
             }else {
@@ -816,16 +809,16 @@ public class OrderController {
     }
 
     public void T5SliderClicked(MouseEvent mouseEvent) {
-        if (i5==0){
+        if (ingredientAmounts[4]==0){
             Topping5_m.setVisible(true);
         }
-        i5= (int) ToppingSlider_5.getValue();if (!ToppingName_5.equals("-")){
-            inum_5.setText(String.valueOf(i5));
-            if (i5==0){
+        ingredientAmounts[4]= (int) ToppingSlider_5.getValue();if (!ToppingName_5.equals("-")){
+            inum_5.setText(String.valueOf(ingredientAmounts[4]));
+            if (ingredientAmounts[4]==0){
                 Topping5_m.setVisible(false);
                 Topping5_p.setVisible(true);
             }
-            else if (i5==5){
+            else if (ingredientAmounts[4]==5){
                 Topping5_p.setVisible(false);
                 Topping5_m.setVisible(true);
             }else {
@@ -835,16 +828,16 @@ public class OrderController {
     }
 
     public void T5SliderDragged(MouseEvent mouseEvent) {
-        if (i5==0){
+        if (ingredientAmounts[4]==0){
             Topping5_m.setVisible(true);
         }
-        i5= (int) ToppingSlider_5.getValue();if (!ToppingName_5.equals("-")){
-            inum_5.setText(String.valueOf(i5));
-            if (i5==0){
+        ingredientAmounts[4]= (int) ToppingSlider_5.getValue();if (!ToppingName_5.equals("-")){
+            inum_5.setText(String.valueOf(ingredientAmounts[4]));
+            if (ingredientAmounts[4]==0){
                 Topping5_m.setVisible(false);
                 Topping5_p.setVisible(true);
             }
-            else if (i5==5){
+            else if (ingredientAmounts[4]==5){
                 Topping5_p.setVisible(false);
                 Topping5_m.setVisible(true);
             }else {

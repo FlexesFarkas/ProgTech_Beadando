@@ -310,7 +310,7 @@
          </font>
       </Button>
       <Separator layoutX="743.0" layoutY="-11.0" orientation="VERTICAL" prefHeight="565.0" prefWidth="6.0" style="-fx-background-color: #cc4400;" />
-      <Label fx:id="CartListLabel" layoutX="5.0" layoutY="526.0" prefHeight="107.0" prefWidth="740.0" text="asd" textFill="#ff5400" wrapText="true">
+      <Label fx:id="CartListLabel" layoutX="5.0" layoutY="526.0" prefHeight="107.0" prefWidth="740.0" text="-" textFill="#ff5400" wrapText="true">
          <font>
             <Font name="Unispace-Bold" size="18.0" />
          </font></Label>
@@ -356,7 +356,7 @@
             </RadialGradient>
          </textFill>
       </Label>
-      <Label fx:id="payamountLabel" contentDisplay="CENTER" layoutX="223.0" layoutY="649.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-color: #ffe6e6;" text="      xy forint" textAlignment="CENTER">
+      <Label fx:id="payamountLabel" contentDisplay="CENTER" layoutX="223.0" layoutY="649.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-color: #ffe6e6;" text="-1" textAlignment="CENTER">
          <font>
             <Font size="21.0" />
          </font>
