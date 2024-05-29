@@ -1,6 +1,7 @@
 package org.kiosk;
 import org.kiosk.exceptions.DatabaseFailedToResetException;
 import org.kiosk.exceptions.NotEnoughIngredietnsException;
+import org.kiosk.food.GenFood;
 import org.kiosk.food.IFood;
 import org.kiosk.food.GenericIngredient;
 import org.kiosk.food.IngridientDecorator;
@@ -402,6 +403,7 @@ public class Database {
         }
     }
 
+
     public static int returnIndredientCountByFoodtype(String type,int index) {
         try{
             ArrayList<GenericIngredient> ingredients = new ArrayList<>();
@@ -427,6 +429,53 @@ public class Database {
             return 0;
         }
     }
+    public static String returnIndredientNameByFoodtype(String type, int index) {
+        try{
+            ArrayList<GenericIngredient> ingredients = new ArrayList<>();
+            Connection connection = connect();
+            Statement statement = connection.createStatement();
+            String sql = "SELECT ingredient_name, ingredient_price, ingredient_amount FROM Ingredients INNER JOIN IngredientTypes ON Ingredients.ingredient_id = IngredientTypes.ingredient_id WHERE ingredient_type = '" + type + "';";
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String ingredientName = resultSet.getString(1);
+                double ingredientPrice = resultSet.getDouble(2);
+                int ingredientAmount = resultSet.getInt(3);
+                GenericIngredient ingredient = new GenericIngredient(ingredientName, ingredientPrice,ingredientAmount);
+                ingredients.add(ingredient);
+            }
+            resultSet.close();
+            statement.close();
+            disconnect(connection);
+            logger.info("Ingredient amount of type " + type + " successfully retrieved= "+ingredients.get(index).getAmount());
+            return ingredients.get(index).getName();
+        }
+        catch(Exception e){
+            logger.severe(e.getMessage());
+            return "";
+        }
+    }
+
+    public static void ProcessPayment(List<GenFood> newfoods) {
+        try {
+            int temp = 0;
+            for (GenFood food : newfoods) {
+                if (!(returnIndredientByFoodtype(food.getFoodtype()).get(temp).getName().equals("-"))) {
+                    Connection connection = connect();
+                    Statement statement = connection.createStatement();
+                    String sql = "UPDATE Ingredients SET ingredient_amount = ingredient_amount - " + food.returnIngredientAmount(temp) + " WHERE ingredient_id IN (SELECT ingredient_id FROM IngredientTypes WHERE ingredient_type = '" + food.getFoodtype() + "') AND ingredient_name = '" + returnIndredientNameByFoodtype(food.getFoodtype(), temp) + "'";
+                    statement.executeUpdate(sql); // Changed to executeUpdate
+                    statement.close();
+                    disconnect(connection);
+                    logger.info("Successful ingredient update: " + food.returnIngredientAmount(temp) + " " + food.getFoodtype());
+                }
+                temp++;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 
 }

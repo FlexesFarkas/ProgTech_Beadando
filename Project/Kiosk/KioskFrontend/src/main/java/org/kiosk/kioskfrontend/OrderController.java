@@ -103,6 +103,8 @@ public class OrderController {
     private Label ingredient_label;
     @FXML
     private Label CartListLabel;
+    @FXML
+    private Label payamountLabel;
 
     private OrderState os;
     Alert a = new Alert(Alert.AlertType.WARNING);
@@ -147,10 +149,10 @@ public class OrderController {
                         " : "+i5+" ";
             }
             cartString+="\n";
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            cartList.add(newfood);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Sikeresen hozzáadta a "+ftype+" a kosarába :)");
             alert.show();
-
             CartListLabel.setText(cartString);
         }
         foodtypeInit();
@@ -858,10 +860,6 @@ public class OrderController {
         }
     }
 
-    public void OpenPayment(MouseEvent mouseEvent) {
-
-    }
-
     public void ClearCart(MouseEvent mouseEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("A kosár kiürítve :)");
@@ -875,6 +873,18 @@ public class OrderController {
 
 
 
+    }
+
+    public void Payment(MouseEvent mouseEvent) {
+        if (!cartList.isEmpty()){
+            Database.ProcessPayment(cartList);
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Még üres a kosara, \nígy nem tud fizetni :)\n"+cartList.toString());
+            alert.show();
+            initialize();
+        }
     }
 }
 

@@ -288,7 +288,7 @@
             <Font name="Symbol" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="pay_button" layoutX="749.0" layoutY="167.0" mnemonicParsing="false" onMousePressed="#OpenPayment" prefHeight="356.0" prefWidth="104.0" style="-fx-background-color: #ff8080; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #b30000; -fx-border-width: 2;" text="F&#10;I&#10;Z&#10;E&#10;T&#10;É&#10;S" textAlignment="CENTER">
+      <Button fx:id="pay_button" layoutX="749.0" layoutY="167.0" mnemonicParsing="false" onMousePressed="#Payment" prefHeight="356.0" prefWidth="104.0" style="-fx-background-color: #ff8080; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #b30000; -fx-border-width: 2;" text="F&#10;I&#10;Z&#10;E&#10;T&#10;É&#10;S" textAlignment="CENTER">
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.45260663507109006" focusDistance="-0.25287356321839083" radius="0.9022988505747127">
                <stops>
@@ -356,7 +356,7 @@
             </RadialGradient>
          </textFill>
       </Label>
-      <Label fx:id="ingredient_label1" contentDisplay="CENTER" layoutX="223.0" layoutY="649.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-color: #ffe6e6;" text="      xy forint" textAlignment="CENTER">
+      <Label fx:id="payamountLabel" contentDisplay="CENTER" layoutX="223.0" layoutY="649.0" prefHeight="63.0" prefWidth="524.0" style="-fx-background-color: #ffe6e6;" text="      xy forint" textAlignment="CENTER">
          <font>
             <Font size="21.0" />
          </font>
