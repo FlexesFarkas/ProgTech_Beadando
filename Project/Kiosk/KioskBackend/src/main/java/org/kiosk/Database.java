@@ -421,7 +421,7 @@ public class Database {
             resultSet.close();
             statement.close();
             disconnect(connection);
-            logger.info("Ingredient amount of type " + type + " successfully retrieved= "+ingredients.get(index).getAmount());
+            logger.info("Ingredient amount of type " + ingredients.get(index).getName() + " successfully retrieved= "+ingredients.get(index).getAmount());
             return ingredients.get(index).getAmount();
         }
         catch(Exception e){
@@ -459,14 +459,18 @@ public class Database {
         try {
             int temp = 0;
             for (GenFood food : newfoods) {
-                if (!(returnIndredientByFoodtype(food.getFoodtype()).get(temp).getName().equals("-"))) {
-                    Connection connection = connect();
-                    Statement statement = connection.createStatement();
-                    String sql = "UPDATE Ingredients SET ingredient_amount = ingredient_amount - " + food.returnIngredientAmount(temp) + " WHERE ingredient_id IN (SELECT ingredient_id FROM IngredientTypes WHERE ingredient_type = '" + food.getFoodtype() + "') AND ingredient_name = '" + returnIndredientNameByFoodtype(food.getFoodtype(), temp) + "'";
-                    statement.executeUpdate(sql); // Changed to executeUpdate
-                    statement.close();
-                    disconnect(connection);
-                    logger.info("Successful ingredient update: " + food.returnIngredientAmount(temp) + " " + food.getFoodtype());
+                if ((returnIndredientCountByFoodtype(food.getFoodtype(), temp) - food.returnIngredientAmount(temp) >= 0)) {
+                    if (!(returnIndredientByFoodtype(food.getFoodtype()).get(temp).getName().equals("-"))) {
+                        Connection connection = connect();
+                        Statement statement = connection.createStatement();
+                        String sql = "UPDATE Ingredients SET ingredient_amount = ingredient_amount - " + food.returnIngredientAmount(temp) +
+                                " WHERE ingredient_id IN (SELECT ingredient_id FROM IngredientTypes WHERE ingredient_type = '" + food.getFoodtype() + "') " +
+                                "AND ingredient_name = '" + returnIndredientNameByFoodtype(food.getFoodtype(), temp) + "'";
+                        statement.executeUpdate(sql); // Changed to executeUpdate
+                        statement.close();
+                        disconnect(connection);
+                        logger.info("Successful ingredient update: " + food.returnIngredientAmount(temp) + " " + food.getFoodtype());
+                    }
                 }
                 temp++;
             }
@@ -474,6 +478,7 @@ public class Database {
             throw new RuntimeException(e);
         }
     }
+
 
 
 

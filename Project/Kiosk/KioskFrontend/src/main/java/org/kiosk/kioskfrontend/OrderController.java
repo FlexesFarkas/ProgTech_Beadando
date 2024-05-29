@@ -198,7 +198,6 @@ public class OrderController {
         ToppingSlider_3.setVisible(false);
         ToppingSlider_4.setVisible(false);
         ToppingSlider_5.setVisible(false);
-        ingredient_label.setText("");
         i1=0;
         i2=0;
         i3=0;
@@ -501,7 +500,7 @@ public class OrderController {
     }
 
     public void Topping2_plus(MouseEvent mouseEvent) {
-        if (i2<5&& Database.returnIndredientCountByFoodtype(ftype,0)>i2){
+        if (i2<5&& Database.returnIndredientCountByFoodtype(ftype,1)>i2){
             if (i2==0){
                 Topping2_m.setVisible(true);
             }
@@ -520,7 +519,7 @@ public class OrderController {
     }
 
     public void Topping3_plus(MouseEvent mouseEvent) {
-        if (i3<5&& Database.returnIndredientCountByFoodtype(ftype,0)>i3){
+        if (i3<5&& Database.returnIndredientCountByFoodtype(ftype,2)>i3){
             if (i3==0){
                 Topping3_m.setVisible(true);
             }
@@ -539,7 +538,7 @@ public class OrderController {
     }
 
     public void Topping4_plus(MouseEvent mouseEvent) {
-        if (i4<5&& Database.returnIndredientCountByFoodtype(ftype,0)>i4){
+        if (i4<5&& Database.returnIndredientCountByFoodtype(ftype,3)>i4){
             if (i4==0){
                 Topping4_m.setVisible(true);
             }
@@ -558,7 +557,7 @@ public class OrderController {
     }
 
     public void Topping5_plus(MouseEvent mouseEvent) {
-        if (i5<5&& Database.returnIndredientCountByFoodtype(ftype,0)>i5){
+        if (i5<5&& Database.returnIndredientCountByFoodtype(ftype,4)>i5){
             if (i5==0){
                 Topping5_m.setVisible(true);
             }
@@ -861,23 +860,26 @@ public class OrderController {
     }
 
     public void ClearCart(MouseEvent mouseEvent) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("A kosár kiürítve :)");
-        alert.show();
-        initialize();
-        cartList= new ArrayList<>();
-        cartString="";
-        CartListLabel.setText(cartString);
-        initialize();
-        ResetIngredients();
-
-
-
+        RemoveItemsFromCart();
+    }
+    public void RemoveItemsFromCart(){
+        if (!cartList.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("A kosár kiürítve :)");
+            alert.show();
+            initialize();
+            cartList= new ArrayList<>();
+            cartString="";
+            CartListLabel.setText(cartString);
+            initialize();
+            ResetIngredients();
+        }
     }
 
     public void Payment(MouseEvent mouseEvent) {
         if (!cartList.isEmpty()){
             Database.ProcessPayment(cartList);
+            RemoveItemsFromCart();
         }
         else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
