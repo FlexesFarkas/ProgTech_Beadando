@@ -122,6 +122,7 @@ public class OrderController {
     private boolean Opened= false;
 
     public void AddFoodToCart(){
+        payamountLabel.setText(String.valueOf(ProcessPrice(cartList)));
         if (i1+i2+i3+i4+i5==0){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Nem vásárolhat üres terméket!");
