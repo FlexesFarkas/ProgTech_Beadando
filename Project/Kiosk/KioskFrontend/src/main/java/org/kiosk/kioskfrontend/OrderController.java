@@ -29,6 +29,8 @@ import javafx.scene.control.*;
 import java.util.ArrayList;
 import java.util.concurrent.Delayed;
 
+import static org.kiosk.Database.*;
+
 
 public class OrderController {
 
@@ -128,24 +130,24 @@ public class OrderController {
         }else {
             GenFood newfood = new GenFood(ftype,i1,i2,i3,i4,i5);
             cartString+=ftype+"   hozzávalók= ";
-            if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(0).getName())!="-" && i1!=0){
-                cartString+=String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(0).getName())+
+            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(0).getName())!="-" && i1!=0){
+                cartString+=String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(0).getName())+
                         " : "+i1+" ";
             }
-            if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(1).getName())!="-" && i2!=0){
-                cartString+=String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(1).getName())+
+            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(1).getName())!="-" && i2!=0){
+                cartString+=String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(1).getName())+
                         " : "+i2+" ";
             }
-            if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(2).getName())!="-" && i3!=0){
-                cartString+=String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(2).getName())+
+            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(2).getName())!="-" && i3!=0){
+                cartString+=String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(2).getName())+
                         " : "+i3+" ";
             }
-            if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(3).getName())!="-" && i4!=0){
-                cartString+=String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(3).getName())+
+            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(3).getName())!="-" && i4!=0){
+                cartString+=String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(3).getName())+
                         " : "+i4+" ";
             }
-            if (String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(4).getName())!="-" && i5!=0){
-                cartString+=String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(fid)).get(4).getName())+
+            if (String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(4).getName())!="-" && i5!=0){
+                cartString+=String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(fid)).get(4).getName())+
                         " : "+i5+" ";
             }
             cartString+="\n";
@@ -169,10 +171,10 @@ public class OrderController {
     }
     public void foodtypeInit(){
 
-        food1_button.setText(Database.getFoodTypes().get(0));
-        food2_button.setText(Database.getFoodTypes().get(1));
-        food3_button.setText(Database.getFoodTypes().get(2));
-        food4_button.setText(Database.getFoodTypes().get(3));
+        food1_button.setText(getFoodTypes().get(0));
+        food2_button.setText(getFoodTypes().get(1));
+        food3_button.setText(getFoodTypes().get(2));
+        food4_button.setText(getFoodTypes().get(3));
         inum_1.setVisible(false);
         inum_2.setVisible(false);
         inum_3.setVisible(false);
@@ -481,7 +483,7 @@ public class OrderController {
     }
 
     public void Topping1_plus(MouseEvent mouseEvent) {
-        if (i1<5 && Database.returnIndredientCountByFoodtype(ftype,0)>i1){
+        if (i1<5 && returnIndredientCountByFoodtype(ftype,0)>i1){
             if (i1==0){
                 Topping1_m.setVisible(true);
             }
@@ -500,7 +502,7 @@ public class OrderController {
     }
 
     public void Topping2_plus(MouseEvent mouseEvent) {
-        if (i2<5&& Database.returnIndredientCountByFoodtype(ftype,1)>i2){
+        if (i2<5&& returnIndredientCountByFoodtype(ftype,1)>i2){
             if (i2==0){
                 Topping2_m.setVisible(true);
             }
@@ -519,7 +521,7 @@ public class OrderController {
     }
 
     public void Topping3_plus(MouseEvent mouseEvent) {
-        if (i3<5&& Database.returnIndredientCountByFoodtype(ftype,2)>i3){
+        if (i3<5&& returnIndredientCountByFoodtype(ftype,2)>i3){
             if (i3==0){
                 Topping3_m.setVisible(true);
             }
@@ -538,7 +540,7 @@ public class OrderController {
     }
 
     public void Topping4_plus(MouseEvent mouseEvent) {
-        if (i4<5&& Database.returnIndredientCountByFoodtype(ftype,3)>i4){
+        if (i4<5&& returnIndredientCountByFoodtype(ftype,3)>i4){
             if (i4==0){
                 Topping4_m.setVisible(true);
             }
@@ -557,7 +559,7 @@ public class OrderController {
     }
 
     public void Topping5_plus(MouseEvent mouseEvent) {
-        if (i5<5&& Database.returnIndredientCountByFoodtype(ftype,4)>i5){
+        if (i5<5&& returnIndredientCountByFoodtype(ftype,4)>i5){
             if (i5==0){
                 Topping5_m.setVisible(true);
             }
@@ -597,11 +599,11 @@ public class OrderController {
     public void FoodSelected(int foodid){
 
         fid=foodid;
-        ftype=Database.getFoodTypes().get(foodid);
+        ftype= getFoodTypes().get(foodid);
         ingredient_label.setText("Kérem válasszon összetevőket! kiválasztott étel: "+ftype);
         initialize();
         for (int i = 0; i < 5; i++) {
-            String ingredientName = String.valueOf(Database.returnIndredientByFoodtype(Database.getFoodTypes().get(foodid)).get(i).getName());
+            String ingredientName = String.valueOf(returnIndredientByFoodtype(getFoodTypes().get(foodid)).get(i).getName());
             boolean isHidden = ingredientName.equals("-");
 
             switch (i) {
@@ -878,7 +880,7 @@ public class OrderController {
 
     public void Payment(MouseEvent mouseEvent) {
         if (!cartList.isEmpty()){
-            Database.ProcessPayment(cartList);
+            ProcessPayment(cartList);
             RemoveItemsFromCart();
         }
         else{

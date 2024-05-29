@@ -479,6 +479,36 @@ public class Database {
         }
     }
 
+    public static int ProcessPrice(List<GenFood> newfoods) {
+        try {
+            int price = 0;
+            int temp = 0;
+            for (GenFood food : newfoods) {
+                if ((returnIndredientCountByFoodtype(food.getFoodtype(), temp) - food.returnIngredientAmount(temp) >= 0)) {
+                    if (!(returnIndredientByFoodtype(food.getFoodtype()).get(temp).getName().equals("-"))) {
+                        Connection connection = connect();
+                        Statement statement = connection.createStatement();
+                        String sql = "SELECT ingredient_price FROM Ingredients INNER JOIN IngredientTypes ON Ingredients.ingredient_id = IngredientTypes.ingredient_id WHERE ingredient_type = '" + food.getFoodtype() +
+                                "') " +"AND ingredient_name = '" + returnIndredientNameByFoodtype(food.getFoodtype(), temp) + "'";
+                        ResultSet resultSet = statement.executeQuery(sql);
+                        while (resultSet.next()) {
+                            int ingredientPrice = resultSet.getInt(0);
+                            price+= ingredientPrice;
+                        }
+                        resultSet.close();
+                        statement.close();
+                        disconnect(connection);
+                        logger.info("Successful ingredient price check: " + food.returnIngredientAmount(temp) + " " + food.getFoodtype());
+                    }
+                }
+                temp++;
+            }
+            return price;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 
