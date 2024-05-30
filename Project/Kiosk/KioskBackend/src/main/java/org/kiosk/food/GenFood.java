@@ -44,8 +44,13 @@ public class GenFood {
         ArrayList<GenericIngredient> ingredients = Database.returnIndredientByFoodtype(foodtype);
         for (int i = 0; i < ingredientAmounts.length; i++) {
             if (i < ingredients.size()) {
-                String ingredient = String.valueOf(ingredients.get(i));
-                food = addDecorator(food, ingredient);
+                GenericIngredient ingredient = ingredients.get(i);
+                System.out.println(ingredient);
+                int j = 0;
+                while (j < ingredientAmounts[i]) {
+                    food = addDecorator(food, ingredient.getName());
+                    j++;
+                }
             } else {
                 logger.severe("Index " + i + " out of bounds for ingredients list of size " + ingredients.size());
             }
