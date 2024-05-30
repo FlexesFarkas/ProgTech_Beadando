@@ -5,11 +5,24 @@ import org.kiosk.FoodType;
 import org.kiosk.food.decorators.Cheese;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 public class GenFood {
+    private static final Logger logger = Logger.getLogger(GenFood.class.getName());
+
+    private String foodtype;
+    private int[] ingredientAmounts;
+
+    public GenFood(String foodtype, int[] ingredientAmounts) {
+        this.foodtype = foodtype;
+        this.ingredientAmounts = ingredientAmounts;
+    }
+
     public String getFoodtype() {
         return foodtype;
     }
@@ -26,51 +39,52 @@ public class GenFood {
         this.ingredientAmounts = ingredientAmounts;
     }
 
-    private String foodtype;
-    private int[] ingredientAmounts;
-
-    public GenFood(String foodtype, int[] ingredientAmounts) {
-        this.foodtype = foodtype;
-        this.ingredientAmounts = ingredientAmounts;
-    }
-
-    public IFood convertToIFood() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public IFood convertToIFood() throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         IFood food = new Food(FoodType.valueOf(foodtype));
+        ArrayList<GenericIngredient> ingredients = Database.returnIndredientByFoodtype(foodtype);
         for (int i = 0; i < ingredientAmounts.length; i++) {
-            String ingredient = Database.returnIndredientNameByFoodtype(foodtype, i);
-            food = addDecorator(food, ingredient);
+            if (i < ingredients.size()) {
+                String ingredient = String.valueOf(ingredients.get(i));
+                food = addDecorator(food, ingredient);
+            } else {
+                logger.severe("Index " + i + " out of bounds for ingredients list of size " + ingredients.size());
+            }
         }
         return food;
     }
-
-    private IFood addDecorator(IFood food, String ingredient) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    private IFood addDecorator(IFood food, String ingredient) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         ArrayList<Class<?>> decorators = getListOfDecorators();
-        IFood result = null;
+        IFood result = food; // Initialize with the original food item
         for (Class<?> decorator : decorators) {
-            if (decorator.getName().equals(ingredient)) {
-                Object decoratorInstance = decorator.newInstance();
+            if (decorator.getSimpleName().equals(ingredient)) { // Compare with simple name
+                // Use the constructor that takes an IFood argument
+                Constructor<?> constructor = decorator.getConstructor(IFood.class);
+                Object decoratorInstance = constructor.newInstance(food);
                 if (decoratorInstance instanceof IFood) {
-                    IngridientDecorator ingridientDecorator = (IngridientDecorator) decoratorInstance;
-                    ingridientDecorator.food = food;
-                    result = ingridientDecorator;
+                    result = (IFood) decoratorInstance;
                 }
             }
         }
         return result;
     }
-    
     private ArrayList<Class<?>> getListOfDecorators() throws ClassNotFoundException {
         ArrayList<Class<?>> decorators = new ArrayList<>();
-        String packagePath = IFood.class.getResource("") + "decorators";
-        File directory = new File(packagePath.substring(5));
-        for (File file : directory.listFiles()) {
-            if (file.isFile() && file.getName().endsWith(".class")) {
-                String[] fileNames = file.getName().split(" \\.");
-                String className = fileNames[fileNames.length - 1].replace(".class", "");
-                Class<?> clazz = Class.forName(className);
-                decorators.add(clazz);
+        // Adjust the package name as per your project structure
+        String packageName = "org.kiosk.food.decorators";
+        String packagePath = IFood.class.getResource("").getPath() + "decorators";
+        File directory = new File(packagePath);
+
+        if (directory.exists() && directory.isDirectory()) {
+            for (File file : directory.listFiles()) {
+                if (file.isFile() && file.getName().endsWith(".class")) {
+                    String className = file.getName().substring(0, file.getName().length() - 6); // Remove ".class"
+                    String fullyQualifiedClassName = packageName + "." + className;
+                    Class<?> clazz = Class.forName(fullyQualifiedClassName);
+                    decorators.add(clazz);
+                }
             }
         }
+
         return decorators;
     }
 
@@ -78,7 +92,4 @@ public class GenFood {
     public String toString() {
         return foodtype + "," + ingredientAmounts[0] + "," +  ingredientAmounts[1] + "," +  ingredientAmounts[2] + "," +  ingredientAmounts[3] + "," + ingredientAmounts[4];
     }
-
-
-
 }
