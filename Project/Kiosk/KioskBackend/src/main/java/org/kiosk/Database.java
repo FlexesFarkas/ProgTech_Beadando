@@ -237,7 +237,12 @@ public class Database {
             returnValue[i][0] = groupedIngredients[i];
             int counter = 0;
             for (int j = 0; j < ingredients.length; j++) {
+                /*
                 if (Arrays.stream(groupedIngredients).anyMatch(ingredients[i]::equals)) {
+                    counter++;
+                }
+                 */
+                if (groupedIngredients[i].equals(ingredients[j])) {
                     counter++;
                 }
             }
