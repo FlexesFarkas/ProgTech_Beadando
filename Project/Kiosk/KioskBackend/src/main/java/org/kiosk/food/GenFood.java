@@ -54,10 +54,9 @@ public class GenFood {
     }
     private IFood addDecorator(IFood food, String ingredient) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         ArrayList<Class<?>> decorators = getListOfDecorators();
-        IFood result = food; // Initialize with the original food item
+        IFood result = food;
         for (Class<?> decorator : decorators) {
-            if (decorator.getSimpleName().equals(ingredient)) { // Compare with simple name
-                // Use the constructor that takes an IFood argument
+            if (decorator.getSimpleName().equals(ingredient)) {
                 Constructor<?> constructor = decorator.getConstructor(IFood.class);
                 Object decoratorInstance = constructor.newInstance(food);
                 if (decoratorInstance instanceof IFood) {
@@ -69,7 +68,6 @@ public class GenFood {
     }
     private ArrayList<Class<?>> getListOfDecorators() throws ClassNotFoundException {
         ArrayList<Class<?>> decorators = new ArrayList<>();
-        // Adjust the package name as per your project structure
         String packageName = "org.kiosk.food.decorators";
         String packagePath = IFood.class.getResource("").getPath() + "decorators";
         File directory = new File(packagePath);
@@ -77,7 +75,7 @@ public class GenFood {
         if (directory.exists() && directory.isDirectory()) {
             for (File file : directory.listFiles()) {
                 if (file.isFile() && file.getName().endsWith(".class")) {
-                    String className = file.getName().substring(0, file.getName().length() - 6); // Remove ".class"
+                    String className = file.getName().substring(0, file.getName().length() - 6);
                     String fullyQualifiedClassName = packageName + "." + className;
                     Class<?> clazz = Class.forName(fullyQualifiedClassName);
                     decorators.add(clazz);
