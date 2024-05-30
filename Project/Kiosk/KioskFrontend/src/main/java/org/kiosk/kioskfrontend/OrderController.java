@@ -26,8 +26,10 @@ import org.kiosk.order.OrderState;
 import org.kiosk.order.OrderState.*;
 import javafx.scene.control.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 import java.util.concurrent.Delayed;
 
 import static org.kiosk.Database.*;
@@ -872,17 +874,34 @@ public class OrderController {
         }
     }
 
-    public void Payment(MouseEvent mouseEvent) {
-        if (!cartList.isEmpty()){
-            ProcessPayment(cartList);
-            RemoveItemsFromCart();
-        }
-        else{
+    public void Payment(MouseEvent mouseEvent) throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+        System.out.println("Starting Payment method...");
+        if (!cartList.isEmpty()) {
+            System.out.println("cartList is not empty. Processing items...");
+            cartString = "";
+            ArrayList<IFood> cartFoods = new ArrayList<>();
+            for (GenFood listfood : cartList) {
+                IFood convertedFood = listfood.convertToIFood();
+                if (convertedFood != null) {
+                    System.out.println("Converted food: " + convertedFood.toString());
+                    cartFoods.add(convertedFood);
+                    cartString += convertedFood.toString();
+                } else {
+                    System.out.println("Converted food is null.");
+                }
+            }
+            UUID orderId = UUID.randomUUID();
+            saveOrder(cartFoods, String.valueOf(orderId));
+        } else {
+            System.out.println("cartList is empty.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Még üres a kosara, \nígy nem tud fizetni :)\n"+cartList.toString());
+            alert.setContentText("Még üres a kosara, \nígy nem tud fizetni :)\n" + cartList.toString());
             alert.show();
             initialize();
         }
+        System.out.println("Ending Payment method...");
     }
+
+
 }
 

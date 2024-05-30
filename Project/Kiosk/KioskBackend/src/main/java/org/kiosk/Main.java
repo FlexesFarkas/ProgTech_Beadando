@@ -12,7 +12,7 @@ public class Main {
         Database.checkIfDatabaseExists();
         Database.GenerateType();
         Database.populateIngredientsFromDecorators();
-        GenFood newfood = new GenFood("Burger",new int[]{1,1,1,0,0});
+        GenFood newfood = new GenFood("Burger",new int[]{1,1,1,1,1});
         IFood newIfood = newfood.convertToIFood();
         System.out.println(newIfood.toString());
 

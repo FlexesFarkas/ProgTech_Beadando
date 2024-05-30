@@ -1,5 +1,6 @@
 package org.kiosk;
 import org.kiosk.exceptions.DatabaseFailedToResetException;
+import org.kiosk.exceptions.NotEnoughIngredientsException;
 import org.kiosk.exceptions.NotEnoughIngredietnsException;
 import org.kiosk.food.GenFood;
 import org.kiosk.food.IFood;
@@ -100,63 +101,61 @@ public class Database {
     }
 
     public static Boolean saveOrder(ArrayList<IFood> foods, String orderID) {
-
-        try{
+        try {
             Connection connection = connect();
             Statement statement = connection.createStatement();
             String sql = "BEGIN TRANSACTION;";
-            for (int i = 0; i < foods.size(); i++) {
-                IFood food = foods.get(i);
-                String[] ingredients = Arrays.copyOfRange(food.getDescription().split(","), 1, food.getDescription().split(",").length);
-                StringBuilder ingredientString = new StringBuilder();
-                for (int j = 0; j < ingredients.length; j++) {
-                    ingredientString.append(ingredients[j]).append(",");
-                }
-                ingredientString.deleteCharAt(ingredientString.length() - 1);
+            for (IFood food : foods) {
+                String description = food.getDescription();
+                String[] ingredients = Arrays.copyOfRange(description.split(","), 1, description.split(",").length);
                 String[][] countedIngredients = countGroupedIngredients(ingredients, groupIngredients(ingredients));
-                Connection connection1 = connect();
-                Statement statement1 = connection1.createStatement();
-                String sql1 = "BEGIN TRANSACTION;";
-                for (int j = 0; j < countedIngredients.length; j++) {
-                    if((countIngredient(countedIngredients[j][0]) - Integer.parseInt(countedIngredients[j][1])) < 0){
-                        throw new NotEnoughIngredietnsException();
-                    }
-                    else {
-                        int newAmount = countIngredient(countedIngredients[j][0]) - Integer.parseInt(countedIngredients[j][1]);
-                        sql1 += "UPDATE Ingredients SET ingredient_amount = '" + newAmount + "' WHERE ingredient_name = '" + countedIngredients[j][0] + "';";
-                        logger.info("Consumed "+ countedIngredients[j][1] +" pieces of " + countedIngredients[j][0]);
+
+                for (String[] ingredientInfo : countedIngredients) {
+                    String ingredientName = ingredientInfo[0];
+                    int requiredAmount = Integer.parseInt(ingredientInfo[1]);
+                    int availableAmount = countIngredient(ingredientName);
+                    if (availableAmount < requiredAmount) {
+                        throw new NotEnoughIngredientsException("Not enough " + ingredientName + " available.");
                     }
                 }
-                sql1 += "COMMIT;";
-                statement1.executeUpdate(sql1);
-                statement1.close();
-                connection1.close();
-                sql += "INSERT INTO Foods (ingredients, food_type, price) VALUES ('" +  ingredientString +"', '"+ food.getFoodType() +"', '" + getFoodPrice(countedIngredients) +"');";
+
+                for (String[] ingredientInfo : countedIngredients) {
+                    String ingredientName = ingredientInfo[0];
+                    int requiredAmount = Integer.parseInt(ingredientInfo[1]);
+                    int newAmount = countIngredient(ingredientName) - requiredAmount;
+                    sql += "UPDATE Ingredients SET ingredient_amount = '" + newAmount + "' WHERE ingredient_name = '" + ingredientName + "';";
+                }
+
+                String ingredientString = String.join(",", ingredients);
+                double foodPrice = getFoodPrice(countedIngredients);
+                String foodType = food.getFoodType().toString();
+                sql += "INSERT INTO Foods (ingredients, food_type, price) VALUES ('" + ingredientString + "', '" + foodType + "', '" + foodPrice + "');";
             }
+
             sql += "COMMIT;";
             statement.executeLargeUpdate(sql);
-            sql = "SELECT food_id FROM Foods ORDER BY food_id DESC LIMIT "+ String.valueOf(foods.size()) +";";
-            ResultSet resultSet = statement.executeQuery(sql);
-            sql = "";
-            while(resultSet.next()){
+            ResultSet resultSet = statement.executeQuery("SELECT food_id FROM Foods ORDER BY food_id DESC LIMIT " + foods.size() + ";");
+            sql = "BEGIN TRANSACTION;";
+            while (resultSet.next()) {
                 int foodID = resultSet.getInt(1);
                 sql += "INSERT INTO Orders VALUES ('" + orderID + "', '" + foodID + "');";
             }
+            sql += "COMMIT;";
             statement.executeUpdate(sql);
+
             resultSet.close();
             statement.close();
             disconnect(connection);
             return true;
-        }
-        catch (NotEnoughIngredietnsException e){
+        } catch (NotEnoughIngredientsException e) {
             logger.severe(e.getMessage());
             return false;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             logger.severe(e.getMessage());
             return false;
         }
     }
+
 
     private static int countIngredient(String ingredient){
         try{
@@ -263,7 +262,6 @@ public class Database {
                 disconnect(dbConnection);
                 return false;
             }
-            //ide kell majd az, hogy megnézi mennyi pénz van a kártyán
             logger.info("Payment processed successfully.");
             disconnect(dbConnection);
             return true;
@@ -463,7 +461,7 @@ public class Database {
                         String sql = "UPDATE Ingredients SET ingredient_amount = ingredient_amount - " + food.getIngredientAmounts()[temp] +
                                 " WHERE ingredient_id IN (SELECT ingredient_id FROM IngredientTypes WHERE ingredient_type = '" + food.getFoodtype() + "') " +
                                 "AND ingredient_name = '" + returnIndredientNameByFoodtype(food.getFoodtype(), temp) + "'";
-                        statement.executeUpdate(sql); // Changed to executeUpdate
+                        statement.executeUpdate(sql);
                         statement.close();
                         disconnect(connection);
                         logger.info("Successful ingredient update: " + food.getIngredientAmounts()[temp] + " " + food.getFoodtype());
