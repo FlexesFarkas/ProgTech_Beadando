@@ -61,8 +61,8 @@ public class GenFood {
     
     private ArrayList<Class<?>> getListOfDecorators() throws ClassNotFoundException {
         ArrayList<Class<?>> decorators = new ArrayList<>();
-        String packagePath = "org.kiosk.food.decorators";
-        File directory = new File(packagePath); //TODO: Ezt kijavítani, mert nem képes megtalálni a fájlokat a package-ben (Levit meg megölni)
+        String packagePath = IFood.class.getResource("") + "decorators";
+        File directory = new File(packagePath.substring(5));
         for (File file : directory.listFiles()) {
             if (file.isFile() && file.getName().endsWith(".java")) {
                 String className = file.getName().replace(".java", "");
