@@ -907,6 +907,8 @@ public class OrderController {
             }
             UUID orderId = UUID.randomUUID();
             saveOrder(cartFoods, String.valueOf(orderId));
+            price=0;
+            payamountLabel.setText(String.valueOf(price));
         } else {
             logger.info("cartList is empty.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
