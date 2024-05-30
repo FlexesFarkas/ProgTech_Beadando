@@ -25,12 +25,14 @@ import org.kiosk.order.OrderProcess.*;
 import org.kiosk.order.OrderState;
 import org.kiosk.order.OrderState.*;
 import javafx.scene.control.*;
+import java.util.logging.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 import java.util.concurrent.Delayed;
+import java.util.logging.Logger;
 
 import static org.kiosk.Database.*;
 
@@ -119,9 +121,21 @@ public class OrderController {
     private ArrayList<GenFood> cartList = new ArrayList<>();
     private String cartString="";
     private boolean Opened= false;
+    private static final Logger logger = Logger.getLogger(Database.class.getName());
+    private int price = 0;
 
-    public void AddFoodToCart(){
-        payamountLabel.setText(String.valueOf(ProcessPrice(cartList)));
+    public void AddFoodToCart() throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+        int temp = 0;
+        for (GenFood listfood : cartList) {
+            IFood convertedFood = listfood.convertToIFood();
+            if (convertedFood != null) {
+                price+= (int) (convertedFood.getCost()*ingredientAmounts[temp]);
+            } else {
+                logger.info("Converted food is null.");
+            }
+            temp++;
+        }
+        payamountLabel.setText(String.valueOf(price));
         if (Arrays.stream(ingredientAmounts).sum()==0){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Nem vásárolhat üres terméket!");
@@ -158,6 +172,7 @@ public class OrderController {
             CartListLabel.setText(cartString);
         }
         foodtypeInit();
+        payamountLabel.setText(String.valueOf(price));
     }
 
 
@@ -851,7 +866,7 @@ public class OrderController {
     public void FinalPayment(MouseEvent mouseEvent) {
     }
 
-    public void AddItemToCart(MouseEvent mouseEvent) {
+    public void AddItemToCart(MouseEvent mouseEvent) throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         if (ftype!=""){
             AddFoodToCart();
         }
@@ -875,30 +890,29 @@ public class OrderController {
     }
 
     public void Payment(MouseEvent mouseEvent) throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
-        System.out.println("Starting Payment method...");
+        logger.info("Starting Payment method...");
         if (!cartList.isEmpty()) {
-            System.out.println("cartList is not empty. Processing items...");
-            cartString = "";
+            logger.info("cartList is not empty. Processing items...");
             ArrayList<IFood> cartFoods = new ArrayList<>();
             for (GenFood listfood : cartList) {
                 IFood convertedFood = listfood.convertToIFood();
                 if (convertedFood != null) {
-                    System.out.println("Converted food: " + convertedFood.toString());
+                    logger.info("Converted food: " + convertedFood.toString());
                     cartFoods.add(convertedFood);
-                    cartString += convertedFood.toString();
                 } else {
-                    System.out.println("Converted food is null.");
+                    logger.info("Converted food is null.");
                 }
             }
             UUID orderId = UUID.randomUUID();
             saveOrder(cartFoods, String.valueOf(orderId));
         } else {
-            System.out.println("cartList is empty.");
+            logger.info("cartList is empty.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Még üres a kosara, \nígy nem tud fizetni :)\n" + cartList.toString());
             alert.show();
             initialize();
         }
+        RemoveItemsFromCart();
         System.out.println("Ending Payment method...");
     }
 
