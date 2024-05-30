@@ -129,7 +129,7 @@ public class OrderController {
         for (GenFood listfood : cartList) {
             IFood convertedFood = listfood.convertToIFood();
             if (convertedFood != null) {
-                price+= (int) (convertedFood.getCost());
+                price+= (int) (convertedFood.getCost()*ingredientAmounts[temp]);
             } else {
                 logger.info("Converted food is null.");
             }
