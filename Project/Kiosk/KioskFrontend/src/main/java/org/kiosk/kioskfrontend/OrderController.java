@@ -125,19 +125,6 @@ public class OrderController {
     private int price = 0;
 
     public void AddFoodToCart() throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
-        int temp = 0;
-        for (GenFood listfood : cartList) {
-            IFood convertedFood = listfood.convertToIFood();
-            if (convertedFood != null) {
-                double foodCost = convertedFood.getCost();
-                logger.info("Food cost: " + foodCost); // Ellenőrzés céljából
-                price += (int) (foodCost * ingredientAmounts[temp]);
-            } else {
-                logger.info("Converted food is null.");
-            }
-            temp++;
-        }
-        payamountLabel.setText(String.valueOf(price));
         if (Arrays.stream(ingredientAmounts).sum()==0){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Nem vásárolhat üres terméket!");
@@ -172,9 +159,22 @@ public class OrderController {
             alert.setContentText("Sikeresen hozzáadta a "+ftype+" a kosarába :)");
             alert.show();
             CartListLabel.setText(cartString);
+            int temp = 0;
+            for (GenFood listfood : cartList) {
+                IFood convertedFood = listfood.convertToIFood();
+                if (convertedFood != null) {
+                    double foodCost = convertedFood.getCost();
+                    logger.info("Food cost: " + foodCost);
+                    price += (int) (foodCost * ingredientAmounts[temp]);
+                } else {
+                    logger.info("Converted food is null.");
+                }
+                temp++;
+            }
+            payamountLabel.setText(String.valueOf(price));
         }
         foodtypeInit();
-        payamountLabel.setText(String.valueOf(price));
+
     }
 
 
@@ -509,7 +509,7 @@ public class OrderController {
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Nem lehet több ötnél.");
+            alert.setContentText("Nincs elegendő belőle :(.");
             alert.show();
         }
     }
@@ -528,7 +528,7 @@ public class OrderController {
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Nem lehet több ötnél.");
+            alert.setContentText("Nincs elegendő belőle :(.");
             alert.show();
         }
     }
@@ -547,7 +547,7 @@ public class OrderController {
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Nem lehet több ötnél.");
+            alert.setContentText("Nincs elegendő belőle :(.");
             alert.show();
         }
     }
@@ -566,7 +566,7 @@ public class OrderController {
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Nem lehet több ötnél.");
+            alert.setContentText("Nincs elegendő belőle :(.");
             alert.show();
         }
     }
@@ -585,7 +585,7 @@ public class OrderController {
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Nem lehet több ötnél.");
+            alert.setContentText("Nincs elegendő belőle :(.");
             alert.show();
         }
     }
