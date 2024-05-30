@@ -122,9 +122,20 @@ public class OrderController {
     private String cartString="";
     private boolean Opened= false;
     private static final Logger logger = Logger.getLogger(Database.class.getName());
+    private int price = 0;
 
-    public void AddFoodToCart(){
-        payamountLabel.setText(String.valueOf(ProcessPrice(cartList)));
+    public void AddFoodToCart() throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+        int temp = 0;
+        for (GenFood listfood : cartList) {
+            IFood convertedFood = listfood.convertToIFood();
+            if (convertedFood != null) {
+                price+= (int) (convertedFood.getCost());
+            } else {
+                logger.info("Converted food is null.");
+            }
+            temp++;
+        }
+        payamountLabel.setText(String.valueOf(price));
         if (Arrays.stream(ingredientAmounts).sum()==0){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Nem vásárolhat üres terméket!");
@@ -161,6 +172,7 @@ public class OrderController {
             CartListLabel.setText(cartString);
         }
         foodtypeInit();
+        payamountLabel.setText(String.valueOf(price));
     }
 
 
@@ -854,7 +866,7 @@ public class OrderController {
     public void FinalPayment(MouseEvent mouseEvent) {
     }
 
-    public void AddItemToCart(MouseEvent mouseEvent) {
+    public void AddItemToCart(MouseEvent mouseEvent) throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         if (ftype!=""){
             AddFoodToCart();
         }
