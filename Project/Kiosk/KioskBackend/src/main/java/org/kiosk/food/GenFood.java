@@ -64,8 +64,9 @@ public class GenFood {
         String packagePath = IFood.class.getResource("") + "decorators";
         File directory = new File(packagePath.substring(5));
         for (File file : directory.listFiles()) {
-            if (file.isFile() && file.getName().endsWith(".java")) {
-                String className = file.getName().replace(".java", "");
+            if (file.isFile() && file.getName().endsWith(".class")) {
+                String[] fileNames = file.getName().split(" \\.");
+                String className = fileNames[fileNames.length - 1].replace(".class", "");
                 Class<?> clazz = Class.forName(className);
                 decorators.add(clazz);
             }
