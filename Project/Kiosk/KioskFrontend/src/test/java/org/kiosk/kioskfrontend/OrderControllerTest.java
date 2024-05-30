@@ -30,6 +30,7 @@ import org.kiosk.order.OrderState;
 import org.kiosk.order.OrderState.*;
 import javafx.scene.control.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Delayed;
@@ -61,7 +62,7 @@ class OrderControllerTest {
         Assertions.assertTrue(orderController.cartList.isEmpty(), "Cart is empty after before and after running RemoveItemsFromCart");
     }
     @Test
-    void AddGoodItemsToCart() throws ExceptionInInitializerError{
+    void AddGoodItemsToCart() throws ExceptionInInitializerError, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         OrderController orderController = new OrderController();
         orderController.initialize();
         orderController.ftype = "Burger";
@@ -71,7 +72,7 @@ class OrderControllerTest {
         Assertions.assertEquals(new int[]{1,2,3,4,5},orderController.cartList.getLast().getIngredientAmounts());
     }
     @Test
-    void AddEmptyIngredientItemsToCart() throws ExceptionInInitializerError{
+    void AddEmptyIngredientItemsToCart() throws ExceptionInInitializerError, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         OrderController orderController = new OrderController();
         orderController.initialize();
         orderController.ftype = "testFoodType";

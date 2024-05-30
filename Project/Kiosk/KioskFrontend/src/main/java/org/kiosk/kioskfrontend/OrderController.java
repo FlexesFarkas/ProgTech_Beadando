@@ -39,90 +39,90 @@ import static org.kiosk.Database.*;
 
 public class OrderController {
 
-    private Food newFood;
+    protected Food newFood;
     @FXML
-    private Button food1_button;
+    protected Button food1_button;
     @FXML
-    private Button food2_button;
+    protected Button food2_button;
     @FXML
-    private Button food3_button;
+    protected Button food3_button;
     @FXML
-    private Button food4_button;
+    protected Button food4_button;
     @FXML
-    private Button Topping1_m;
+    protected Button Topping1_m;
     @FXML
-    private Button Topping2_m;
+    protected Button Topping2_m;
     @FXML
-    private Button Topping3_m;
+    protected Button Topping3_m;
     @FXML
-    private Button Topping4_m;
+    protected Button Topping4_m;
     @FXML
-    private Button Topping5_m;
+    protected Button Topping5_m;
     @FXML
-    private Button Topping1_p;
+    protected Button Topping1_p;
     @FXML
-    private Button Topping2_p;
+    protected Button Topping2_p;
     @FXML
-    private Button Topping3_p;
+    protected Button Topping3_p;
     @FXML
-    private Button Topping4_p;
+    protected Button Topping4_p;
     @FXML
-    private Button Topping5_p;
+    protected Button Topping5_p;
     @FXML
-    private Button pay_button;
+    protected Button pay_button;
     @FXML
-    private Button addtocart_button;
+    protected Button addtocart_button;
     @FXML
-    private Button FinalPayButton;
+    protected Button FinalPayButton;
     @FXML
-    private Button clearcart_button;
+    protected Button clearcart_button;
     @FXML
-    private Label ToppingName_1;
+    protected Label ToppingName_1;
     @FXML
-    private Label ToppingName_2;
+    protected Label ToppingName_2;
     @FXML
-    private Label ToppingName_3;
+    protected Label ToppingName_3;
     @FXML
-    private Label ToppingName_4;
+    protected Label ToppingName_4;
     @FXML
-    private Label ToppingName_5;
+    protected Label ToppingName_5;
     @FXML
-    private Slider ToppingSlider_1;
+    protected Slider ToppingSlider_1;
     @FXML
-    private Slider ToppingSlider_2;
+    protected Slider ToppingSlider_2;
     @FXML
-    private Slider ToppingSlider_3;
+    protected Slider ToppingSlider_3;
     @FXML
-    private Slider ToppingSlider_4;
+    protected Slider ToppingSlider_4;
     @FXML
-    private Slider ToppingSlider_5;
+    protected Slider ToppingSlider_5;
     @FXML
-    private Label inum_1;
+    protected Label inum_1;
     @FXML
-    private Label inum_2;
+    protected Label inum_2;
     @FXML
-    private Label inum_3;
+    protected Label inum_3;
     @FXML
-    private Label inum_4;
+    protected Label inum_4;
     @FXML
-    private Label inum_5;
+    protected Label inum_5;
     @FXML
-    private Label ingredient_label;
+    protected Label ingredient_label;
     @FXML
-    private Label CartListLabel;
+    protected Label CartListLabel;
     @FXML
-    private Label payamountLabel;
+    protected Label payamountLabel;
 
-    private OrderState os;
+    protected OrderState os;
     Alert a = new Alert(Alert.AlertType.WARNING);
-    private  int[] ingredientAmounts = new int[]{0,0,0,0,0};
-    private String ftype;
-    private int fid;
-    private ArrayList<GenFood> cartList = new ArrayList<>();
-    private String cartString="";
-    private boolean Opened= false;
-    private static final Logger logger = Logger.getLogger(Database.class.getName());
-    private int price = 0;
+    protected  int[] ingredientAmounts = new int[]{0,0,0,0,0};
+    protected String ftype;
+    protected int fid;
+    protected ArrayList<GenFood> cartList = new ArrayList<>();
+    protected String cartString="";
+    protected boolean Opened= false;
+    protected static final Logger logger = Logger.getLogger(Database.class.getName());
+    protected int price = 0;
 
     public void AddFoodToCart() throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         if (Arrays.stream(ingredientAmounts).sum()==0){
